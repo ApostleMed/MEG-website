@@ -1,69 +1,59 @@
-import elder from "./../../assets/image/service/eldercare.jpg";
-import infant from "./../../assets/image/service/newborn.jpg";
-import hospital from "./../../assets/image/service/hospitalCare.jpg";
-import newborn from "./../../assets/image/service/childCare.jpg";
-import { FaBaby, FaChild, FaHospitalAlt, FaUserFriends } from "react-icons/fa";
+import {
+  FaGraduationCap,
+  FaClipboardCheck,
+  FaSchool,
+  FaHome,
+} from "react-icons/fa";
 
-export const services = [
+const services = [
   {
-    icon: <FaBaby />,
-    image: newborn,
-    title: "Newborn Care",
+    icon: <FaGraduationCap className="text-2xl text-blue-900" />,
+    title: "Medical Education Pathway Consultation",
     description:
-      "“Our caregivers provide gentle and nurturing care for infants, ensuring safety and well-being”",
+      "For International Medical Students: Guidance, mentoring, medical education",
+    buttonText: "Learn More",
   },
   {
-    icon: <FaChild />,
-    image: infant,
-    title: "Child Care",
-    description:
-      "“Reliable and compassionate childcare services, providing parents peace of mind knowing their children are in safe hands.”",
+    icon: <FaClipboardCheck className="text-2xl text-blue-900" />,
+    title: "Application Excellence Package",
+    description: "For students seeking university application success",
+    buttonText: "Learn More",
   },
   {
-    icon: <FaHospitalAlt />,
-    image: hospital,
-    title: "Hospital Companion Care",
+    icon: <FaSchool className="text-2xl text-blue-900" />,
+    title: "Medical School Entrance Boot camp (MSEB)",
     description:
-      "“We offer companionship and support for those in hospital settings, making recovery less lonely and more comfortable”",
+      "Designed for ambitious students aiming for medical school success. Our boot camp offers comprehensive preparation for entrance exams, academic strategy, and professional skills development.",
+    buttonText: "Learn More",
   },
   {
-    icon: <FaUserFriends />,
-    image: elder,
-    title: "Elder Care",
+    icon: <FaHome className="text-2xl text-blue-900" />,
+    title: "Accommodation & Boarding Services",
     description:
-      "“We offer warm, attentive support for seniors, assisting with daily tasks to maintain comfort and independence at home.”",
+      "For students seeking fully-supported accommodation & boarding services during their education journey",
+    buttonText: "Learn More",
   },
 ];
 
 function Services() {
-  // console.log(services);
   return (
-    <div className="lg:px-0 sm:w-[500px] lg:w-[1000px] mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 md:gap-10 lg:gap-20 px-5 gap-20">
-        {services.map((card, index) => (
+    <div className="container mx-auto px-4 py-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {services.map((service, index) => (
           <div
-            id="services"
             key={index}
-            className="bg-sub rounded-3xl p-5 md:p-10 overflow-hidden shadow-md"
+            className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
           >
-            <img
-              src={card.image}
-              alt={card.title}
-              className="w-full h-[250px] rounded-xl object-cover"
-            />
-            <div className="py-6 flex flex-col justify-between h-[250px] lg:h-[350px]">
-              <div>
-                <h3 className="md:text-[22px] lg:text-[28px] mb-5 font-semibold text-green-800">
-                  {card.title}
-                </h3>
-                <p className="sourcesans text-[16px] lg:text-[20px]">
-                  {card.description}
-                </p>
-              </div>
-              <button className=" flex w-full sm:w-[350px] mx-auto bg-white text-primary font-bold py-6 px-10 rounded-full justify-center items-center hover:scale-105 hover:shadow-lg transition duration-300">
-                <span>Explore {card.title}</span>
-              </button>
+            <div className="flex items-center gap-3 mb-3">
+              {service.icon}
+              <h3 className="text-lg font-semibold text-gray-900">
+                {service.title}
+              </h3>
             </div>
+            <p className="text-gray-600 mb-4 text-sm">{service.description}</p>
+            <button className="bg-blue-900 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-800 transition-colors duration-300">
+              {service.buttonText}
+            </button>
           </div>
         ))}
       </div>

@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         sofia: ["Sofia Pro"],
         opensan: ["Open Sans"],
+        playfair: ["Play Fair"],
         sourcesan: ["Souce Sans 3"],
       },
       fontSize: {
@@ -15,10 +16,13 @@ export default {
         cardbody: ["14px"],
       },
       colors: {
-        primary: "#3DBB47",
+        primary: "#DAA520",
+        accent: "#003366",
+        body: "#63666A",
         pridark: "#1A4F1E",
-        background: "#C3EAC6", // Custom primary color
-        secondary: "#2EA14A", // Custom secondary color
+        bglight: "#F6F6F6",
+        background: "#E6E1E1", // Custom primary color
+        secondary: "#FFFFFF", // Custom secondary color
         hihglight: "#154119",
         sub: "#C3EAC6",
         footer: "#1C1C1C",

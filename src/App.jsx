@@ -21,7 +21,7 @@ function App() {
       <Router>
         <div>
           <ScrollToTop />
-          <div className="absolute top-0 md:top-5 z-50 w-full">
+          <div className="sticky top-0 z-50 w-full">
             <Navbar />
           </div>
           <Routes>
@@ -59,8 +59,8 @@ function App() {
             />
             {/* <Route path="*" element={<PageNotFound />} /> */}
           </Routes>
+          <Footer classData="bg-footer" />
         </div>
-        <Footer classData="bg-footer" />
       </Router>
     </AnimatePresence>
   );

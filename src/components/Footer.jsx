@@ -1,133 +1,155 @@
 // import React from 'react';
 import { SocialIcon } from "react-social-icons";
-import logo from "./../assets/image/logo.svg";
-import icon1 from "./../assets/image/home/footer1.svg";
-import icon2 from "./../assets/image/home/footer2.svg";
-import icon3 from "./../assets/image/home/footer3.svg";
-import icon4 from "./../assets/image/home/footer4.svg";
-import icon5 from "./../assets/image/contact/phone_icon.svg";
-// import icon2 from "./../../assets/image/contact/message_icon.svg";
-import icon6 from "./../assets/image/contact/mail-icon.svg";
+import { MdMailOutline } from "react-icons/md";
+import { MdOutlineLocationOn } from "react-icons/md";
+import logo from "./../assets/image/logo.png";
+
+import { FaLinkedin } from "react-icons/fa6";
+import { FaYoutube } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer
-      className={`bg-white text-dark lg:px-0 pt-[32px] md:pt-[64px] lg:pt-[128px] pb-8 px-5 md:px-10 lg:px-0 `}
-    >
-      <div className="mx-auto flex flex-col lg:flex-row lg:w-[1000px]">
-        <div className="flex flex-col w-full lg:w-2/5">
-          <img src={logo} alt="Logo" className="w-28" />
-          <p className="mt-2 open-sans text-gray-600 font-bold text-xl">
-            Looking For Daycare Services? <br />
-            Call us straight away!
-          </p>
-          <div className="mt-4 flex space-x-6">
-            <SocialIcon
-              url="https://www.facebook.com/caremel122023"
-              target="_blank"
-              network="facebook"
-              style={{ height: 35, width: 35 }}
-            />
-            <SocialIcon
-              network="linkedin"
-              url="https://www.linkedin.com/company/care-mel-mm/"
-              target="_blank"
-              style={{ height: 35, width: 35 }}
-            />
-            {/* <a href="viber://add?number=959773703015" target="_blank">
-              <img src={viber} alt="Viber" style={{ height: 35, width: 35 }} />
-            </a> */}
+    <footer className="bg-gray-100 pb-[24px]">
+      <div className="containers">
+        <div className="flex justify-between">
+          <div className="footer-left">
+            <div className="flex items-center gap-2">
+              <img
+                src={logo}
+                alt="Medical Education Guild Logo"
+                className="footer-logo"
+              />
+              <p className="playfair text-[#5C450D] text-[16px] font-bold">
+                Medical Education Guild
+              </p>
+            </div>
+            <p className="text-[16px] mt-5 leading-7 text-gray-500">
+              Sharing a World-Where Healthcare <br /> Knowledge is Universal,
+              and Being a <br /> Healer is a Noble Duty
+            </p>
+            <div className="mt-10 space-y-5">
+              <div className="flex gap-5 text-gray-500">
+                <MdMailOutline className="text-2xl" />
+                <span className="text-[14px]">
+                  medicaleducationalguild@gmail.com
+                </span>
+              </div>
+              <div className="flex gap-5 text-gray-500">
+                <MdOutlineLocationOn className="text-2xl " />
+                <span className="text-[14px]">
+                  111 NORTH BRIDGE ROAD #04-06 <br /> PENINSULA PLAZA SINGAPORE{" "}
+                  <br />
+                  179098
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="flex w-full lg:w-3/5  flex-col md:flex-row mt-10 lg:mt-0">
-          <div className="flex flex-col w-full md:w-1/2">
-            <h2 className="text-xl font-semibold text-primary">Services</h2>
-            <ul className="mt-2 space-y-5 mt-5">
-              <li className="">
-                <Link
-                  to="/service#services"
-                  // onClick={() => {
-                  //   window.scrollTo(0, 0);
-                  // }}
-                  className="hover:text-primary md:text-[16px] lg:text-[18px] flex gap-2 items-center"
-                >
-                  <img src={icon1} className="w-6 h-6" />
-                  Child Care Service
-                </Link>
+          <div className="space-y-10">
+            <div className="">
+              <h3 className="playfair font-medium text-[24px]">
+                How Can We Help
+              </h3>
+              <ul className="mt-5 space-y-3 text-gray-500 ">
+                <li>
+                  <Link to="/">Medical Education Pathway Consultation</Link>
+                </li>
+                <li>
+                  <Link to="/">Application Excellence</Link>
+                </li>
+                <li>
+                  <Link to="/">Medical School Entrance Test/Exam (MHEB)</Link>
+                </li>
+                <li>
+                  <Link to="/">Accommodation & Boarding Services</Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className="grid grid-cols-2 gap-10">
+              <div className="footer-section ">
+                <h3 className="playfair font-medium text-[24px]">About Us</h3>
+                <ul className="mt-5 space-y-3 text-gray-500 ">
+                  <li>
+                    <Link to="/">Our Story</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Mission & Vision</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Partner Organization</Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="footer-section">
+                <h3 className="playfair font-medium text-[24px]">Community</h3>
+                <ul className="mt-5 space-y-3 text-gray-500 ">
+                  <li>
+                    <Link to="/">Join Our Community</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-10">
+              <div className="footer-section">
+                <h3 className="playfair font-medium text-[24px]">Contact Us</h3>
+                <ul className="mt-5 space-y-3 text-gray-500 ">
+                  <li>
+                    <Link to="/">Office Location</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Virtual Support</Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="footer-section">
+                <h3 className="playfair font-medium text-[24px]">Others</h3>
+                <ul className="mt-5 space-y-3 text-gray-500 ">
+                  <li>
+                    <Link to="/">Privacy & Policy</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="footer-social">
+            <h3 className="playfair font-medium text-[24px]">Social Media</h3>
+            <ul className="mt-5 space-y-10 text-gray-500 ">
+              <li className="flex gap-2 items-center">
+                <FaFacebook size={24} />
+                <span className="text-[16px]">Facebook</span>
               </li>
-              <li className="">
-                <Link
-                  to="/service"
-                  onClick={() => {
-                    window.scrollTo(0, 0);
-                  }}
-                  className="hover:text-primary md:text-[16px] lg:text-[18px] flex gap-2 items-center"
-                >
-                  <img src={icon4} className="w-6 h-6" />
-                  Newborn Care Service
-                </Link>
+              <li className="flex gap-2 items-center">
+                <FaLinkedin size={24} />
+                <span className="text-[16px]">Linkedin</span>
               </li>
-              <li className="">
-                <Link
-                  to="/service"
-                  onClick={() => {
-                    window.scrollTo(0, 0);
-                  }}
-                  className="hover:text-primary md:text-[16px] lg:text-[18px] flex gap-2 items-center"
-                >
-                  <img src={icon3} className="w-6 h-6" />
-                  Hospital Companion Care Service
-                </Link>
+              <li className="flex gap-2 items-center">
+                <FaYoutube size={24} />
+                <span className="text-[16px]">Youtube</span>
               </li>
-              <li className="">
-                <Link
-                  to="/service"
-                  onClick={() => {
-                    window.scrollTo(0, 0);
-                  }}
-                  className="hover:text-primary md:text-[16px] lg:text-[18px] flex gap-2 items-center"
-                >
-                  <img src={icon2} className="w-6 h-6" />
-                  Elder Care Service
-                </Link>
+              <li className="flex gap-2 items-center">
+                <FaTiktok size={24} />
+                <span className="text-[16px]">Tiktok</span>
+              </li>
+              <li className="flex gap-2 items-center">
+                <FaWhatsapp size={24} />
+                <span className="text-[16px]">Whatsapp</span>
               </li>
             </ul>
           </div>
-
-          <div className="flex flex-col w-full md:w-1/2 items-start md:items-center mt-10 md:mt-0">
-            <div>
-              <h2 className="text-xl text-primary font-semibold">
-                Contact With Us
-              </h2>
-              <p className="mt-5 text-lg font-semibold">
-                <p className="flex items-center gap-2">
-                  <img src={icon5} /> <span>09 - 773 709 015</span>
-                </p>
-                <span className="text-sm font-medium ms-8 ">
-                  (Office Hours 9 to 5)
-                </span>
-              </p>
-              <p className="mt-5 font-semibold">
-                <a
-                  href="mailto:carenekontact@mail.com"
-                  className="hover:text-green-300 flex items-center gap-2"
-                >
-                  <img src={icon6} />
-                  info@caremelmm.com
-                </a>
-              </p>
-            </div>
-          </div>
         </div>
-      </div>
-      <div>
-        <div className="flex flex-col md:flex-row justify-center items-center mt-[100px]">
-          <p className="text-sm text-gray-600">
-            © 2024 Care Mel. All rights reserved.
-          </p>
+
+        <div className="text-center mt-20">
+          <p className="text-gray-500">© 2025 Medical Educational Guild</p>
         </div>
       </div>
     </footer>

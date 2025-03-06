@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { IoMenuSharp } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
-import logo from "./../../assets/image/logo.svg";
+import logo from "./../../assets/image/logo.png";
 import { FaFacebookMessenger } from "react-icons/fa";
 
 const Navbar = () => {
@@ -14,54 +14,56 @@ const Navbar = () => {
 
   return (
     <nav className="">
-      <div className="md:mx-10 bg-white mx-auto flex items-center justify-between py-5 md:py-4 px-5 md:px-8 lg:px-10 md:rounded-full">
-        {/* Logo */}
-        <Link to="/" className="">
-          <img src={logo} alt="Logo" className="w-20 md:w-14" />
-        </Link>
+      <div className="bg-white mx-auto flex items-center justify-between py-5 md:py-4 px-5 md:px-8 lg:px-10 border-b border-gray-50 shadow-sm">
+        <div className="flex items-center">
+          {/* Logo */}
+          <Link to="/" className="">
+            <img src={logo} alt="Logo" className="w-20 md:w-14" />
+          </Link>
 
-        {/* Desktop Nav Links */}
-        <div className="hidden md:flex md:space-x-5 lg:space-x-10">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive
-                ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-green-600"
-                : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-green-600"
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive
-                ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-green-600"
-                : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-green-600"
-            }
-          >
-            About Us
-          </NavLink>
-          <NavLink
-            to="/service"
-            className={({ isActive }) =>
-              isActive
-                ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-green-600"
-                : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-green-600"
-            }
-          >
-            Services
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive
-                ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-green-600"
-                : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-green-600"
-            }
-          >
-            Contact Us
-          </NavLink>
+          {/* Desktop Nav Links */}
+          <div className="hidden ms-20 md:flex md:space-x-5 lg:space-x-10">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-primary"
+                  : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-green-600"
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-primary"
+                  : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
+              }
+            >
+              About Us
+            </NavLink>
+            <NavLink
+              to="/service"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-primary"
+                  : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
+              }
+            >
+              Services
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-primary"
+                  : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
+              }
+            >
+              Contact Us
+            </NavLink>
+          </div>
         </div>
 
         {/* Language Selector and Button */}
@@ -69,10 +71,10 @@ const Navbar = () => {
           {/* <span className="text-gray-800">MYA / EN</span> */}
           <a
             href="https://m.me/197568866770556?source=qr_link_share"
-            className="open-sans inline-flex items-center bg-primary font-bold lg:text-[20px] font-bold text-white py-3 px-6 lg:py-6 lg:px-10 rounded-full hover:scale-105 hover:shadow-lg shadow-primary transition duration-300 ease-in-out"
+            className="button"
           >
-            We’re Here to Help
-            <FaFacebookMessenger className="inline-block ml-2" />
+            Book a Consultation
+            {/* <FaFacebookMessenger className="inline-block ml-2" /> */}
           </a>
         </div>
 
