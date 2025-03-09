@@ -1,6 +1,6 @@
 // import React from "react";
 
-function ServiceBanner() {
+function AboutBanner() {
   return (
     <div className="h-[50vh] bg-accent flex justify-center items-end">
       <div className="containers text-white">
@@ -13,4 +13,4 @@ function ServiceBanner() {
   );
 }
 
-export default ServiceBanner;
+export default AboutBanner;

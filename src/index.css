@@ -44,7 +44,7 @@ body {
 }
 
 .containers {
-  @apply mx-auto lg:w-[1100px] py-[64px] px-5 md:px-0;
+  @apply mx-auto lg:w-[1100px] py-[64px] px-5 lg:px-0 md:px-10;
 }
 
 .header-text {

@@ -7,6 +7,7 @@ import { FaFacebookMessenger } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [serviceMenu, setServiceMenu] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -24,16 +25,22 @@ const Navbar = () => {
           {/* Desktop Nav Links */}
           <div className="hidden ms-20 md:flex md:space-x-5 lg:space-x-10">
             <NavLink
+              onClick={() => {
+                setServiceMenu(false);
+              }}
               to="/"
               className={({ isActive }) =>
                 isActive
                   ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-primary"
-                  : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-green-600"
+                  : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
               }
             >
               Home
             </NavLink>
             <NavLink
+              onClick={() => {
+                setServiceMenu(false);
+              }}
               to="/about"
               className={({ isActive }) =>
                 isActive
@@ -43,7 +50,89 @@ const Navbar = () => {
             >
               About Us
             </NavLink>
-            <NavLink
+            <div className="relative">
+              <button
+                className="text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
+                onClick={() => {
+                  setServiceMenu(!serviceMenu);
+                }}
+              >
+                Services
+                <svg
+                  className="inline-block w-4 h-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div
+                className="absolute bg-white w-[400px] border shadow-md rounded z-10 mt-2 py-4 space-y-4"
+                style={{ display: serviceMenu ? "block" : "none" }}
+              >
+                <NavLink
+                  onClick={() => {
+                    setServiceMenu(!serviceMenu);
+                  }}
+                  to="/service/1"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-primary font-semibold"
+                      : "block px-4 py-2 text-gray-600 hover:text-primary"
+                  }
+                >
+                  Medical Education Pathway Consultation
+                </NavLink>
+                <NavLink
+                  onClick={() => {
+                    setServiceMenu(!serviceMenu);
+                  }}
+                  to="/service/2"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-primary font-semibold"
+                      : "block px-4 py-2 text-gray-600 hover:text-primary"
+                  }
+                >
+                  Application Excellence Package
+                </NavLink>
+                <NavLink
+                  onClick={() => {
+                    setServiceMenu(!serviceMenu);
+                  }}
+                  to="/service/3"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-primary font-semibold"
+                      : "block px-4 py-2 text-gray-600 hover:text-primary"
+                  }
+                >
+                  Medical School Entrance Bootcamp
+                </NavLink>
+                <NavLink
+                  onClick={() => {
+                    setServiceMenu(!serviceMenu);
+                  }}
+                  to="/service/4"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-primary font-semibold"
+                      : "block px-4 py-2 text-gray-600 hover:text-primary"
+                  }
+                >
+                  Accommodation and Boarding Services
+                </NavLink>
+              </div>
+            </div>
+
+            {/* <NavLink
               to="/service"
               className={({ isActive }) =>
                 isActive
@@ -52,8 +141,11 @@ const Navbar = () => {
               }
             >
               Services
-            </NavLink>
+            </NavLink> */}
             <NavLink
+              onClick={() => {
+                setServiceMenu(!serviceMenu);
+              }}
               to="/contact"
               className={({ isActive }) =>
                 isActive
@@ -68,13 +160,11 @@ const Navbar = () => {
 
         {/* Language Selector and Button */}
         <div className="hidden md:block items-center">
-          {/* <span className="text-gray-800">MYA / EN</span> */}
           <a
             href="https://m.me/197568866770556?source=qr_link_share"
             className="button"
           >
             Book a Consultation
-            {/* <FaFacebookMessenger className="inline-block ml-2" /> */}
           </a>
         </div>
 
