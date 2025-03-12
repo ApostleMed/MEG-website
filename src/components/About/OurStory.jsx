@@ -4,7 +4,7 @@ const OurStory = () => {
   return (
     <div className="containers space-y-20">
       <div className="flex flex-col md:flex-row">
-        <div className="w-1/2 h-[400px] flex flex-col justify-center">
+        <div className="md:w-1/2 h-[400px] flex flex-col justify-center">
           <p className="body-text mb-5">
             At MEG, our journey began in 2025 with a mission to revolutionize
             medical and healthcare education. We bridge the gap between ambition
@@ -15,15 +15,15 @@ const OurStory = () => {
             to meet the challenges of tomorrow.
           </p>
         </div>
-        <div className="w-1/2 flex justify-end">
+        <div className="md:w-1/2 flex justify-center md:justify-end">
           <img src={about} alt="about" className="h-[400px] w-auto" />
         </div>
       </div>
       <div className="flex flex-col md:flex-row">
-        <div className="w-1/2 flex justify-start">
+        <div className="md:w-1/2 justify-center flex md:justify-start">
           <img src={aboutus} alt="about" className="h-[400px] w-auto" />
         </div>
-        <div className="w-1/2 h-[400px] flex flex-col justify-center">
+        <div className="md:w-1/2 h-[400px] flex flex-col justify-center">
           <div className="body-text mb-5">
             <p>
               Founded in 2025, MEG was established to revolutionize medical and

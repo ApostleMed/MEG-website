@@ -40,11 +40,11 @@ body {
 
 .button {
   /* font-family: "roboto"; */
-  @apply open-sans inline-flex items-center bg-primary font-bold lg:text-[16px] font-bold text-white py-3 px-6 lg:py-4 lg:px-6 rounded-full hover:scale-105 hover:shadow-lg shadow-primary transition duration-300 ease-in-out;
+  @apply open-sans inline-flex items-center bg-primary font-bold lg:text-[16px] font-bold text-white py-3 px-6 lg:py-4 lg:px-6 rounded-full md:hover:scale-105 hover:shadow-lg active:scale-95 shadow-primary transition duration-300 ease-in-out;
 }
 
 .containers {
-  @apply mx-auto lg:w-[1100px] py-[64px] px-5 lg:px-0 md:px-10;
+  @apply mx-auto lg:w-[1000px] py-[64px] lg:py-[126px] px-5 md:px-10 lg:px-0;
 }
 
 .header-text {

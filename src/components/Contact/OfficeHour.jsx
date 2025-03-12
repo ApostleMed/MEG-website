@@ -10,151 +10,152 @@ import { MdOutlinePhone } from "react-icons/md";
 
 const offices = [
   {
-    name: "Thailand Office",
+    name: "Thailand",
     id: "THA",
     coordinates: [100.5018, 13.7563],
     hours: "9:00 AM - 5:00 PM",
     timezone: "(GMT+7)",
-    flag: "🇹🇭",
-    phone: "+66 762 711 90",
+    flag: "https://cdn.iconscout.com/icon/free/png-512/free-thailand-flag-icon-download-in-svg-png-gif-file-formats--background-asia-asian-travel-nature-flags-pack-icons-2998640.png?f=webp&w=512",
+    // phone: "+66 762 711 90",
   },
   {
-    name: "UK Office",
+    name: "UK",
     id: "UK",
     coordinates: [-0.1276, 51.5074],
     hours: "2:00 AM - 10:00 AM",
     timezone: "(GMT+0)",
-    flag: "🇬🇧",
+    flag: "https://cdn.iconscout.com/icon/free/png-512/free-thailand-flag-icon-download-in-svg-png-gif-file-formats--background-asia-asian-travel-nature-flags-pack-icons-2998640.png?f=webp&w=512",
   },
   {
-    name: "Hungary Office",
+    name: "Hungary",
     id: "HUN",
     coordinates: [19.0402, 47.4979],
     hours: "3:00 AM - 11:00 AM",
     timezone: "(GMT+1)",
-    flag: "🇭🇺",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/hungary-4575805-3793021.png?f=webp&w=512",
   },
   {
-    name: "Italy Office",
+    name: "Italy",
     id: "ITA",
     coordinates: [12.4964, 41.9028],
     hours: "3:00 AM - 11:00 AM",
     timezone: "(GMT+1)",
-    flag: "🇮🇹",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/italy-2184995-1828115.png?f=webp&w=512",
   },
   {
-    name: "Poland Office",
+    name: "Poland",
     id: "POL",
     coordinates: [21.0122, 52.2297],
     hours: "3:00 AM - 11:00 AM",
     timezone: "(GMT+1)",
-    flag: "🇵🇱",
+    flag: "https://cdn.iconscout.com/icon/free/png-512/free-poland-flag-icon-download-in-svg-png-gif-file-formats--world-logo-european-polish-landmark-flags-pack-icons-2998595.png?f=webp&w=512",
   },
   {
-    name: "Malaysia Office",
+    name: "Malaysia",
     id: "MYS",
     coordinates: [101.9758, 4.2105],
     hours: "10:00 AM - 6:00 PM",
     timezone: "(GMT+8)",
-    flag: "🇲🇾",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/malaysia-2730470-2266080.png?f=webp&w=512",
   },
   {
-    name: "Nigeria Office",
+    name: "Nigeria",
     id: "NGA",
     coordinates: [8.6753, 9.082],
     hours: "3:00 AM - 11:00 AM",
     timezone: "(GMT+1)",
-    flag: "🇳🇬",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/nigeria-flag-icon-download-in-svg-png-gif-file-formats--country-national-flags-vol-4-pack-culture-religion-festivals-icons-11214272.png?f=webp&w=512",
   },
   {
-    name: "Singapore Office",
+    name: "Singapor",
     id: "SGP",
     coordinates: [103.8198, 1.3521],
     hours: "10:00 AM - 6:00 PM",
     timezone: "(GMT+8)",
-    flag: "🇸🇬",
+    flag: "https://cdn.iconscout.com/icon/free/png-512/free-singapore-flag-icon-download-in-svg-png-gif-file-formats--delicious-logo-food-indian-tasty-flags-pack-icons-2998618.png?f=webp&w=512",
   },
   {
-    name: "China Office",
+    name: "China",
     id: "CHN",
     coordinates: [116.4074, 39.9042],
     hours: "10:00 AM - 6:00 PM",
     timezone: "(GMT+8)",
-    flag: "🇨🇳",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/china-4233091-3510790.png?f=webp&w=512",
   },
   {
-    name: "Germany Office",
+    name: "Germany",
     id: "DEU",
     coordinates: [10.4515, 51.1657],
     hours: "3:00 AM - 11:00 AM",
     timezone: "(GMT+1)",
-    flag: "🇩🇪",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/germany-2184997-1828116.png?f=webp&w=512",
   },
   {
-    name: "Turkey Office",
+    name: "Turkey",
     id: "TR",
     coordinates: [35.2433, 38.9637],
     hours: "5:00 AM - 1:00 PM",
     timezone: "(GMT+3)",
-    flag: "🇹🇷",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/germany-2184997-1828116.png?f=webp&w=512",
   },
   {
-    name: "Cambodia Office",
+    name: "Cambodia",
     id: "KHM",
     coordinates: [104.9915, 12.5655],
     hours: "9:00 AM - 5:00 PM",
     timezone: "(GMT+7)",
-    flag: "🇰🇭",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/germany-2184997-1828116.png?f=webp&w=512",
   },
   {
-    name: "Vietnam Office",
+    name: "Vietnam",
     id: "VIE",
     coordinates: [105.8542, 21.0285],
     hours: "9:00 AM - 5:00 PM",
     timezone: "(GMT+7)",
-    flag: "🇻🇳",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/vietnam-2184975-1828138.png?f=webp&w=512",
   },
   {
-    name: "Laos Office",
+    name: "Laos",
     id: "LAO",
     coordinates: [102.4955, 19.8563],
     hours: "9:00 AM - 5:00 PM",
     timezone: "(GMT+7)",
-    flag: "🇱🇦",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/laos-4422504-3664130.png?f=webp&w=512",
   },
   {
-    name: "India Office",
+    name: "India",
     id: "IND",
     coordinates: [78.9629, 20.5937],
     hours: "6:30 AM - 2:30 PM",
     timezone: "(GMT+5:30)",
-    flag: "🇮🇳",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/laos-4422504-3664130.png?f=webp&w=512",
   },
   {
-    name: "Finland Office",
+    name: "Finland",
     id: "FIN",
     coordinates: [28.45, 68.36],
     hours: "4:00 AM - 12:00 PM",
     timezone: "(GMT+2)",
-    flag: "🇫🇮",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/finland-2730503-2266113.png?f=webp&w=512",
   },
   {
-    name: "Philippines Office",
+    name: "Philippines",
     id: "PHL",
     coordinates: [121.774, 12.8797],
     hours: "10:00 AM - 6:00 PM",
     timezone: "(GMT+8)",
-    flag: "🇵🇭",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/philipine-4575822-3793038.png?f=webp&w=512",
   },
 ];
 
 function OfficeHour() {
   const [selectedOffice, setSelectedOffice] = useState(null);
+  console.log(selectedOffice);
 
   return (
     <div>
       <div className="containers">
-        <div className="flex gap-40">
+        <div className="flex flex-col md:flex-row gap-10 md:gap-40">
           <p className="header-text font-bold">Office Hours</p>
           <p className="body-text">
             Founded in 2025, MEG was established to revolutionize medical and
@@ -165,13 +166,13 @@ function OfficeHour() {
           </p>
         </div>
 
-        <div className="mt-20 flex gap-8">
+        <div className="mt-20 w-full hidden lg:flex">
           <div className="w-2/3">
             <ComposableMap
               projection="geoMercator"
               projectionConfig={{
-                scale: 120,
-                center: [0, 50],
+                scale: 150,
+                center: [50, 50],
               }}
             >
               <Geographies geography="./features.json">
@@ -229,11 +230,11 @@ function OfficeHour() {
               {/* <Marker coordinates={[0, 0]}> */}
             </ComposableMap>
           </div>
-          <div className="w-1/3 p-4 flex items-center justify-center">
+          <div className="w-1/3 flex items-center justify-center">
             {selectedOffice ? (
               <div className="p-4">
                 <div className="font-bold flex flex-col items-center gap-2 mb-3 text-[24px]">
-                  <span className="">{selectedOffice.flag}</span>
+                  <img src={selectedOffice.flag} className="w-8 h-8" />
                   <h3 className="">{selectedOffice.name}</h3>
                   <p className="">{selectedOffice.hours}</p>
                   <p className="">{selectedOffice.timezone}</p>
@@ -253,6 +254,36 @@ function OfficeHour() {
               </div>
             )}
           </div>
+        </div>
+
+        {/* table     */}
+        <div className="w-full mt-10 block lg:hidden">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b-2 border-gray-300 text-md">
+                <th className="px-4 py-2 text-lg">Office</th>
+                <th className="px-4 py-2 text-lg">Contact</th>
+              </tr>
+            </thead>
+            <tbody>
+              {offices.map((office) => (
+                <tr key={office.name} className="border-b-2 border-gray-300">
+                  <td className="px-4 py-2 text-center">{office.name}</td>
+                  <td className="px-4 py-2 text-center">
+                    <p className="mb-2"> {office.hours}</p>
+
+                    {/* <a
+                      href={`tel:${office?.phone}`}
+                      className="font-medium text-accent"
+                    >
+                      <BiPhone className="inline mr-1" />
+                      {office?.phone}
+                    </a> */}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ function Feature({ features }) {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-gray-100 w-72 p-10 rounded-2xl shadow-md border border-gray-200"
+                className="bg-gray-100 w-72 p-10 rounded-2xl shadow-md border border-gray-200 w-full sm:w-auto"
               >
                 <div className="font-bold text-white w-10 h-10 flex items-center justify-center bg-primary rounded-full">
                   <span className="text-[20px]">{feature.id}</span>

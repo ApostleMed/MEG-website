@@ -1,9 +1,7 @@
 // import React from 'react';
-import { SocialIcon } from "react-social-icons";
 import { MdMailOutline } from "react-icons/md";
 import { MdOutlineLocationOn } from "react-icons/md";
 import logo from "./../assets/image/logo.png";
-
 import { FaLinkedin } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
@@ -14,9 +12,9 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 pb-[24px]">
+    <footer className="bg-gray-100 pb-10">
       <div className="containers">
-        <div className="flex justify-between">
+        <div className="flex flex-col lg:flex-row justify-between">
           <div className="footer-left">
             <div className="flex items-center gap-2">
               <img
@@ -28,9 +26,13 @@ const Footer = () => {
                 Medical Education Guild
               </p>
             </div>
-            <p className="text-[16px] mt-5 leading-7 text-gray-500">
+            <p className="hidden lg:block text-[16px] mt-5 leading-7 text-gray-500">
               Sharing a World-Where Healthcare <br /> Knowledge is Universal,
               and Being a <br /> Healer is a Noble Duty
+            </p>
+            <p className="block lg:hidden text-[16px] mt-5 leading-7 text-gray-500">
+              Sharing a World-Where Healthcare Knowledge is Universal, and Being
+              a Healer is a Noble Duty
             </p>
             <div className="mt-10 space-y-5">
               <div className="flex gap-5 text-gray-500">
@@ -50,7 +52,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="space-y-10">
+          <div className="space-y-10 mt-20 lg:mt-0">
             <div className="">
               <h3 className="playfair font-medium text-[24px]">
                 How Can We Help
@@ -121,7 +123,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="footer-social">
+          <div className="footer-social mt-20 lg:mt-0">
             <h3 className="playfair font-medium text-[24px]">Social Media</h3>
             <ul className="mt-5 space-y-10 text-gray-500 ">
               <li className="flex gap-2 items-center">
@@ -147,10 +149,9 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-
-        <div className="text-center mt-20">
-          <p className="text-gray-500">© 2025 Medical Educational Guild</p>
-        </div>
+      </div>
+      <div className="text-center mt-20">
+        <p className="text-gray-500">© 2025 Medical Educational Guild</p>
       </div>
     </footer>
   );

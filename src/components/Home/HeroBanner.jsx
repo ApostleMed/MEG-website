@@ -8,7 +8,6 @@ const HeroBanner = () => {
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url(${bg})`,
         backgroundSize: "cover",
-        // backgroundPositionY: ,
         backgroundPosition: "0 25%",
         backgroundRepeat: "no-repeat",
       }}
@@ -17,7 +16,7 @@ const HeroBanner = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="max-w-4xl absolute bottom-10 left-[180px]"
+        className="containers flex flex-col justify-center h-screen"
       >
         <h1 className="text-4xl md:text-5xl lg:text-6xl playfair font-bold mb-10">
           "Inspire, Equip, and Empower"
@@ -27,11 +26,11 @@ const HeroBanner = () => {
           <br />
           Healer Is a Moral Duty
         </p>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <button className="border border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+        <div className="flex flex-col sm:flex-row gap-4 mt-10 md:mt-0">
+          <button className="border border-white text-white px-8 py-3 rounded-full font-semibold hover:scale-105 duration-300 ease-in-out">
             Join Our Community
           </button>
-          <button className="button">Book a Consultation</button>
+          <button className="button justify-center">Book a Consultation</button>
         </div>
       </motion.div>
     </div>

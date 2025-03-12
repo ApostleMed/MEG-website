@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <nav className="">
-      <div className="bg-white mx-auto flex items-center justify-between py-5 md:py-4 px-5 md:px-8 lg:px-10 border-b border-gray-50 shadow-sm">
+      <div className="bg-white mx-auto flex items-center justify-between py-2 md:py-4 px-5 md:px-8 lg:px-10 border-b border-gray-50 shadow-sm">
         <div className="flex items-center">
           {/* Logo */}
           <Link to="/" className="">
@@ -37,6 +37,7 @@ const Navbar = () => {
             >
               Home
             </NavLink>
+
             <NavLink
               onClick={() => {
                 setServiceMenu(false);
@@ -50,6 +51,7 @@ const Navbar = () => {
             >
               About Us
             </NavLink>
+
             <div className="relative">
               <button
                 className="text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
@@ -132,16 +134,6 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* <NavLink
-              to="/service"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-primary"
-                  : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
-              }
-            >
-              Services
-            </NavLink> */}
             <NavLink
               onClick={() => {
                 setServiceMenu(!serviceMenu);
@@ -207,17 +199,92 @@ const Navbar = () => {
             >
               About Us
             </NavLink>
-            <NavLink
-              to="/service"
-              onClick={toggleMenu}
-              className={({ isActive }) =>
-                isActive
-                  ? "text-primary text-lg font-semibold text-gray-800 hover:text-green-600"
-                  : "text-black text-lg font-semibold text-gray-800 hover:text-green-600"
-              }
-            >
-              Services
-            </NavLink>
+
+            <div className="relative">
+              <button
+                className="text-[18px] font-semibold text-accent hover:text-primary"
+                onClick={() => {
+                  setServiceMenu(!serviceMenu);
+                }}
+              >
+                Services
+                <svg
+                  className="inline-block w-4 h-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div
+                className="absolute bg-white w-full border shadow-md rounded z-10 mt-2 py-4 space-y-4"
+                style={{ display: serviceMenu ? "block" : "none" }}
+              >
+                <NavLink
+                  onClick={() => {
+                    setServiceMenu(!serviceMenu);
+                    toggleMenu();
+                  }}
+                  to="/service/1"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-primary font-semibold"
+                      : "block px-4 py-2 text-gray-600 hover:text-primary"
+                  }
+                >
+                  Medical Education Pathway Consultation
+                </NavLink>
+                <NavLink
+                  onClick={() => {
+                    setServiceMenu(!serviceMenu);
+                    toggleMenu();
+                  }}
+                  to="/service/2"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-primary font-semibold"
+                      : "block px-4 py-2 text-gray-600 hover:text-primary"
+                  }
+                >
+                  Application Excellence Package
+                </NavLink>
+                <NavLink
+                  onClick={() => {
+                    setServiceMenu(!serviceMenu);
+                    toggleMenu();
+                  }}
+                  to="/service/3"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-primary font-semibold"
+                      : "block px-4 py-2 text-gray-600 hover:text-primary"
+                  }
+                >
+                  Medical School Entrance Bootcamp
+                </NavLink>
+                {/* <NavLink
+                  onClick={() => {
+                    setServiceMenu(!serviceMenu);
+                  }}
+                  to="/service/4"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 text-primary font-semibold"
+                      : "block px-4 py-2 text-gray-600 hover:text-primary"
+                  }
+                >
+                  Accommodation and Boarding Services
+                </NavLink> */}
+              </div>
+            </div>
+
             <NavLink
               to="/contact"
               onClick={toggleMenu}

@@ -4,7 +4,7 @@ const AboutUs = () => {
   return (
     <div className="containers space-y-20">
       <div className="flex flex-col md:flex-row">
-        <div className="w-1/2 h-[400px] flex flex-col justify-center">
+        <div className="md:w-1/2 h-[400px] flex flex-col justify-center">
           <h1 className="header-text mb-5">Our Journey & Mission</h1>
           <p className="body-text mb-5">
             Founded in 2025, MEG was established to revolutionize medical and
@@ -15,15 +15,15 @@ const AboutUs = () => {
           </p>
           <button className="button w-fit">Learn More</button>
         </div>
-        <div className="w-1/2 flex justify-end">
+        <div className="hidden md:flex w-full md:w-1/2 justify-end">
           <img src={about} alt="about" className="h-[400px] w-auto" />
         </div>
       </div>
       <div className="flex flex-col md:flex-row">
-        <div className="w-1/2 flex justify-start">
+        <div className="md:w-1/2 flex justify-start mb-10 md:mb-0">
           <img src={aboutus} alt="about" className="h-[400px] w-auto" />
         </div>
-        <div className="w-1/2 h-[400px] flex flex-col justify-center">
+        <div className="w-full md:w-1/2 h-[400px] flex flex-col justify-center">
           <h1 className="header-text mb-5">
             University Partnership & Programs
           </h1>
