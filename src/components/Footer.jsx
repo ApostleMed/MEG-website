@@ -59,17 +59,23 @@ const Footer = () => {
               </h3>
               <ul className="mt-5 space-y-3 text-gray-500 ">
                 <li>
-                  <Link to="/">Medical Education Pathway Consultation</Link>
+                  <Link to="/service/1" className="hover:text-primary">
+                    Medical Education Pathway Consultation
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/">Application Excellence</Link>
+                  <Link to="/service/2" className="hover:text-primary">
+                    Application Excellence
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/">Medical School Entrance Test/Exam (MHEB)</Link>
+                  <Link to="/service/3" className="hover:text-primary">
+                    Medical School Entrance Test/Exam (MHEB)
+                  </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/">Accommodation & Boarding Services</Link>
-                </li>
+                </li> */}
               </ul>
             </div>
 
@@ -78,13 +84,19 @@ const Footer = () => {
                 <h3 className="playfair font-medium text-[24px]">About Us</h3>
                 <ul className="mt-5 space-y-3 text-gray-500 ">
                   <li>
-                    <Link to="/">Our Story</Link>
+                    <Link to="/about" className="hover:text-primary">
+                      Our Story
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/">Mission & Vision</Link>
+                    <Link to="/about" className="hover:text-primary">
+                      Mission & Vision
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/">Partner Organization</Link>
+                    <Link to="/about" className="hover:text-primary">
+                      Partner Organization
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -93,7 +105,9 @@ const Footer = () => {
                 <h3 className="playfair font-medium text-[24px]">Community</h3>
                 <ul className="mt-5 space-y-3 text-gray-500 ">
                   <li>
-                    <Link to="/">Join Our Community</Link>
+                    <Link to="/" className="hover:text-primary">
+                      Join Our Community
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -104,10 +118,14 @@ const Footer = () => {
                 <h3 className="playfair font-medium text-[24px]">Contact Us</h3>
                 <ul className="mt-5 space-y-3 text-gray-500 ">
                   <li>
-                    <Link to="/">Office Location</Link>
+                    <Link to="/contact" className="hover:text-primary">
+                      Office Location
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/">Virtual Support</Link>
+                    <Link to="/" className="hover:text-primary">
+                      Virtual Support
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -116,7 +134,9 @@ const Footer = () => {
                 <h3 className="playfair font-medium text-[24px]">Others</h3>
                 <ul className="mt-5 space-y-3 text-gray-500 ">
                   <li>
-                    <Link to="/">Privacy & Policy</Link>
+                    <Link to="/" className="hover:text-primary">
+                      Privacy & Policy
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -126,23 +146,23 @@ const Footer = () => {
           <div className="footer-social mt-20 lg:mt-0">
             <h3 className="playfair font-medium text-[24px]">Social Media</h3>
             <ul className="mt-5 space-y-10 text-gray-500 ">
-              <li className="flex gap-2 items-center">
+              <li className="flex gap-2 items-center hover:text-primary">
                 <FaFacebook size={24} />
                 <span className="text-[16px]">Facebook</span>
               </li>
-              <li className="flex gap-2 items-center">
+              <li className="flex gap-2 items-center hover:text-primary">
                 <FaLinkedin size={24} />
                 <span className="text-[16px]">Linkedin</span>
               </li>
-              <li className="flex gap-2 items-center">
+              <li className="flex gap-2 items-center hover:text-primary">
                 <FaYoutube size={24} />
                 <span className="text-[16px]">Youtube</span>
               </li>
-              <li className="flex gap-2 items-center">
+              <li className="flex gap-2 items-center hover:text-primary">
                 <FaTiktok size={24} />
-                <span className="text-[16px]">Tiktok</span>
+                <span className="text-[16px] ">Tiktok</span>
               </li>
-              <li className="flex gap-2 items-center">
+              <li className="flex gap-2 items-center hover:text-primary">
                 <FaWhatsapp size={24} />
                 <span className="text-[16px]">Whatsapp</span>
               </li>

@@ -136,7 +136,7 @@ const Navbar = () => {
 
             <NavLink
               onClick={() => {
-                setServiceMenu(!serviceMenu);
+                setServiceMenu(false);
               }}
               to="/contact"
               className={({ isActive }) =>

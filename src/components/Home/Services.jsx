@@ -32,7 +32,7 @@ function Services() {
               For those pursuing future healthcare careers. Guidance, mentoring,
               medical education path.
             </p>
-            <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-colors hover:scale-105">
+            <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105">
               Learn More
             </button>
           </div>
@@ -45,7 +45,7 @@ function Services() {
               <p className="body-text mb-6">
                 For students actively preparing applications
               </p>
-              <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-colors hover:scale-105">
+              <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105">
                 Learn More
               </button>
             </div>
@@ -61,7 +61,7 @@ function Services() {
               academic, strategic, and professional skills needed to excel in
               medical school entrance exams and interviews
             </p>
-            <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-colors hover:scale-105">
+            <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105">
               Learn More
             </button>
           </div>
@@ -76,7 +76,7 @@ function Services() {
                 equipped accommodation and boarding school services are
                 available. Options include:
               </p>
-              <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-colors hover:scale-105">
+              <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105">
                 Learn More
               </button>
             </div>
