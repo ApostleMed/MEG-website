@@ -10,9 +10,12 @@ function CTAsecton() {
             Elevate your medical journey. Book a consultation <br /> for expert
             guidance to achieve your dreams.
           </p>
-          <button className="bg-white text-accent font-medium px-6 py-4 rounded-full hover:scale-105 transition duration-300 ease-in-out">
+          <a
+            href="https://calendly.com/mededuguild/pathway?month=2025-04"
+            className="bg-white text-accent font-medium px-6 py-4 rounded-full hover:scale-105 transition duration-300 ease-in-out"
+          >
             Book a Consultation
-          </button>
+          </a>
         </div>
       </div>
     </div>

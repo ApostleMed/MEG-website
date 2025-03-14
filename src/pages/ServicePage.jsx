@@ -107,6 +107,47 @@ const services = [
     ],
     forWho: `Are you a high school student (Year 11 or 12) or a recent graduate with your sights set on medical school? Do you aspire to excel on challenging medical entrance exams? This program is specifically tailored for future doctors and healthcare professionals who want to gain a competitive advantage in the application process`,
   },
+  {
+    id: 4,
+    banner: {
+      title: " Accommodation & Boarding Services",
+      image: "",
+      description: `For students traveling from other regions or countries, fully equipped accommodation and boarding school services are available`,
+      price: "3,000 USD",
+      time: " 3-5 months",
+    },
+    features: [
+      {
+        id: 1,
+        title: "Rigorous Academic Training",
+      },
+      {
+        id: 2,
+        title: `Exam Simulation & Strategy`,
+      },
+      {
+        id: 3,
+        title: `Personalized Coaching & Mentorship`,
+      },
+      {
+        id: 4,
+        title: ` Interview Mastery`,
+      },
+      {
+        id: 5,
+        title: `Application & Essay Guidance`,
+      },
+      {
+        id: 6,
+        title: `Community & Peer Learning`,
+      },
+      {
+        id: 7,
+        title: `Holistic Development`,
+      },
+    ],
+    forWho: `Are you a high school student (Year 11 or 12) or a recent graduate with your sights set on medical school? Do you aspire to excel on challenging medical entrance exams? This program is specifically tailored for future doctors and healthcare professionals who want to gain a competitive advantage in the application process`,
+  },
 ];
 
 function ServicePage() {

@@ -118,7 +118,7 @@ const Navbar = () => {
                 >
                   Medical School Entrance Bootcamp
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   onClick={() => {
                     setServiceMenu(!serviceMenu);
                   }}
@@ -130,7 +130,7 @@ const Navbar = () => {
                   }
                 >
                   Accommodation and Boarding Services
-                </NavLink>
+                </NavLink> */}
               </div>
             </div>
 
@@ -153,7 +153,7 @@ const Navbar = () => {
         {/* Language Selector and Button */}
         <div className="hidden md:block items-center">
           <a
-            href="https://m.me/197568866770556?source=qr_link_share"
+            href="https://calendly.com/mededuguild/pathway?month=2025-03"
             className="button"
           >
             Book a Consultation

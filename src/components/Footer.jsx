@@ -8,9 +8,11 @@ import { FaTiktok } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Link } from "react-scroll";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer className="bg-gray-100 pb-10">
       <div className="containers">
@@ -59,22 +61,22 @@ const Footer = () => {
               </h3>
               <ul className="mt-5 space-y-3 text-gray-500 ">
                 <li>
-                  <Link to="/service/1" className="hover:text-primary">
+                  <NavLink to="/service/1" className="hover:text-primary">
                     Medical Education Pathway Consultation
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/service/2" className="hover:text-primary">
+                  <NavLink to="/service/2" className="hover:text-primary">
                     Application Excellence
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/service/3" className="hover:text-primary">
+                  <NavLink to="/service/3" className="hover:text-primary">
                     Medical School Entrance Test/Exam (MHEB)
-                  </Link>
+                  </NavLink>
                 </li>
                 {/* <li>
-                  <Link to="/">Accommodation & Boarding Services</Link>
+                  <NavLink to="/">Accommodation & Boarding Services</NavLink>
                 </li> */}
               </ul>
             </div>
@@ -84,19 +86,25 @@ const Footer = () => {
                 <h3 className="playfair font-medium text-[24px]">About Us</h3>
                 <ul className="mt-5 space-y-3 text-gray-500 ">
                   <li>
-                    <Link to="/about" className="hover:text-primary">
+                    <Link
+                      onClick={() => navigate("/about")}
+                      to="our-story"
+                      smooth={true}
+                      duration={500}
+                      className="hover:text-primary cursor-pointer"
+                    >
                       Our Story
                     </Link>
                   </li>
                   <li>
-                    <Link to="/about" className="hover:text-primary">
+                    <NavLink to="/about" className="hover:text-primary">
                       Mission & Vision
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to="/about" className="hover:text-primary">
+                    <NavLink to="/about" className="hover:text-primary">
                       Partner Organization
-                    </Link>
+                    </NavLink>
                   </li>
                 </ul>
               </div>
@@ -105,9 +113,9 @@ const Footer = () => {
                 <h3 className="playfair font-medium text-[24px]">Community</h3>
                 <ul className="mt-5 space-y-3 text-gray-500 ">
                   <li>
-                    <Link to="/" className="hover:text-primary">
+                    <NavLink to="/" className="hover:text-primary">
                       Join Our Community
-                    </Link>
+                    </NavLink>
                   </li>
                 </ul>
               </div>
@@ -118,14 +126,14 @@ const Footer = () => {
                 <h3 className="playfair font-medium text-[24px]">Contact Us</h3>
                 <ul className="mt-5 space-y-3 text-gray-500 ">
                   <li>
-                    <Link to="/contact" className="hover:text-primary">
+                    <NavLink to="/contact" className="hover:text-primary">
                       Office Location
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to="/" className="hover:text-primary">
+                    <NavLink to="/" className="hover:text-primary">
                       Virtual Support
-                    </Link>
+                    </NavLink>
                   </li>
                 </ul>
               </div>
@@ -134,9 +142,9 @@ const Footer = () => {
                 <h3 className="playfair font-medium text-[24px]">Others</h3>
                 <ul className="mt-5 space-y-3 text-gray-500 ">
                   <li>
-                    <Link to="/" className="hover:text-primary">
+                    <NavLink to="/" className="hover:text-primary">
                       Privacy & Policy
-                    </Link>
+                    </NavLink>
                   </li>
                 </ul>
               </div>
@@ -146,26 +154,41 @@ const Footer = () => {
           <div className="footer-social mt-20 lg:mt-0">
             <h3 className="playfair font-medium text-[24px]">Social Media</h3>
             <ul className="mt-5 space-y-10 text-gray-500 ">
-              <li className="flex gap-2 items-center hover:text-primary">
+              <a
+                href="https://www.facebook.com/profile.php?id=61565679886293"
+                className="flex gap-2 items-center hover:text-primary"
+              >
                 <FaFacebook size={24} />
                 <span className="text-[16px]">Facebook</span>
-              </li>
-              <li className="flex gap-2 items-center hover:text-primary">
+              </a>
+              <a
+                href="https://www.linkedin.com/in/john-b6229b1a3/"
+                className="flex gap-2 items-center hover:text-primary"
+              >
                 <FaLinkedin size={24} />
                 <span className="text-[16px]">Linkedin</span>
-              </li>
-              <li className="flex gap-2 items-center hover:text-primary">
+              </a>
+              <a
+                href="https://www.youtube.com/@MedicalEducationGuild-f1c"
+                className="flex gap-2 items-center hover:text-primary"
+              >
                 <FaYoutube size={24} />
                 <span className="text-[16px]">Youtube</span>
-              </li>
-              <li className="flex gap-2 items-center hover:text-primary">
+              </a>
+              <a
+                href="https://www.tiktok.com/@mededug"
+                className="flex gap-2 items-center hover:text-primary"
+              >
                 <FaTiktok size={24} />
                 <span className="text-[16px] ">Tiktok</span>
-              </li>
-              <li className="flex gap-2 items-center hover:text-primary">
+              </a>
+              <a
+                href="https://wa.me/message/3HRH775DRT42A1"
+                className="flex gap-2 items-center hover:text-primary"
+              >
                 <FaWhatsapp size={24} />
                 <span className="text-[16px]">Whatsapp</span>
-              </li>
+              </a>
             </ul>
           </div>
         </div>

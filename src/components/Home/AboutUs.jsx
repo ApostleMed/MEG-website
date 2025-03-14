@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import about from "../../assets/image/AboutUs/aboutone.svg";
 import aboutus from "../../assets/image/AboutUs/abouttwo.svg";
 const AboutUs = () => {
+  const navigate = useNavigate();
   return (
     <div className="containers space-y-20">
       <div className="flex flex-col md:flex-row">
@@ -13,7 +15,9 @@ const AboutUs = () => {
             cultivate academic brilliance, ethical responsibility, and lifelong
             professional development.
           </p>
-          <button className="button w-fit">Learn More</button>
+          <button className="button w-fit" onClick={() => navigate("/about")}>
+            Learn More
+          </button>
         </div>
         <div className="hidden md:flex w-full md:w-1/2 justify-end">
           <img src={about} alt="about" className="h-[400px] w-auto" />
@@ -34,7 +38,12 @@ const AboutUs = () => {
             cultivate academic brilliance, ethical responsibility, and lifelong
             professional development.
           </p>
-          <button className="button w-fit">Explore Programs</button>
+          <button
+            className="button w-fit"
+            onClick={() => navigate("/service/1")}
+          >
+            Explore Programs
+          </button>
         </div>
       </div>
     </div>

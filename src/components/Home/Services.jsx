@@ -2,8 +2,11 @@ import { TbMessages } from "react-icons/tb";
 import { BiMessageDetail } from "react-icons/bi";
 import { MdOutlineSchool } from "react-icons/md";
 import { FaHouseUser } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import { nav } from "framer-motion/client";
 
 function Services() {
+  const navigate = useNavigate();
   return (
     <div className="bg-[#E6E1E1] pb-[64px]">
       <div className="containers">
@@ -32,7 +35,10 @@ function Services() {
               For those pursuing future healthcare careers. Guidance, mentoring,
               medical education path.
             </p>
-            <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105">
+            <button
+              onClick={() => navigate("/service/1")}
+              className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105"
+            >
               Learn More
             </button>
           </div>
@@ -45,7 +51,10 @@ function Services() {
               <p className="body-text mb-6">
                 For students actively preparing applications
               </p>
-              <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105">
+              <button
+                onClick={() => navigate("/service/2")}
+                className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105"
+              >
                 Learn More
               </button>
             </div>
@@ -61,11 +70,14 @@ function Services() {
               academic, strategic, and professional skills needed to excel in
               medical school entrance exams and interviews
             </p>
-            <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105">
+            <button
+              onClick={() => navigate("/service/3")}
+              className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105"
+            >
               Learn More
             </button>
           </div>
-          <div>
+          {/* <div>
             <div className="bg-white p-10 rounded-2xl shadow-md flex flex-col gap-4">
               <FaHouseUser size={40} />
               <h3 className="header-text mb-4">
@@ -76,11 +88,14 @@ function Services() {
                 equipped accommodation and boarding school services are
                 available. Options include:
               </p>
-              <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105">
+              <button
+                onClick={() => navigate("/service/4")}
+                className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105"
+              >
                 Learn More
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

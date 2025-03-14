@@ -15,9 +15,13 @@ function MiddleSection() {
             Join our scholarly community and connect with <br /> peers, mentors,
             and experts in medical <br /> education today.
           </p>
-          <button className="button mt-5 lg:mt-0 w-full sm:w-auto justify-center">
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdZRlGr4mVrxYHuNluSFm5Liq-NcmL_C8hzgCdqO3lxSE51Kg/viewform"
+            target="_blank"
+            className="button mt-5 lg:mt-0 w-full sm:w-auto justify-center"
+          >
             Join Our Community
-          </button>
+          </a>
         </div>
       </div>
     </div>

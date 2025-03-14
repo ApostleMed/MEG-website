@@ -27,10 +27,20 @@ const HeroBanner = () => {
           Healer Is a Moral Duty
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mt-10 md:mt-0">
-          <button className="border border-white text-white px-8 py-3 rounded-full font-semibold hover:scale-105 duration-300 ease-in-out">
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdZRlGr4mVrxYHuNluSFm5Liq-NcmL_C8hzgCdqO3lxSE51Kg/viewform"
+            target="_blank"
+            className="border border-white text-white px-8 py-3 rounded-full font-semibold hover:scale-105 duration-300 ease-in-out"
+          >
             Join Our Community
-          </button>
-          <button className="button justify-center">Book a Consultation</button>
+          </a>
+          <a
+            href="https://calendly.com/mededuguild/pathway?month=2025-03"
+            target="_blank"
+            className="button justify-center"
+          >
+            Book a Consultation
+          </a>
         </div>
       </motion.div>
     </div>
