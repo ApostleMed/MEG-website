@@ -53,7 +53,12 @@ const ServiceBanner = ({ service }) => {
                 <MdOutlineLocalPhone size={20} />
                 +66 762 711 90
               </button>
-              <button className="button">Book a Consultation</button>
+              <a
+                href="https://calendly.com/mededuguild/pathway?month=2025-03"
+                className="button"
+              >
+                Book a Consultation
+              </a>
             </div>
           </div>
         </motion.div>

@@ -20,11 +20,11 @@ const offices = [
   },
   {
     name: "UK",
-    id: "UK",
+    id: "GBR",
     coordinates: [-0.1276, 51.5074],
     hours: "2:00 AM - 10:00 AM",
     timezone: "(GMT+0)",
-    flag: "https://cdn.iconscout.com/icon/free/png-512/free-thailand-flag-icon-download-in-svg-png-gif-file-formats--background-asia-asian-travel-nature-flags-pack-icons-2998640.png?f=webp&w=512",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/england-flag-icon-download-in-svg-png-gif-file-formats--kingdom-uk-united-country-world-flags-pack-maps-and-navigation-icons-3195943.png?f=webp&w=512",
   },
   {
     name: "Hungary",
@@ -67,7 +67,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/nigeria-flag-icon-download-in-svg-png-gif-file-formats--country-national-flags-vol-4-pack-culture-religion-festivals-icons-11214272.png?f=webp&w=512",
   },
   {
-    name: "Singapor",
+    name: "Singapore",
     id: "SGP",
     coordinates: [103.8198, 1.3521],
     hours: "10:00 AM - 6:00 PM",
@@ -92,11 +92,11 @@ const offices = [
   },
   {
     name: "Turkey",
-    id: "TR",
+    id: "TUR",
     coordinates: [35.2433, 38.9637],
     hours: "5:00 AM - 1:00 PM",
     timezone: "(GMT+3)",
-    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/germany-2184997-1828116.png?f=webp&w=512",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/turkey-flag-icon-download-in-svg-png-gif-file-formats--flags-country-world-pack-maps-and-navigation-icons-3195954.png?f=webp&w=512",
   },
   {
     name: "Cambodia",
@@ -104,7 +104,7 @@ const offices = [
     coordinates: [104.9915, 12.5655],
     hours: "9:00 AM - 5:00 PM",
     timezone: "(GMT+7)",
-    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/germany-2184997-1828116.png?f=webp&w=512",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/cambodia-3008831-2498620.png?f=webp&w=512",
   },
   {
     name: "Vietnam",
@@ -128,7 +128,7 @@ const offices = [
     coordinates: [78.9629, 20.5937],
     hours: "6:30 AM - 2:30 PM",
     timezone: "(GMT+5:30)",
-    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/laos-4422504-3664130.png?f=webp&w=512",
+    flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/india-flag-3916897-3244699.png?f=webp&w=512",
   },
   {
     name: "Finland",
@@ -149,8 +149,8 @@ const offices = [
 ];
 
 function OfficeHour() {
-  const [selectedOffice, setSelectedOffice] = useState(null);
-  console.log(selectedOffice);
+  const [selectedOffice, setSelectedOffice] = useState(offices[0]);
+  // console.log(selectedOffice);
 
   return (
     <div>
@@ -188,7 +188,7 @@ function OfficeHour() {
                       <Geography
                         key={geo.rsmKey}
                         onClick={() => {
-                          console.log(geo);
+                          // console.log("geo", geo);
                         }}
                         geography={geo}
                         fill={fillColor}
@@ -239,13 +239,13 @@ function OfficeHour() {
                   <p className="">{selectedOffice.hours}</p>
                   <p className="">{selectedOffice.timezone}</p>
 
-                  <a
+                  {/* <a
                     href={`tel:${selectedOffice?.phone}`}
                     className="flex items-center button mt-4"
                   >
                     <MdOutlinePhone className="mr-2" size={20} />
                     <span>{selectedOffice?.phone}</span>
-                  </a>
+                  </a> */}
                 </div>
               </div>
             ) : (

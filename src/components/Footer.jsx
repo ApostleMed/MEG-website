@@ -113,9 +113,13 @@ const Footer = () => {
                 <h3 className="playfair font-medium text-[24px]">Community</h3>
                 <ul className="mt-5 space-y-3 text-gray-500 ">
                   <li>
-                    <NavLink to="/" className="hover:text-primary">
+                    <a
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSdZRlGr4mVrxYHuNluSFm5Liq-NcmL_C8hzgCdqO3lxSE51Kg/viewform"
+                      target="_blank"
+                      className="hover:text-primary"
+                    >
                       Join Our Community
-                    </NavLink>
+                    </a>
                   </li>
                 </ul>
               </div>
