@@ -16,14 +16,14 @@ const Navbar = () => {
   return (
     <nav className="">
       <div className="bg-white mx-auto flex items-center justify-between py-2 md:py-4 px-5 md:px-8 lg:px-10 border-b border-gray-50 shadow-sm">
-        <div className="flex items-center">
+        <div className="flex items-center ">
           {/* Logo */}
           <Link to="/" className="">
             <img src={logo} alt="Logo" className="w-20 md:w-14" />
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden ms-20 md:flex md:space-x-5 lg:space-x-10">
+          <div className="hidden ms-10 lg:flex lg:space-x-8">
             <NavLink
               onClick={() => {
                 setServiceMenu(false);
@@ -35,7 +35,7 @@ const Navbar = () => {
                   : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
               }
             >
-              Home
+              Medical Education guild
             </NavLink>
 
             <NavLink
@@ -49,7 +49,7 @@ const Navbar = () => {
                   : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
               }
             >
-              About Us
+              Who are we
             </NavLink>
 
             <div className="relative">
@@ -59,7 +59,7 @@ const Navbar = () => {
                   setServiceMenu(!serviceMenu);
                 }}
               >
-                Services
+                How can we help
                 <svg
                   className="inline-block w-4 h-4 ml-1"
                   fill="none"
@@ -151,7 +151,7 @@ const Navbar = () => {
         </div>
 
         {/* Language Selector and Button */}
-        <div className="hidden md:block items-center">
+        <div className="hidden lg:block items-center">
           <a
             href="https://calendly.com/mededuguild/pathway?month=2025-03"
             className="button"
@@ -161,7 +161,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center">
+        <div className="lg:hidden flex items-center">
           <button onClick={toggleMenu} className="text-sub focus:outline-none">
             {isOpen ? (
               <IoClose size={20} className="text-pridark" />
@@ -175,7 +175,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white">
+        <div className="lg:hidden bg-white">
           <div className="flex flex-col space-y-4 px-4 py-10 absolute w-full z-10 bg-white">
             <NavLink
               to="/"

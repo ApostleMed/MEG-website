@@ -9,7 +9,7 @@ const AboutUs = () => {
         <div className="md:w-1/2 h-[400px] flex flex-col justify-center">
           <h1 className="header-text mb-5">Our Journey & Mission</h1>
           <p className="body-text mb-5">
-            Founded in 2025, MEG was established to revolutionize medical and
+            Founded in 2024, MEG was established to revolutionize medical and
             healthcare education by bridging the gap between ambition and
             achievement and excellence. Through our Medicine philosophy, we
             cultivate academic brilliance, ethical responsibility, and lifelong
@@ -32,16 +32,13 @@ const AboutUs = () => {
             University Partnership & Programs
           </h1>
           <p className="body-text mb-5">
-            Founded in 2025, MEG was established to revolutionize medical and
+            Founded in 2024, MEG was established to revolutionize medical and
             healthcare education by bridging the gap between ambition and
             achievement and excellence. Through our Medicine philosophy, we
             cultivate academic brilliance, ethical responsibility, and lifelong
             professional development.
           </p>
-          <button
-            className="button w-fit"
-            onClick={() => navigate("/service/1")}
-          >
+          <button onClick={() => navigate("/uni")} className="button w-fit">
             Explore Programs
           </button>
         </div>

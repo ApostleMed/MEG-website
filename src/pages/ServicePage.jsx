@@ -14,7 +14,8 @@ const services = [
       price: "100USD",
       time: "45 Minutes",
       foc: "(FOC for LDCs)",
-      image: bg,
+      image:
+        "https://images.pexels.com/photos/7699502/pexels-photo-7699502.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       description: `For Secondary/High School Students/Graduates  exploring medical education`,
     },
     forWho: `Designed for ambitious students aiming for top medical schools, MSEB is a fully
@@ -45,7 +46,8 @@ const services = [
       title: "Application Excellence Package",
       price: "400 USD per month",
       time: "4 Weeks",
-      image: bg,
+      image:
+        "https://images.pexels.com/photos/8085932/pexels-photo-8085932.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       description: `Get Accepted! We offer detailed academic evaluations, essay review (2 rounds), strategic roadmaps, and mock interviews to maximize your application success`,
     },
     forWho: ` Get detailed academic feedback, a strategic roadmap, essay review, and mock interviews - everything you need to impress admissions committees and expert guidance on your application, including academic evaluation, a strategic roadmap, personalized essay review, and mock interviews to build confidence`,
@@ -72,7 +74,8 @@ const services = [
     id: 3,
     banner: {
       title: " Medical School Entrance BootCamp (MSEB)",
-      image: bg,
+      image:
+        "https://images.pexels.com/photos/9489910/pexels-photo-9489910.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       description: `Designed for ambitious students aiming for top medical schools, MSEB is a fully immersive training program that builds the academic, strategic, and professional skills needed to excel in medical school entrance exams and interviews`,
       price: "3,000 USD",
       time: " 3-5 months",
@@ -125,7 +128,8 @@ const services = [
     id: 4,
     banner: {
       title: " Accommodation & Boarding Services",
-      image: bg,
+      image:
+        "https://images.pexels.com/photos/4413745/pexels-photo-4413745.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       description: `For students traveling from other regions or countries, fully equipped accommodation and boarding school services are available. Options include:`,
     },
     features: [

@@ -27,7 +27,7 @@ const PageTransition = ({ children }) => {
       animate="in"
       exit="out"
       variants={pageVariants}
-      transition={{ type: "linear", duration: 0.5 }}
+      transition={{ type: "linear", duration: 0.5, ease: "easeInOut" }}
       key={location.key}
     >
       {children}

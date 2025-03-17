@@ -12,13 +12,14 @@ import ScrollToTop from "./ScrollToTop";
 import { Analytics } from "@vercel/analytics/react";
 import AboutPage from "./pages/AboutPage";
 import ServicePage from "./pages/ServicePage";
+import SchoolPage from "./pages/SchoolPage";
 // import About from "./pages/About";
 // import Service from "./pages/Service";
 // import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait" ease="easeInOut">
       <Analytics />
       <Router>
         <div>
@@ -56,6 +57,14 @@ function App() {
               element={
                 <PageTransition>
                   <Contact />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/uni"
+              element={
+                <PageTransition>
+                  <SchoolPage />
                 </PageTransition>
               }
             />

@@ -11,9 +11,9 @@ const ServiceBanner = ({ service }) => {
       <div
         className="min-h-[100vh] hidden md:block"
         style={{
-          backgroundImage: `url(${service.image})`,
-          backgroundSize: "contain",
-          backgroundPosition: "right bottom",
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${service.image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "top",
           backgroundRepeat: "no-repeat",
         }}
       >
@@ -25,15 +25,15 @@ const ServiceBanner = ({ service }) => {
         >
           <div className="-translate-y-1/8 lg:-translate-y-1/4">
             <h1
-              className="text-[32px] playfair font-bold mb-3"
-              style={{ textShadow: "0px 2px 2px white" }}
+              className="text-[32px] text-white playfair font-bold mb-3"
+              style={{ textShadow: "0px 2px 2px black" }}
             >
               {service?.title}
             </h1>
             {service?.time && (
               <div
-                className="flex gap-5 text-accent mb-10 font-bold"
-                style={{ textShadow: "0px 2px 0px white" }}
+                className="flex gap-5 text-white mb-10 font-bold"
+                style={{ textShadow: "4px 2px 2px #003366" }}
               >
                 <div className="flex items-center gap-2">
                   <IoMdAlarm size={20} />
@@ -55,8 +55,8 @@ const ServiceBanner = ({ service }) => {
               </div>
             )}
             <p
-              className="body-text leading-9 mb-10 text-gray-200 w-3/5"
-              style={{ textShadow: "0px 1px 0px white" }}
+              className="body-text leading-9 mb-10 w-3/5"
+              style={{ color: "white", textShadow: "1px 0px 2px black" }}
             >
               {service?.description}
             </p>
