@@ -4,16 +4,18 @@ import OtherService from "../components/Services/OtherService";
 import MiddleSection from "../components/Home/MiddleSection";
 import ServiceBanner from "../components/Services/ServiceBanner";
 import { useParams } from "react-router-dom";
+import bg from "../assets/image/service/bg.avif";
 
 const services = [
   {
     id: 1,
     banner: {
       title: "Medical Education Pathway Consultation",
-      image: "",
-      description: `Founded in 2025, MEG was established to revolutionize medical and
-        healthcare education by bridging the gap between ambition and
-        achievement and excellence.`,
+      price: "100USD",
+      time: "45 Minutes",
+      foc: "(FOC for LDCs)",
+      image: bg,
+      description: `For Secondary/High School Students/Graduates  exploring medical education`,
     },
     forWho: `Designed for ambitious students aiming for top medical schools, MSEB is a fully
       immersive training program that builds the academic, strategic, and professional
@@ -41,28 +43,28 @@ const services = [
     id: 2,
     banner: {
       title: "Application Excellence Package",
-      price: "400 USD",
+      price: "400 USD per month",
       time: "4 Weeks",
-      image: "",
+      image: bg,
       description: `Get Accepted! We offer detailed academic evaluations, essay review (2 rounds), strategic roadmaps, and mock interviews to maximize your application success`,
     },
     forWho: ` Get detailed academic feedback, a strategic roadmap, essay review, and mock interviews - everything you need to impress admissions committees and expert guidance on your application, including academic evaluation, a strategic roadmap, personalized essay review, and mock interviews to build confidence`,
     features: [
       {
         id: 1,
-        title: "Detailed evaluation of academic records",
+        title:
+          "Access daily quizzes and full-length practice exams, all proctored to maintain test integrity.",
+        header: "Daily Proctored Exams",
       },
       {
         id: 2,
-        title: `Strategic roadmap for application success`,
+        title: `Receive immediate scoring and detailed performance analytics to pinpoint your strengths and areas for improvement.`,
+        header: "Instant Feedback",
       },
       {
         id: 3,
-        title: `Personal statement & essay review (2 rounds)`,
-      },
-      {
-        id: 4,
-        title: ` Mock interviews with feedback`,
+        title: `Gain consistent practice and strategic insights that boost your confidence and readiness for exam day`,
+        header: "Exam Preparedness",
       },
     ],
   },
@@ -70,39 +72,51 @@ const services = [
     id: 3,
     banner: {
       title: " Medical School Entrance BootCamp (MSEB)",
-      image: "",
+      image: bg,
       description: `Designed for ambitious students aiming for top medical schools, MSEB is a fully immersive training program that builds the academic, strategic, and professional skills needed to excel in medical school entrance exams and interviews`,
       price: "3,000 USD",
       time: " 3-5 months",
+      location: "Thailand",
+      schedule: "Flexible schedules available",
     },
     features: [
       {
         id: 1,
-        title: "Rigorous Academic Training",
+        title:
+          " Master essential subjects including biology, chemistry, physics, and logical reasoning tailored for medical school entrance exams.",
+        header: "Rigorous Academic Training ",
       },
       {
         id: 2,
-        title: `Exam Simulation & Strategy`,
+        title: `Practice with real past exam questions, time management techniques, and scoring strategies to maximize success.`,
+        header: "Exam Simulation & Strategy ",
       },
       {
         id: 3,
-        title: `Personalized Coaching & Mentorship`,
+        title: `Learn from top medical students and healthcare professionals, gaining insider knowledge on excelling in medical school applications.`,
+        header: "Personalized Coaching & Mentorship ",
       },
       {
         id: 4,
-        title: ` Interview Mastery`,
+        title: `Intensive training on MMI, panel interviews, and scenario-based assessments to build confidence and professionalism.`,
+        header: "Interview Mastery ",
       },
       {
         id: 5,
-        title: `Application & Essay Guidance`,
+        header: `Application & Essay Guidance `,
+        title:
+          "Craft compelling personal statements and application documents with expert feedback.",
       },
       {
         id: 6,
-        title: `Community & Peer Learning`,
+        title:
+          "Engage in interactive discussions, case studies, and teamwork exercises that simulate real medical school environments.",
+        header: `Community & Peer Learning`,
       },
       {
         id: 7,
-        title: `Holistic Development`,
+        title: `Enhance problem-solving skills, critical thinking, ethical reasoning, and stress management techniques essential for a medical career.`,
+        header: "Holistic Development",
       },
     ],
     forWho: `Are you a high school student (Year 11 or 12) or a recent graduate with your sights set on medical school? Do you aspire to excel on challenging medical entrance exams? This program is specifically tailored for future doctors and healthcare professionals who want to gain a competitive advantage in the application process`,
@@ -111,42 +125,27 @@ const services = [
     id: 4,
     banner: {
       title: " Accommodation & Boarding Services",
-      image: "",
-      description: `For students traveling from other regions or countries, fully equipped accommodation and boarding school services are available`,
-      price: "3,000 USD",
-      time: " 3-5 months",
+      image: bg,
+      description: `For students traveling from other regions or countries, fully equipped accommodation and boarding school services are available. Options include:`,
     },
     features: [
       {
         id: 1,
-        title: "Rigorous Academic Training",
+        title: "Shared or private rooms with study-friendly environments.",
       },
       {
         id: 2,
-        title: `Exam Simulation & Strategy`,
+        title: `Full meal plans catering to various dietary preferences.`,
       },
       {
         id: 3,
-        title: `Personalized Coaching & Mentorship`,
+        title: `Study lounges & collaborative spaces for academic engagement.`,
       },
       {
         id: 4,
-        title: ` Interview Mastery`,
-      },
-      {
-        id: 5,
-        title: `Application & Essay Guidance`,
-      },
-      {
-        id: 6,
-        title: `Community & Peer Learning`,
-      },
-      {
-        id: 7,
-        title: `Holistic Development`,
+        title: `24/7 support & security ensuring a safe and comfortable stay.`,
       },
     ],
-    forWho: `Are you a high school student (Year 11 or 12) or a recent graduate with your sights set on medical school? Do you aspire to excel on challenging medical entrance exams? This program is specifically tailored for future doctors and healthcare professionals who want to gain a competitive advantage in the application process`,
   },
 ];
 
@@ -156,7 +155,7 @@ function ServicePage() {
   return (
     <div>
       <ServiceBanner service={service.banner} />
-      <ForWho forWho={service.forWho} />
+      {service?.forWho && <ForWho forWho={service.forWho} />}
       <Feature features={service.features} />
       <OtherService id={id} />
       <MiddleSection />

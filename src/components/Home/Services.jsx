@@ -77,7 +77,7 @@ function Services() {
               Learn More
             </button>
           </div>
-          {/* <div>
+          <div>
             <div className="bg-white p-10 rounded-2xl shadow-md flex flex-col gap-4">
               <FaHouseUser size={40} />
               <h3 className="header-text mb-4">
@@ -95,7 +95,7 @@ function Services() {
                 Learn More
               </button>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

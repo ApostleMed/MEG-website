@@ -71,7 +71,7 @@ function OtherService({ id }) {
               </div>
             </div>
           )}
-          {/* {id != 4 && (
+          {id != 4 && (
             <div className="bg-[#E6E1E1] p-10 rounded-2xl shadow-md flex flex-col gap-4">
               <MdOutlineSchool size={40} />
               <h3 className="header-text mb-4">
@@ -83,11 +83,14 @@ function OtherService({ id }) {
                 academic, strategic, and professional skills needed to excel in
                 medical school entrance exams and interviews
               </p>
-              <button className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105">
+              <button
+                onClick={() => navigate("/service/4")}
+                className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105"
+              >
                 Learn More
               </button>
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </div>

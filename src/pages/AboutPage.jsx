@@ -1,6 +1,6 @@
 import Collaborate from "../components/Home/Collaborate";
 import CTAsecton from "../components/Home/CTAsecton";
-import Testmonial from "../components/Home/testmonial/Testmonial";
+// import Testmonial from "../components/Home/testmonial/Testmonial";
 import AboutBanner from "../components/About/AbtBanner";
 import MissionVision from "../components/About/MissionVision";
 import OurStory from "../components/About/OurStory";

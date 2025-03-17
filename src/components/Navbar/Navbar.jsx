@@ -118,7 +118,7 @@ const Navbar = () => {
                 >
                   Medical School Entrance Bootcamp
                 </NavLink>
-                {/* <NavLink
+                <NavLink
                   onClick={() => {
                     setServiceMenu(!serviceMenu);
                   }}
@@ -130,7 +130,7 @@ const Navbar = () => {
                   }
                 >
                   Accommodation and Boarding Services
-                </NavLink> */}
+                </NavLink>
               </div>
             </div>
 
