@@ -75,9 +75,11 @@ const Footer = () => {
                     Medical School Entrance Test/Exam (MHEB)
                   </NavLink>
                 </li>
-                {/* <li>
-                  <NavLink to="/">Accommodation & Boarding Services</NavLink>
-                </li> */}
+                <li>
+                  <NavLink to="/service/4" className="hover:text-primary">
+                    Accommodation & Boarding Services
+                  </NavLink>
+                </li>
               </ul>
             </div>
 
@@ -135,9 +137,16 @@ const Footer = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/" className="hover:text-primary">
+                    <button
+                      onClick={() =>
+                        window.open(
+                          "https://calendly.com/mededuguild/pathway?month=2025-03"
+                        )
+                      }
+                      className="hover:text-primary"
+                    >
                       Virtual Support
-                    </NavLink>
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -166,7 +175,7 @@ const Footer = () => {
                 <span className="text-[16px]">Facebook</span>
               </a>
               <a
-                href="https://www.linkedin.com/in/john-b6229b1a3/"
+                href="https://www.linkedin.com/company/med-edu-guild/"
                 className="flex gap-2 items-center hover:text-primary"
               >
                 <FaLinkedin size={24} />
