@@ -59,12 +59,14 @@ const ServiceBanner = ({ service }) => {
                     )}
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <FaLocationDot size={20} />
-                  <div>
-                    <span>{service?.location}</span>
+                {service?.location && (
+                  <div className="flex items-center gap-2">
+                    <FaLocationDot size={20} />
+                    <div>
+                      <span>{service?.location}</span>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             )}
             <p
