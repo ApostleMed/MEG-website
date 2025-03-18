@@ -4,8 +4,10 @@ import { IoMenuSharp } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import logo from "./../../assets/image/logo.png";
 import { FaFacebookMessenger } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [serviceMenu, setServiceMenu] = useState(false);
 
@@ -54,7 +56,11 @@ const Navbar = () => {
 
             <div className="relative">
               <button
-                className="text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
+                className={`  text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary ${
+                  location.pathname.includes("/service")
+                    ? "text-primary"
+                    : "text-gray-400"
+                }`}
                 onClick={() => {
                   setServiceMenu(!serviceMenu);
                 }}
@@ -182,32 +188,36 @@ const Navbar = () => {
               onClick={toggleMenu}
               className={({ isActive }) =>
                 isActive
-                  ? "text-primary text-lg font-semibold text-gray-800 hover:text-green-600"
-                  : "text-black text-lg font-semibold text-gray-800 hover:text-green-600"
+                  ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-primary"
+                  : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
               }
             >
-              Home
+              Medical Education Guild
             </NavLink>
             <NavLink
               to="/about"
               onClick={toggleMenu}
               className={({ isActive }) =>
                 isActive
-                  ? "text-primary text-lg font-semibold text-gray-800 hover:text-green-600"
-                  : "text-black text-lg font-semibold text-gray-800 hover:text-green-600"
+                  ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-primary"
+                  : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
               }
             >
-              About Us
+              Who We Are
             </NavLink>
 
             <div className="relative">
               <button
-                className="text-[18px] font-semibold text-accent hover:text-primary"
+                className={`text-[14px] font-semibold text-accent hover:text-primary ${
+                  location.pathname.includes("/service")
+                    ? "text-primary"
+                    : "text-gray-400"
+                }`}
                 onClick={() => {
                   setServiceMenu(!serviceMenu);
                 }}
               >
-                Services
+                How can we help
                 <svg
                   className="inline-block w-4 h-4 ml-1"
                   fill="none"
@@ -224,7 +234,7 @@ const Navbar = () => {
                 </svg>
               </button>
               <div
-                className="absolute bg-white w-full border shadow-md rounded z-10 mt-2 py-4 space-y-4"
+                className="absolute bg-white text-sm w-full border shadow-md rounded z-10 mt-2 py-4 space-y-4"
                 style={{ display: serviceMenu ? "block" : "none" }}
               >
                 <NavLink
@@ -269,8 +279,9 @@ const Navbar = () => {
                 >
                   Medical School Entrance Bootcamp
                 </NavLink>
-                {/* <NavLink
+                <NavLink
                   onClick={() => {
+                    toggleMenu();
                     setServiceMenu(!serviceMenu);
                   }}
                   to="/service/4"
@@ -281,7 +292,7 @@ const Navbar = () => {
                   }
                 >
                   Accommodation and Boarding Services
-                </NavLink> */}
+                </NavLink>
               </div>
             </div>
 
@@ -290,8 +301,8 @@ const Navbar = () => {
               onClick={toggleMenu}
               className={({ isActive }) =>
                 isActive
-                  ? "text-primary text-lg font-semibold text-gray-800 hover:text-green-600"
-                  : "text-black text-lg font-semibold text-gray-800 hover:text-green-600"
+                  ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-primary"
+                  : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
               }
             >
               Contact Us

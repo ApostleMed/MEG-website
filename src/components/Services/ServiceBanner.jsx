@@ -104,29 +104,41 @@ const ServiceBanner = ({ service }) => {
             >
               {service?.title}
             </h1>
-            <div
-              className="flex gap-5 text-accent mb-10 font-bold"
-              style={{ textShadow: "0px 2px 0px white" }}
-            >
-              <div className="flex items-center gap-2">
-                <IoMdAlarm size={20} />
-                <span className="">{service?.time || "45 Minutes"}</span>
-                {service?.schedule && (
-                  <p className="text-xs">({service?.schedule})</p>
-                )}
-              </div>
-              <div className="flex items-center gap-1">
-                <MdOutlineAttachMoney size={20} />
-                {service?.price === "Free Consultation" ? (
-                  <p className="">{service?.price}</p>
-                ) : (
+            {service?.time && (
+              <div
+                className="flex flex-wrap gap-5 text-accent mb-10 font-bold"
+                style={{ textShadow: "0px 2px 0px white" }}
+              >
+                <div className="flex items-center gap-2">
+                  <IoMdAlarm size={20} />
                   <div>
-                    <p>100 USD</p>
-                    <p className="text-xs">(FOC for LDCs)</p>
+                    <span>{service?.time}</span>
+                    {service?.schedule && (
+                      <p className="text-xs">({service?.schedule})</p>
+                    )}
+                  </div>
+                </div>
+                <div className="flex items-center gap-1">
+                  <MdOutlineAttachMoney size={20} />
+                  {service?.price === "Free Consultation" ? (
+                    <p className="">{service?.price}</p>
+                  ) : (
+                    <div>
+                      <p>100 USD</p>
+                      <p className="text-xs">(FOC for LDCs)</p>
+                    </div>
+                  )}
+                </div>
+                {service?.location && (
+                  <div className="flex items-center gap-2">
+                    <FaLocationDot size={20} />
+                    <div>
+                      <span>{service?.location}</span>
+                    </div>
                   </div>
                 )}
               </div>
-            </div>
+            )}
             <p
               className="body-text leading-9 mb-10 text-gray-200 w-full"
               style={{ textShadow: "0px 1px 0px white" }}
@@ -147,7 +159,7 @@ const ServiceBanner = ({ service }) => {
                   );
                 }}
               >
-                Book a Consultating
+                {service?.button || "Book a Consultating"}
               </button>
             </div>
           </div>
