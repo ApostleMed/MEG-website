@@ -3,6 +3,13 @@ import bg from "./../../assets/image/aboutbanner.svg";
 import { MdOutlineLocalPhone } from "react-icons/md";
 import { IoMdAlarm } from "react-icons/io";
 import { MdOutlineAttachMoney } from "react-icons/md";
+import {
+  FaLocationArrow,
+  FaLocationCrosshairs,
+  FaLocationDot,
+  FaLocationPin,
+  FaLocationPinLock,
+} from "react-icons/fa6";
 
 const ServiceBanner = ({ service }) => {
   console.log(service.image);
@@ -23,7 +30,7 @@ const ServiceBanner = ({ service }) => {
           transition={{ duration: 0.8 }}
           className="containers"
         >
-          <div className="-translate-y-1/8 lg:-translate-y-1/4">
+          <div className="mt-10">
             <h1
               className="text-[32px] text-white playfair font-bold mb-3"
               style={{ textShadow: "0px 2px 2px black" }}
@@ -35,6 +42,14 @@ const ServiceBanner = ({ service }) => {
                 className="flex gap-5 text-white mb-10 font-bold"
                 style={{ textShadow: "4px 2px 2px #003366" }}
               >
+                <div className="flex items-center gap-1">
+                  <MdOutlineAttachMoney size={20} />
+
+                  <div>
+                    <p>{service?.price}</p>
+                    {service?.foc && <p className="text-xs">{service?.foc}</p>}
+                  </div>
+                </div>
                 <div className="flex items-center gap-2">
                   <IoMdAlarm size={20} />
                   <div>
@@ -44,12 +59,10 @@ const ServiceBanner = ({ service }) => {
                     )}
                   </div>
                 </div>
-                <div className="flex items-center gap-1">
-                  <MdOutlineAttachMoney size={20} />
-
+                <div className="flex items-center gap-2">
+                  <FaLocationDot size={20} />
                   <div>
-                    <p>{service?.price}</p>
-                    {service?.foc && <p className="text-xs">{service?.foc}</p>}
+                    <span>{service?.location}</span>
                   </div>
                 </div>
               </div>
@@ -69,7 +82,7 @@ const ServiceBanner = ({ service }) => {
                 href="https://calendly.com/mededuguild/pathway?month=2025-03"
                 className="button"
               >
-                Book a Consultation
+                {service?.button || "Book a Consultation"}
               </a>
             </div>
           </div>

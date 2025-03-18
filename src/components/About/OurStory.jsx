@@ -8,13 +8,15 @@ const OurStory = () => {
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/2 h-[400px] flex flex-col justify-center">
             <p className="body-text mb-5">
-              At MEG, our journey began in 2025 with a mission to revolutionize
-              medical and healthcare education. We bridge the gap between
-              ambition and achievement by nurturing academic excellence, ethical
-              responsibility, and a commitment to lifelong professional
-              development. Our Medicine philosophy informs every initiative,
-              ensuring that each student and professional we work with is
-              prepared to meet the challenges of tomorrow.
+              The Medical Education Guild (MEG) is a pioneering global
+              initiative dedicated to transforming healthcare education through
+              our unique philosophy of Meducism. We empower aspiring youths to
+              become elite, ethical healthcare professionals by offering
+              rigorous academic training, personalized mentorship, and
+              innovative NFT-based credentialing. Our programs—ranging from
+              intensive exam preparation bootcamps to daily practice
+              toolkits—ensure that students are holistically prepared for the
+              challenges of medical school and beyond.
             </p>
           </div>
           <div className="md:w-1/2 flex justify-center md:justify-end">
@@ -28,17 +30,17 @@ const OurStory = () => {
           <div className="md:w-1/2 h-[400px] flex flex-col justify-center">
             <div className="body-text mb-5">
               <p>
-                Founded in 2025, MEG was established to revolutionize medical
-                and healthcare education by bridging the gap between ambition
-                and achievement and excellence. Through our Medicine philosophy,
-                we cultivate academic brilliance, ethical responsibility, and
-                lifelong professional development.
+                At MEG, our mission is to revolutionize the future of healthcare
+                by instilling a universal commitment to lifelong learning and
+                compassionate care. We cultivate academic excellence,
+                collaborative learning, ethical integrity, and resilience to
+                bridge the gap between ambition and achievement.
               </p>
               <br />
               <p>
-                Founded in 2025, MEG was established to revolutionize medical
-                and healthcare education by bridging the gap between ambition
-                and achievement and excellence.
+                By creating a supportive community of future healers, we aim to
+                make healthcare a universal moral obligation, transforming both
+                individual careers and the well-being of communities worldwide.
               </p>
             </div>
           </div>

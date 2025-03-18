@@ -32,8 +32,8 @@ function Services() {
               Medical Education Pathway Consultation
             </h3>
             <p className="body-text mb-6">
-              For those pursuing future healthcare careers. Guidance, mentoring,
-              medical education path.
+              For Secondary/High School Students/Graduates  exploring medical
+              education
             </p>
             <button
               onClick={() => navigate("/service/1")}

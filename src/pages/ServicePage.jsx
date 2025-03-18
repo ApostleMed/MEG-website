@@ -43,6 +43,7 @@ const services = [
   {
     id: 2,
     banner: {
+      button: "Book a Consultation",
       title: "Application Excellence Package",
       price: "400 USD per month",
       time: "4 Weeks",
@@ -127,6 +128,7 @@ const services = [
   {
     id: 4,
     banner: {
+      button: "Contact Us",
       title: " Accommodation & Boarding Services",
       image:
         "https://images.pexels.com/photos/4413745/pexels-photo-4413745.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",

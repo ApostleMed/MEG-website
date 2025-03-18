@@ -32,11 +32,11 @@ const AboutUs = () => {
             University Partnership & Programs
           </h1>
           <p className="body-text mb-5">
-            Founded in 2024, MEG was established to revolutionize medical and
-            healthcare education by bridging the gap between ambition and
-            achievement and excellence. Through our Medicine philosophy, we
-            cultivate academic brilliance, ethical responsibility, and lifelong
-            professional development.
+            MEG was created to transform medical education by combining rigorous
+            exam preparation with daily practice toolkits and continuous
+            professional development. Through our Meducism philosophy, we
+            nurture academic excellence, ethical leadership, and lifelong
+            learning for future healthcare innovators.
           </p>
           <button onClick={() => navigate("/uni")} className="button w-fit">
             Explore Programs

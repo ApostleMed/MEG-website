@@ -158,7 +158,7 @@ function OfficeHour() {
         <div className="flex flex-col md:flex-row gap-10 md:gap-40">
           <p className="header-text font-bold">Office Hours</p>
           <p className="body-text">
-            Founded in 2025, MEG was established to revolutionize medical and
+            Founded in 2024, MEG was established to revolutionize medical and
             healthcare <br /> education by bridging the gap between ambition and
             achievement and <br /> excellence. Through our Medicine philosophy,
             we cultivate academic brilliance, <br /> ethical responsibility, and
