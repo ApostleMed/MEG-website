@@ -2,6 +2,14 @@
 
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
+import logo1 from "./../../assets/image/logo/ApostleMed.jpg";
+import logo2 from "./../../assets/image/logo/cucas.png";
+import logo3 from "./../../assets/image/logo/genesis.png";
+import logo4 from "./../../assets/image/logo/imec.jpg";
+import logo5 from "./../../assets/image/logo/interhecs.jpg";
+import logo6 from "./../../assets/image/logo/medilink.png";
+
+const logo = [logo1, logo2, logo3, logo4, logo5, logo6];
 
 function Number({ n }) {
   const [ref, inView] = useInView();
@@ -43,6 +51,19 @@ const Collaborate = () => {
           <h3 className="playfair mt-2">
             Collaborated partner <br /> organizations
           </h3>
+        </div>
+      </div>
+
+      <div className="mt-40">
+        <div className="flex flex-wrap justify-center gap-10">
+          {logo.map((logo, index) => (
+            <img
+              key={index}
+              src={logo}
+              alt={`logo-${index}`}
+              className="w-32 h-32"
+            />
+          ))}
         </div>
       </div>
     </div>

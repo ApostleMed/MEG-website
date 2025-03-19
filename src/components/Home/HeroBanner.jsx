@@ -30,7 +30,7 @@ const HeroBanner = () => {
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSdZRlGr4mVrxYHuNluSFm5Liq-NcmL_C8hzgCdqO3lxSE51Kg/viewform"
             target="_blank"
-            className="border border-white text-white px-8 py-3 rounded-full font-semibold hover:scale-105 duration-300 ease-in-out"
+            className="flex items-center justify-center border border-white text-white px-8 py-3 rounded-full font-semibold hover:scale-105 duration-300 ease-in-out"
           >
             Join Our Community
           </a>
