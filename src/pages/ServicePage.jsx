@@ -45,7 +45,7 @@ const services = [
     banner: {
       button: "Book a Consultation",
       title: "Application Excellence Package",
-      price: "400 USD per month",
+      price: "5 USD per month",
       time: "4 Weeks",
       image:
         "https://images.pexels.com/photos/8085932/pexels-photo-8085932.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -78,7 +78,7 @@ const services = [
       image:
         "https://images.pexels.com/photos/9489910/pexels-photo-9489910.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       description: `Designed for ambitious students aiming for top medical schools, MSEB is a fully immersive training program that builds the academic, strategic, and professional skills needed to excel in medical school entrance exams and interviews`,
-      price: "3,000 USD",
+      price: "5,000 USD",
       time: " 3-5 months",
       location: "Thailand",
       schedule: "Flexible schedules available",

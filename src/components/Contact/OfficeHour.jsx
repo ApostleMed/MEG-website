@@ -10,7 +10,7 @@ import { MdOutlinePhone } from "react-icons/md";
 
 const offices = [
   {
-    name: "Thailand",
+    name: "Thailand Office",
     id: "THA",
     coordinates: [100.5018, 13.7563],
     hours: "9:00 AM - 5:00 PM",
@@ -19,7 +19,7 @@ const offices = [
     // phone: "+66 762 711 90",
   },
   {
-    name: "UK",
+    name: "UK Office",
     id: "GBR",
     coordinates: [-0.1276, 51.5074],
     hours: "2:00 AM - 10:00 AM",
@@ -27,7 +27,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/england-flag-icon-download-in-svg-png-gif-file-formats--kingdom-uk-united-country-world-flags-pack-maps-and-navigation-icons-3195943.png?f=webp&w=512",
   },
   {
-    name: "Hungary",
+    name: "Hungary Office",
     id: "HUN",
     coordinates: [19.0402, 47.4979],
     hours: "3:00 AM - 11:00 AM",
@@ -35,7 +35,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/hungary-4575805-3793021.png?f=webp&w=512",
   },
   {
-    name: "Italy",
+    name: "Italy Office",
     id: "ITA",
     coordinates: [12.4964, 41.9028],
     hours: "3:00 AM - 11:00 AM",
@@ -43,7 +43,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/italy-2184995-1828115.png?f=webp&w=512",
   },
   {
-    name: "Poland",
+    name: "Poland Office",
     id: "POL",
     coordinates: [21.0122, 52.2297],
     hours: "3:00 AM - 11:00 AM",
@@ -51,7 +51,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/free/png-512/free-poland-flag-icon-download-in-svg-png-gif-file-formats--world-logo-european-polish-landmark-flags-pack-icons-2998595.png?f=webp&w=512",
   },
   {
-    name: "Malaysia",
+    name: "Malaysia Office",
     id: "MYS",
     coordinates: [101.9758, 4.2105],
     hours: "10:00 AM - 6:00 PM",
@@ -59,7 +59,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/malaysia-2730470-2266080.png?f=webp&w=512",
   },
   {
-    name: "Nigeria",
+    name: "Nigeria Office",
     id: "NGA",
     coordinates: [8.6753, 9.082],
     hours: "3:00 AM - 11:00 AM",
@@ -67,7 +67,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/nigeria-flag-icon-download-in-svg-png-gif-file-formats--country-national-flags-vol-4-pack-culture-religion-festivals-icons-11214272.png?f=webp&w=512",
   },
   {
-    name: "Singapore",
+    name: "Singapore Office",
     id: "SGP",
     coordinates: [103.8198, 1.3521],
     hours: "10:00 AM - 6:00 PM",
@@ -75,7 +75,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/free/png-512/free-singapore-flag-icon-download-in-svg-png-gif-file-formats--delicious-logo-food-indian-tasty-flags-pack-icons-2998618.png?f=webp&w=512",
   },
   {
-    name: "China",
+    name: "China Office",
     id: "CHN",
     coordinates: [116.4074, 39.9042],
     hours: "10:00 AM - 6:00 PM",
@@ -83,7 +83,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/china-4233091-3510790.png?f=webp&w=512",
   },
   {
-    name: "Germany",
+    name: "Germany Office",
     id: "DEU",
     coordinates: [10.4515, 51.1657],
     hours: "3:00 AM - 11:00 AM",
@@ -91,7 +91,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/germany-2184997-1828116.png?f=webp&w=512",
   },
   {
-    name: "Turkey",
+    name: "Turkey Office",
     id: "TUR",
     coordinates: [35.2433, 38.9637],
     hours: "5:00 AM - 1:00 PM",
@@ -99,7 +99,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/turkey-flag-icon-download-in-svg-png-gif-file-formats--flags-country-world-pack-maps-and-navigation-icons-3195954.png?f=webp&w=512",
   },
   {
-    name: "Cambodia",
+    name: "Cambodia Office",
     id: "KHM",
     coordinates: [104.9915, 12.5655],
     hours: "9:00 AM - 5:00 PM",
@@ -107,7 +107,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/cambodia-3008831-2498620.png?f=webp&w=512",
   },
   {
-    name: "Vietnam",
+    name: "Vietnam Office",
     id: "VIE",
     coordinates: [105.8542, 21.0285],
     hours: "9:00 AM - 5:00 PM",
@@ -115,7 +115,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/vietnam-2184975-1828138.png?f=webp&w=512",
   },
   {
-    name: "Laos",
+    name: "Laos Office",
     id: "LAO",
     coordinates: [102.4955, 19.8563],
     hours: "9:00 AM - 5:00 PM",
@@ -123,7 +123,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/laos-4422504-3664130.png?f=webp&w=512",
   },
   {
-    name: "India",
+    name: "India Office",
     id: "IND",
     coordinates: [78.9629, 20.5937],
     hours: "6:30 AM - 2:30 PM",
@@ -131,7 +131,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/india-flag-3916897-3244699.png?f=webp&w=512",
   },
   {
-    name: "Finland",
+    name: "Finland Office",
     id: "FIN",
     coordinates: [28.45, 68.36],
     hours: "4:00 AM - 12:00 PM",
@@ -139,7 +139,7 @@ const offices = [
     flag: "https://cdn.iconscout.com/icon/premium/png-512-thumb/finland-2730503-2266113.png?f=webp&w=512",
   },
   {
-    name: "Philippines",
+    name: "Philippines Office",
     id: "PHL",
     coordinates: [121.774, 12.8797],
     hours: "10:00 AM - 6:00 PM",
@@ -155,9 +155,9 @@ function OfficeHour() {
   return (
     <div>
       <div className="containers">
-        <div className="flex flex-col md:flex-row gap-10 md:gap-40">
+        <div className="flex flex-col md:flex-row">
           <p className="header-text font-bold">Office Hours</p>
-          <p className="body-text">
+          <p className="body-text md:ms-10 mt-10 md:mt-0">
             Founded in 2024, MEG was established to revolutionize medical and
             healthcare <br /> education by bridging the gap between ambition and
             achievement and <br /> excellence. Through our Medicine philosophy,

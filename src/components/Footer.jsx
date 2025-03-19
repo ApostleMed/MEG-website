@@ -29,7 +29,7 @@ const Footer = () => {
               </p>
             </div>
             <p className="hidden lg:block text-[16px] mt-5 leading-7 text-gray-500">
-              Sharing a World-Where Healthcare <br /> Knowledge is Universal,
+              Sharping a World-Where Healthcare <br /> Knowledge is Universal,
               and Being a <br /> Healer is a Noble Duty
             </p>
             <p className="block lg:hidden text-[16px] mt-5 leading-7 text-gray-500">
@@ -72,7 +72,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <NavLink to="/service/3" className="hover:text-primary">
-                    Medical School Entrance Test/Exam (MHEB)
+                    Medical School Entrance BootCamp (MSEB)
                   </NavLink>
                 </li>
                 <li>

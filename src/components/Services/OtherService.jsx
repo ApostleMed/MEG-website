@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function OtherService({ id }) {
   const navigate = useNavigate();
+  console.log(typeof id);
 
   return (
     <div className="bg-gray-100 pb-[64px]">
@@ -13,7 +14,7 @@ function OtherService({ id }) {
         <p className="header-text">Other Services</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 mt-20 mx-auto">
-          {id != 1 && (
+          {id !== "1" && (
             <div className="bg-[#E6E1E1] p-10 rounded-2xl shadow-md flex flex-col gap-4">
               <TbMessages size={40} />
               <h3 className="header-text mb-4">
@@ -31,7 +32,7 @@ function OtherService({ id }) {
               </button>
             </div>
           )}
-          {id != 2 && (
+          {id !== "4" && (
             <div>
               <div className="bg-[#E6E1E1] p-10 rounded-2xl shadow-md flex flex-col gap-4">
                 <FaHouseUser size={40} />
@@ -52,7 +53,7 @@ function OtherService({ id }) {
               </div>
             </div>
           )}
-          {id != 3 && (
+          {id !== "2" && (
             <div>
               <div className="bg-[#E6E1E1] p-10 rounded-2xl shadow-md flex flex-col gap-4">
                 <BiMessageDetail size={40} />
@@ -71,7 +72,7 @@ function OtherService({ id }) {
               </div>
             </div>
           )}
-          {id != 4 && (
+          {id !== "3" && (
             <div className="bg-[#E6E1E1] p-10 rounded-2xl shadow-md flex flex-col gap-4">
               <MdOutlineSchool size={40} />
               <h3 className="header-text mb-4">

@@ -146,10 +146,13 @@ const ServiceBanner = ({ service }) => {
               {service?.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="flex items-center gap-2 border border-primary text-primary px-8 py-3 rounded-full font-semibold md:hover:scale-105 justify-center active:scale-95 duration-300">
+              <a
+                href="tel:+6676271190"
+                className="flex items-center gap-2 border border-primary text-primary px-8 py-3 rounded-full font-semibold md:hover:scale-105 justify-center active:scale-95 duration-300"
+              >
                 <MdOutlineLocalPhone size={20} />
                 +66 762 711 90
-              </button>
+              </a>
               <button
                 className="button justify-center active:scale-95"
                 onClick={() => {
