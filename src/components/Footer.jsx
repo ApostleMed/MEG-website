@@ -39,9 +39,7 @@ const Footer = () => {
             <div className="mt-10 space-y-5">
               <div className="flex gap-5 text-gray-500">
                 <MdMailOutline className="text-2xl" />
-                <span className="text-[14px]">
-                  medicaleducationalguild@gmail.com
-                </span>
+                <span className="text-[14px]">info@mededuguild.com</span>
               </div>
               <div className="flex gap-5 text-gray-500">
                 <MdOutlineLocationOn className="text-2xl " />
