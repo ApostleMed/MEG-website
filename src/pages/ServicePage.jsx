@@ -4,7 +4,7 @@ import OtherService from "../components/Services/OtherService";
 import MiddleSection from "../components/Home/MiddleSection";
 import ServiceBanner from "../components/Services/ServiceBanner";
 import { useParams } from "react-router-dom";
-import bg from "../assets/image/service/bg.avif";
+// import bg from "../assets/image/service/bg.avif";
 
 const services = [
   {
@@ -45,11 +45,11 @@ const services = [
     banner: {
       button: "Book a Consultation",
       title: "Application Excellence Package",
-      price: "5 USD per month",
+      price: "19 USD per month",
       time: "4 Weeks",
       image:
         "https://images.pexels.com/photos/8085932/pexels-photo-8085932.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      description: `Get Accepted! We offer detailed academic evaluations, essay review (2 rounds), strategic roadmaps, and mock interviews to maximize your application success`,
+      description: `Enroll in the classes that takes offers you comprehensive clarity and academic skills to get accepted into medical programs of your choice.`,
     },
     forWho: ` Get detailed academic feedback, a strategic roadmap, essay review, and mock interviews - everything you need to impress admissions committees and expert guidance on your application, including academic evaluation, a strategic roadmap, personalized essay review, and mock interviews to build confidence`,
     features: [
