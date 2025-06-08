@@ -29,7 +29,7 @@ const AboutUs = () => {
         </div>
         <div className="w-full md:w-1/2 h-[400px] flex flex-col justify-center">
           <h1 className="header-text mb-5">
-            University Partnership & Programs
+            Universities
           </h1>
           <p className="body-text mb-5">
             MEG was created to transform medical education by combining rigorous

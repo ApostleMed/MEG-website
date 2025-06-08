@@ -10,7 +10,6 @@ function Home() {
       <HeroBanner />
       <AboutUs />
       <MiddleSection />
-      <Services />
       <Collaborate />
       <CTAsecton />
     </div>
