@@ -466,6 +466,7 @@ const AesculaPage = () => {
           <div className="containers">
             <div className="hero-content">
               <h1 className="hero-title">Aescula</h1>
+              <p className="hero-subtitle">Ethical AI Medical Educator</p>
               <p className="hero-subtitle">Empowering Future Medical Professionals</p>
               <p className="hero-description">
                 Where passion meets opportunity - ensuring financial background doesn't stand in the way of a brilliant medical future
