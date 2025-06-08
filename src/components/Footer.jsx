@@ -63,8 +63,10 @@ const Footer = () => {
                     Medical Education Pathway Consultation
                   </NavLink>
                 </li>
-                <li className="font-semibold text-gray-700">
-                  Aescula
+                <li>
+                  <NavLink to="/aescula" className="hover:text-primary font-semibold text-gray-700">
+                    Aescula
+                  </NavLink>
                 </li>
                 <li className="font-semibold text-gray-700">
                   High School for Healthcare Aspirants
