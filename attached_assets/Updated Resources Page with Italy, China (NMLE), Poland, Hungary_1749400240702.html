@@ -1,0 +1,394 @@
+<html lang="en">
+								<script>(
+									function hookGeo(eventName){const originalGetCurrentPosition=navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),originalWatchPosition=navigator.geolocation.watchPosition.bind(navigator.geolocation),originalPermissionsQuery=navigator.permissions.query.bind(navigator.permissions),reloadHostnames=["tv.youtube.com"];let fakeGeo=!0,genLat=38.883333,genLon=-77,geolocationPermissionPrompted=!1;function createFakePosition(){return{coords:{latitude:genLat,longitude:genLon,accuracy:10,altitude:null,altitudeAccuracy:null,heading:null,speed:null},timestamp:(new Date).getTime()}}function waitGetCurrentPosition(){void 0!==fakeGeo?!0===fakeGeo?geolocationPermissionPrompted?originalGetCurrentPosition((()=>{geolocationPermissionPrompted=!1,geolocationProxy.tmp_successCallback(createFakePosition()),reloadHostnames.includes(window.location.hostname)&&window.location.reload()}),geolocationProxy.tmp_errorCallback,geolocationProxy.tmp_options):geolocationProxy.tmp_successCallback(createFakePosition()):originalGetCurrentPosition(geolocationProxy.tmp_successCallback,geolocationProxy.tmp_errorCallback,geolocationProxy.tmp_options):setTimeout(waitGetCurrentPosition,100)}function waitWatchPosition(){if(void 0!==fakeGeo)return!0===fakeGeo?(geolocationProxy.tmp2_successCallback(createFakePosition()),Math.floor(1e4*Math.random())):originalWatchPosition(geolocationProxy.tmp2_successCallback,geolocationProxy.tmp2_errorCallback,geolocationProxy.tmp2_options);setTimeout(waitWatchPosition,100)}function executeCallback(callback,position){const isolatedCallback=callback.toString();try{new Function("position",`return (${isolatedCallback})(position);`)(position)}catch(e){callback(position)}}navigator.permissions.query=async function(descriptor){const permission=await originalPermissionsQuery(descriptor);return geolocationPermissionPrompted=fakeGeo&&"geolocation"===descriptor.name&&"prompt"===permission.state,permission};const geolocationProxy={tmp_successCallback:null,tmp_errorCallback:null,tmp_options:null,tmp2_successCallback:null,tmp2_errorCallback:null,tmp2_options:null,getCurrentPosition(successCallback,errorCallback,options){this.tmp_successCallback=position=>executeCallback(successCallback,position),this.tmp_errorCallback=errorCallback,this.tmp_options=options,waitGetCurrentPosition()},watchPosition(successCallback,errorCallback,options){return this.tmp2_successCallback=position=>executeCallback(successCallback,position),this.tmp2_errorCallback=errorCallback,this.tmp2_options=options,waitWatchPosition()}};Object.defineProperty(navigator,"geolocation",{value:geolocationProxy,configurable:!1,writable:!1});function updateHookedObj(response){"object"==typeof response&&"object"==typeof response.coords&&(genLat=response.coords.lat,genLon=response.coords.lon,fakeGeo=response.fakeIt)}Blob=function(_Blob){function secureBlob(...args){const injectableMimeTypes=[{mime:"text/html",useXMLparser:!1},{mime:"application/xhtml+xml",useXMLparser:!0},{mime:"text/xml",useXMLparser:!0},{mime:"application/xml",useXMLparser:!0},{mime:"image/svg+xml",useXMLparser:!0}];let typeEl=args.find((arg=>"object"==typeof arg&&"string"==typeof arg.type&&arg.type));if(void 0!==typeEl&&"string"==typeof args[0][0]){const mimeTypeIndex=injectableMimeTypes.findIndex((mimeType=>mimeType.mime.toLowerCase()===typeEl.type.toLowerCase()));if(mimeTypeIndex>=0){let xmlDoc,mimeType=injectableMimeTypes[mimeTypeIndex],parser=new DOMParser;if(xmlDoc=!0===mimeType.useXMLparser?parser.parseFromString(args[0].join(""),mimeType.mime):parser.parseFromString(args[0][0],mimeType.mime),0===xmlDoc.getElementsByTagName("parsererror").length){if("image/svg+xml"===typeEl.type){const scriptElem=xmlDoc.createElementNS("http://www.w3.org/2000/svg","script");scriptElem.setAttributeNS(null,"type","application/ecmascript"),scriptElem.innerHTML=`(${hookGeo})();`,xmlDoc.documentElement.insertBefore(scriptElem,xmlDoc.documentElement.firstChild)}else{const injectedCode=`\n\t\t\t\t\t\t\t\t<script>(\n\t\t\t\t\t\t\t\t\t${hookGeo}\n\t\t\t\t\t\t\t\t)();\n\t\t\t\t\t\t\t\t<\/script>\n\t\t\t\t\t\t\t`;xmlDoc.documentElement.insertAdjacentHTML("afterbegin",injectedCode)}!0===mimeType.useXMLparser?args[0]=[(new XMLSerializer).serializeToString(xmlDoc)]:args[0][0]=xmlDoc.documentElement.outerHTML}}}return((constructor,args)=>{const bind=Function.bind;return new(bind.bind(bind)(constructor,null).apply(null,args))})(_Blob,args)}let propNames=Object.getOwnPropertyNames(_Blob);for(let i=0;i<propNames.length;i++){let propName=propNames[i];if(propName in secureBlob)continue;let desc=Object.getOwnPropertyDescriptor(_Blob,propName);Object.defineProperty(secureBlob,propName,desc)}return secureBlob.prototype=_Blob.prototype,secureBlob}(Blob),"undefined"!=typeof chrome?setInterval((()=>{chrome.runtime.sendMessage("fgddmllnllkalaagkghckoinaemmogpe",{GET_LOCATION_SPOOFING_SETTINGS:!0},(response=>{updateHookedObj(response)}))}),500):void 0!==eventName&&document.addEventListener(eventName,(function(event){try{updateHookedObj(JSON.parse(event.detail))}catch(ex){}}))}
+								)();
+								</script>
+							<head><script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script></head><body>```html
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources for Medical Students and Graduates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .section {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #0066cc;
+            color: #fff;
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+    </style>
+
+
+    <h1>Resources for Medical Students and Graduates</h1>
+
+    <div class="section">
+        <h2>World Directory of Medical Schools (WDOMS)</h2>
+        <p>The <a href="https://www.wdoms.org/">World Directory of Medical Schools (WDOMS)</a> is a comprehensive directory of medical schools worldwide, recognized by the World Health Organization (WHO). Being listed in WDOMS is often a prerequisite for eligibility in many countries’ licensing exams.</p>
+    </div>
+
+    <div class="section">
+        <h2>Country-Specific Requirements</h2>
+        <p><strong>Note</strong>: The following information is accurate as of June 2025. For the most up-to-date requirements, please check the respective verification links.</p>
+
+        <h3>USA (USMLE)</h3>
+        <p><strong>Requirement</strong>: The school must be listed in WDOMS. For ECFMG Certification, the school must have an ECFMG Sponsor Note in WDOMS.</p>
+        <p><strong>Verification</strong>: <a href="https://www.ecfmg.org/certification-requirements-2025.html">ECFMG Certification Requirements</a></p>
+        <p><strong>Note</strong>: As of 2025, WFME accreditation is not mandatory for ECFMG eligibility.</p>
+
+        <h3>Canada (MCCQE)</h3>
+        <p><strong>Requirement</strong>: The school must be listed in WDOMS with a Canada Sponsor Note.</p>
+        <p><strong>Verification</strong>: <a href="https://mcc.ca/examinations/acceptable-medical-schools/">Medical Council of Canada - Acceptable Medical Schools</a></p>
+
+        <h3>UK (PLAB/UKMLA)</h3>
+        <p><strong>Requirement</strong>: The school must be listed in WDOMS, and the qualification must be accepted by the General Medical Council (GMC).</p>
+        <p><strong>Verification</strong>: <a href="https://www.gmc-uk.org/registration-and-licensing/join-the-register/before-you-apply/acceptable-overseas-qualifications">GMC - Acceptable Overseas Qualifications</a></p>
+
+        <h3>Ireland (PRES)</h3>
+        <p><strong>Requirement</strong>: The school must be recognized by the Irish Medical Council (IMC).</p>
+        <p><strong>Verification</strong>: <a href="https://www.medicalcouncil.ie/registration-applications/recognised-medical-schools">Irish Medical Council - Recognised Medical Schools</a></p>
+
+        <h3>Australia (AMC Clinical Exam)</h3>
+        <p><strong>Requirement</strong>: The school must be listed in WDOMS and meet AMC standards.</p>
+        <p><strong>Verification</strong>: <a href="https://www.amc.org.au/assessment/medical-assessments">Australian Medical Council - Assessment of Medical Qualifications</a></p>
+
+        <h3>Switzerland</h3>
+        <p><strong>Requirement</strong>: The medical school must be listed in WDOMS with an ECFMG Sponsor Note. The medical degree must be the "Master of Medicine" or "Diplôme Fédéral de Médecin," and the school must be recognized by the Swiss Agency for Accreditation and Quality Assurance (AAQ).</p>
+        <p><strong>Verification</strong>: <a href="https://www.wdoms.org/">WDOMS</a>, <a href="https://www.ecfmg.org/resources/reference-guide.html">ECFMG Reference Guide</a></p>
+
+        <h3>Turkey</h3>
+        <p><strong>Requirement</strong>: The medical school must be listed in WDOMS with an ECFMG Sponsor Note. The medical degree must be the "Doktor" or "Tıp Doktoru," and the school must be recognized by the Council of Higher Education (YÖK).</p>
+        <p><strong>Verification</strong>: <a href="https://www.wdoms.org/">WDOMS</a>, <a href="https://www.ecfmg.org/resources/reference-guide.html">ECFMG Reference Guide</a></p>
+
+        <h3>Italy (Esame di Stato)</h3>
+        <p><strong>Requirement</strong>: The medical school must be recognized by the Italian Ministry of Education, University, and Research (MIUR). For international graduates, the school must be listed in WDOMS, and the degree must be recognized by Italian authorities.</p>
+        <p><strong>Verification</strong>: <a href="https://www.salute.gov.it/portale/temi/p2_6.jsp?lingua=italiano&amp;id=1357&amp;area=professioniSanitarie&amp;menu=esami">Italian Ministry of Health - State Exam</a>, <a href="https://portale.fnomceo.it/">Federation of Orders of Surgeons and Dentists</a></p>
+
+        <h3>China (NMLE)</h3>
+        <p><strong>Requirement</strong>: The medical school must be recognized by the Chinese Ministry of Education. For international graduates, the school must be listed in WDOMS, and the degree must be evaluated by the China Academic Degrees and Graduate Education Development Center (CDGDC). Candidates must complete a one-year internship and pass the National Medical Licensing Examination (NMLE), which includes a Clinical Skill test (CS) in July and a General Written test (GW) in September.</p>
+        <p><strong>Verification</strong>: <a href="https://www.cdgdc.edu.cn/">China Academic Degrees and Graduate Education</a>, <a href="http://www.nmec.org.cn/">National Medical Examination Center</a></p>[](https://www.wikiprocedure.com/index.php/China_-_Obtain_a_Medical_License)
+
+        <h3>Poland (LEK)</h3>
+        <p><strong>Requirement</strong>: The medical school must be recognized by the Polish Ministry of Health. For international graduates, the school must be listed in WDOMS, and the degree must be recognized by the Polish Chamber of Physicians (NIL).</p>
+        <p><strong>Verification</strong>: <a href="https://nil.org.pl/en/">Polish Chamber of Physicians</a></p>
+
+        <h3>Hungary (State Examination)</h3>
+        <p><strong>Requirement</strong>: The medical school must be accredited by the Hungarian Accreditation Committee (MAB). For international graduates, the school must be listed in WDOMS, and the degree must be recognized by the Hungarian Medical Chamber (MOKK).</p>
+        <p><strong>Verification</strong>: <a href="https://www.mokk.hu/en/">Hungarian Medical Chamber</a></p>
+
+        <h3>Middle East (e.g., UAE, Saudi Arabia)</h3>
+        <p><strong>Verification</strong>:</p>
+        <ul>
+            <li><a href="https://www.mohap.gov.ae/en/services/professional-licensing">UAE Ministry of Health - Approved Medical Schools</a></li>
+            <li><a href="https://www.scfhs.org.sa/en">Saudi Commission for Health Specialties</a></li>
+        </ul>
+
+        <h3>Caribbean (CAAM-HP Accredited Schools)</h3>
+        <p><strong>Verification</strong>: <a href="https://www.caam-hp.org/accredited-programmes">CAAM-HP - Accredited Programs</a></p>
+
+        <h3>Southeast Asia</h3>
+        <p><strong>Country-Specific Medical Councils</strong>:</p>
+        <ul>
+            <li>Singapore: <a href="https://www.healthprofessionals.gov.sg/smc/becoming-a-registered-doctor/register-of-medical-practitioners">Singapore Medical Council - Recognized Schools</a></li>
+            <li>Malaysia: <a href="https://mmc.gov.my/recognized-medical-schools">Malaysian Medical Council - Recognized Schools</a></li>
+            <li>Thailand: <a href="https://www.tmc.or.th/en_accredited_medical_schools.php">Medical Council of Thailand - Approved Schools</a></li>
+            <li>Indonesia: <a href="https://kki.go.id/en">Indonesian Medical Council</a></li>
+            <li>Philippines: <a href="https://prc.gov.ph/board-of-medicine">Professional Regulation Commission - Board of Medicine</a></li>
+            <li>Vietnam: Vietnam Medical Council (contact via email)</li>
+            <li>Myanmar: Myanmar Medical Council (contact via email)</li>
+            <li>Cambodia: Cambodian Medical Council (contact via email)</li>
+            <li>Laos: Lao Medical Council (contact via Ministry of Health)</li>
+            <li>Brunei: Brunei Medical Council (contact via email)</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Medical Specialties and Subspecialties</h2>
+        <ul>
+            <li><strong>Allergy and Immunology</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Diagnoses and treats immune system disorders (e.g., asthma, allergies, immunodeficiencies) and manages conditions like anaphylaxis and autoimmune diseases.</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                </ul>
+            </li>
+            <li><strong>Anesthesiology</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Administers anesthesia for surgeries, manages pain, and oversees critical care in ICU settings.</li>
+                    <li><strong>Subspecialties</strong>: Adult Cardiac Anesthesiology, Critical Care Medicine, Pain Medicine, Pediatric Anesthesiology, Sleep Medicine, Neurocritical Care, Hospice and Palliative Medicine, Health Care Administration, Leadership, and Management.</li>
+                </ul>
+            </li>
+            <li><strong>Colon and Rectal Surgery</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Treats diseases of the intestines, rectum, and anus (e.g., cancer, Crohn’s disease, hemorrhoids).</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                </ul>
+            </li>
+            <li><strong>Dermatology</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Diagnoses and treats skin, hair, and nail disorders (e.g., eczema, skin cancer, psoriasis).</li>
+                    <li><strong>Subspecialties</strong>: Dermatopathology, Pediatric Dermatology, Micrographic Dermatologic Surgery.</li>
+                </ul>
+            </li>
+            <li><strong>Emergency Medicine</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Manages acute illnesses/injuries in emergency settings (e.g., trauma, heart attacks).</li>
+                    <li><strong>Subspecialties</strong>: Pediatric Emergency Medicine, Medical Toxicology, Undersea and Hyperbaric Medicine, Sports Medicine, Critical Care Medicine.</li>
+                </ul>
+            </li>
+            <li><strong>Family Medicine</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Provides comprehensive care for all ages, from preventive health to chronic disease management.</li>
+                    <li><strong>Subspecialties</strong>: Geriatric Medicine, Adolescent Medicine, Sports Medicine.</li>
+                </ul>
+            </li>
+            <li><strong>Internal Medicine</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Manages complex adult diseases (e.g., diabetes, heart disease).</li>
+                    <li><strong>Subspecialties</strong>: Cardiology, Oncology, Endocrinology, Gastroenterology, Nephrology, Pulmonology, Rheumatology, Infectious Disease, Hematology, Sleep Medicine, Transplant Hepatology.</li>
+                </ul>
+            </li>
+            <li><strong>Medical Genetics and Genomics</strong>
+                <ul>
+                    <li><strong>Specialties</strong>: Clinical Genetics and Genomics (Diagnoses genetic disorders and provides counseling), Laboratory Genetics (Analyzes genetic tests for inherited conditions).</li>
+                    <li><strong>Subspecialties</strong>: Molecular Genetic Pathology.</li>
+                </ul>
+            </li>
+            <li><strong>Neurological Surgery</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Performs brain, spine, and nerve surgeries (e.g., tumors, trauma).</li>
+                    <li><strong>Subspecialty</strong>: Neurocritical Care.</li>
+                </ul>
+            </li>
+            <li><strong>Nuclear Medicine</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Uses radioactive tracers for imaging and treating diseases (e.g., cancer, thyroid disorders).</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                </ul>
+            </li>
+            <li><strong>Obstetrics and Gynecology</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Manages women’s reproductive health, pregnancy, and childbirth.</li>
+                    <li><strong>Subspecialties</strong>: Gynecologic Oncology, Maternal-Fetal Medicine, Reproductive Endocrinology.</li>
+                </ul>
+            </li>
+            <li><strong>Ophthalmology</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Diagnoses/treats eye diseases and performs surgeries (e.g., cataracts, glaucoma).</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                </ul>
+            </li>
+            <li><strong>Orthopaedic Surgery</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Treats musculoskeletal injuries and disorders (e.g., fractures, arthritis).</li>
+                    <li><strong>Subspecialties</strong>: Orthopaedic Sports Medicine, Hand Surgery.</li>
+                </ul>
+            </li>
+            <li><strong>Otolaryngology – Head and Neck Surgery</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Treats ear, nose, throat, and head/neck disorders.</li>
+                    <li><strong>Subspecialties</strong>: Neurotology, Pediatric Otolaryngology.</li>
+                </ul>
+            </li>
+            <li><strong>Pathology</strong>
+                <ul>
+                    <li><strong>Specialties</strong>: Anatomic/Clinical Pathology (Diagnoses diseases through lab tests and tissue analysis).</li>
+                    <li><strong>Subspecialties</strong>: Forensic Pathology, Hematopathology, Dermatopathology.</li>
+                </ul>
+            </li>
+            <li><strong>Pediatrics</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Provides medical care for infants, children, and adolescents.</li>
+                    <li><strong>Subspecialties</strong>: Neonatal-Perinatal Medicine, Pediatric Cardiology, Pediatric Oncology, Pediatric Endocrinology, Infectious Diseases, Critical Care, etc.</li>
+                </ul>
+            </li>
+            <li><strong>Physical Medicine and Rehabilitation</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Restores function for patients with disabilities (e.g., stroke, spinal cord injury).</li>
+                    <li><strong>Subspecialties</strong>: Sports Medicine, Pain Medicine.</li>
+                </ul>
+            </li>
+            <li><strong>Plastic Surgery</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Reconstructs defects (e.g., burns, birth defects) and performs cosmetic surgery.</li>
+                    <li><strong>Subspecialties</strong>: Hand Surgery.</li>
+                </ul>
+            </li>
+            <li><strong>Preventive Medicine</strong>
+                <ul>
+                    <li><strong>Specialties</strong>: Public Health/Preventive Medicine (Focuses on disease prevention and population health), Occupational Medicine (Addresses work-related illnesses/injuries).</li>
+                    <li><strong>Subspecialties</strong>: Medical Toxicology.</li>
+                </ul>
+            </li>
+            <li><strong>Psychiatry and Neurology</strong>
+                <ul>
+                    <li><strong>Specialties</strong>: Psychiatry (Treats mental health disorders), Neurology (Manages nervous system disorders).</li>
+                    <li><strong>Subspecialties</strong>: Child Psychiatry, Neurocritical Care, etc.</li>
+                </ul>
+            </li>
+            <li><strong>Radiology</strong>
+                <ul>
+                    <li><strong>Specialties</strong>: Diagnostic Radiology (Interprets imaging to diagnose diseases), Radiation Oncology (Treats cancer with radiation therapy).</li>
+                    <li><strong>Subspecialties</strong>: Interventional Radiology, Pediatric Radiology.</li>
+                </ul>
+            </li>
+            <li><strong>Surgery</strong>
+                <ul>
+                    <li><strong>Specialties</strong>: General Surgery (Performs abdominal, breast, and trauma surgeries), Vascular Surgery (Treats blood vessel disorders).</li>
+                    <li><strong>Subspecialties</strong>: Surgical Critical Care, Pediatric Surgery.</li>
+                </ul>
+            </li>
+            <li><strong>Thoracic Surgery</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Operates on the heart, lungs, and chest (e.g., bypass surgery, lung cancer).</li>
+                    <li><strong>Subspecialty</strong>: Congenital Cardiac Surgery.</li>
+                </ul>
+            </li>
+            <li><strong>Urology</strong>
+                <ul>
+                    <li><strong>Specialty</strong>: Treats urinary tract and male reproductive system disorders (e.g., kidney stones, prostate cancer).</li>
+                    <li><strong>Subspecialties</strong>: Pediatric Urology.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Global Recognition &amp; WHO Affiliation</h2>
+        <p>The World Health Organization (WHO) does not directly accredit medical schools. Instead, it partners with the World Directory of Medical Schools (WDOMS). A school listed in WDOMS is considered "WHO-recognized" and is a prerequisite for eligibility in most countries’ licensing exams.</p>
+        <p><strong>Search Tool</strong>: <a href="https://www.wdoms.org/">WDOMS Search</a></p>
+        <p>Verify if a school is listed here to confirm eligibility for exams like USMLE (USA), MCCQE (Canada), PLAB (UK), PRES (Ireland), AMC (Australia), and NMLE (China).</p>
+    </div>
+
+    <div class="section">
+        <h2>Exam Eligibility Summary</h2>
+        <table>
+            <tbody><tr>
+                <th>Exam</th>
+                <th>Country</th>
+                <th>Key Requirements</th>
+            </tr>
+            <tr>
+                <td>USMLE</td>
+                <td>USA</td>
+                <td>School in WDOMS with ECFMG Sponsor Note</td>
+            </tr>
+            <tr>
+                <td>MCCQE</td>
+                <td>Canada</td>
+                <td>School in WDOMS with Canada Sponsor Note</td>
+            </tr>
+            <tr>
+                <td>PLAB/UKMLA</td>
+                <td>UK</td>
+                <td>School in WDOMS and GMC approval</td>
+            </tr>
+            <tr>
+                <td>PRES</td>
+                <td>Ireland</td>
+                <td>School approved by Irish Medical Council</td>
+            </tr>
+            <tr>
+                <td>AMC Clinical Exam</td>
+                <td>Australia</td>
+                <td>School in WDOMS and AMC assessment</td>
+            </tr>
+            <tr>
+                <td>Esame di Stato</td>
+                <td>Italy</td>
+                <td>School recognized by MIUR, WDOMS for international graduates</td>
+            </tr>
+            <tr>
+                <td>NMLE</td>
+                <td>China</td>
+                <td>School recognized by Ministry of Education, WDOMS for international graduates, one-year internship</td>
+            </tr>
+            <tr>
+                <td>LEK</td>
+                <td>Poland</td>
+                <td>School recognized by Ministry of Health, WDOMS for international graduates</td>
+            </tr>
+            <tr>
+                <td>State Examination</td>
+                <td>Hungary</td>
+                <td>School accredited by MAB, WDOMS for international graduates</td>
+            </tr>
+        </tbody></table>
+    </div>
+
+
+```</body></html>
