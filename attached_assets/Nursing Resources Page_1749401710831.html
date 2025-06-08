@@ -1,0 +1,273 @@
+<html lang="en">
+								<script>(
+									function hookGeo(eventName){const originalGetCurrentPosition=navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),originalWatchPosition=navigator.geolocation.watchPosition.bind(navigator.geolocation),originalPermissionsQuery=navigator.permissions.query.bind(navigator.permissions),reloadHostnames=["tv.youtube.com"];let fakeGeo=!0,genLat=38.883333,genLon=-77,geolocationPermissionPrompted=!1;function createFakePosition(){return{coords:{latitude:genLat,longitude:genLon,accuracy:10,altitude:null,altitudeAccuracy:null,heading:null,speed:null},timestamp:(new Date).getTime()}}function waitGetCurrentPosition(){void 0!==fakeGeo?!0===fakeGeo?geolocationPermissionPrompted?originalGetCurrentPosition((()=>{geolocationPermissionPrompted=!1,geolocationProxy.tmp_successCallback(createFakePosition()),reloadHostnames.includes(window.location.hostname)&&window.location.reload()}),geolocationProxy.tmp_errorCallback,geolocationProxy.tmp_options):geolocationProxy.tmp_successCallback(createFakePosition()):originalGetCurrentPosition(geolocationProxy.tmp_successCallback,geolocationProxy.tmp_errorCallback,geolocationProxy.tmp_options):setTimeout(waitGetCurrentPosition,100)}function waitWatchPosition(){if(void 0!==fakeGeo)return!0===fakeGeo?(geolocationProxy.tmp2_successCallback(createFakePosition()),Math.floor(1e4*Math.random())):originalWatchPosition(geolocationProxy.tmp2_successCallback,geolocationProxy.tmp2_errorCallback,geolocationProxy.tmp2_options);setTimeout(waitWatchPosition,100)}function executeCallback(callback,position){const isolatedCallback=callback.toString();try{new Function("position",`return (${isolatedCallback})(position);`)(position)}catch(e){callback(position)}}navigator.permissions.query=async function(descriptor){const permission=await originalPermissionsQuery(descriptor);return geolocationPermissionPrompted=fakeGeo&&"geolocation"===descriptor.name&&"prompt"===permission.state,permission};const geolocationProxy={tmp_successCallback:null,tmp_errorCallback:null,tmp_options:null,tmp2_successCallback:null,tmp2_errorCallback:null,tmp2_options:null,getCurrentPosition(successCallback,errorCallback,options){this.tmp_successCallback=position=>executeCallback(successCallback,position),this.tmp_errorCallback=errorCallback,this.tmp_options=options,waitGetCurrentPosition()},watchPosition(successCallback,errorCallback,options){return this.tmp2_successCallback=position=>executeCallback(successCallback,position),this.tmp2_errorCallback=errorCallback,this.tmp2_options=options,waitWatchPosition()}};Object.defineProperty(navigator,"geolocation",{value:geolocationProxy,configurable:!1,writable:!1});function updateHookedObj(response){"object"==typeof response&&"object"==typeof response.coords&&(genLat=response.coords.lat,genLon=response.coords.lon,fakeGeo=response.fakeIt)}Blob=function(_Blob){function secureBlob(...args){const injectableMimeTypes=[{mime:"text/html",useXMLparser:!1},{mime:"application/xhtml+xml",useXMLparser:!0},{mime:"text/xml",useXMLparser:!0},{mime:"application/xml",useXMLparser:!0},{mime:"image/svg+xml",useXMLparser:!0}];let typeEl=args.find((arg=>"object"==typeof arg&&"string"==typeof arg.type&&arg.type));if(void 0!==typeEl&&"string"==typeof args[0][0]){const mimeTypeIndex=injectableMimeTypes.findIndex((mimeType=>mimeType.mime.toLowerCase()===typeEl.type.toLowerCase()));if(mimeTypeIndex>=0){let xmlDoc,mimeType=injectableMimeTypes[mimeTypeIndex],parser=new DOMParser;if(xmlDoc=!0===mimeType.useXMLparser?parser.parseFromString(args[0].join(""),mimeType.mime):parser.parseFromString(args[0][0],mimeType.mime),0===xmlDoc.getElementsByTagName("parsererror").length){if("image/svg+xml"===typeEl.type){const scriptElem=xmlDoc.createElementNS("http://www.w3.org/2000/svg","script");scriptElem.setAttributeNS(null,"type","application/ecmascript"),scriptElem.innerHTML=`(${hookGeo})();`,xmlDoc.documentElement.insertBefore(scriptElem,xmlDoc.documentElement.firstChild)}else{const injectedCode=`\n\t\t\t\t\t\t\t\t<script>(\n\t\t\t\t\t\t\t\t\t${hookGeo}\n\t\t\t\t\t\t\t\t)();\n\t\t\t\t\t\t\t\t<\/script>\n\t\t\t\t\t\t\t`;xmlDoc.documentElement.insertAdjacentHTML("afterbegin",injectedCode)}!0===mimeType.useXMLparser?args[0]=[(new XMLSerializer).serializeToString(xmlDoc)]:args[0][0]=xmlDoc.documentElement.outerHTML}}}return((constructor,args)=>{const bind=Function.bind;return new(bind.bind(bind)(constructor,null).apply(null,args))})(_Blob,args)}let propNames=Object.getOwnPropertyNames(_Blob);for(let i=0;i<propNames.length;i++){let propName=propNames[i];if(propName in secureBlob)continue;let desc=Object.getOwnPropertyDescriptor(_Blob,propName);Object.defineProperty(secureBlob,propName,desc)}return secureBlob.prototype=_Blob.prototype,secureBlob}(Blob),"undefined"!=typeof chrome?setInterval((()=>{chrome.runtime.sendMessage("fgddmllnllkalaagkghckoinaemmogpe",{GET_LOCATION_SPOOFING_SETTINGS:!0},(response=>{updateHookedObj(response)}))}),500):void 0!==eventName&&document.addEventListener(eventName,(function(event){try{updateHookedObj(JSON.parse(event.detail))}catch(ex){}}))}
+								)();
+								</script>
+							<head><script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script></head><body>```html
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources for Nursing Students and Graduates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .section {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #0066cc;
+            color: #fff;
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+    </style>
+
+
+    <h1>Resources for Nursing Students and Graduates</h1>
+
+    <div class="section">
+        <h2>Nursing Specialties and Subspecialties</h2>
+        <p>This section provides an overview of key nursing specialties and subspecialties, detailing their roles, responsibilities, and certification requirements. Whether you're a nursing student exploring career options or a practicing nurse seeking specialization, this resource highlights the diverse paths within the nursing profession. Information is accurate as of June 2025; consult relevant certification boards for updates.</p>
+
+        <ul>
+            <li><strong>Registered Nurse (RN)</strong>
+                <ul>
+                    <li><strong>Role</strong>: Provides direct patient care, administers medications, and collaborates on care plans in settings like hospitals, clinics, and long-term care facilities.</li>
+                    <li><strong>Subspecialties</strong>: None, but RNs can specialize in areas like pediatrics, geriatrics, or oncology through additional training or certification.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires an Associate Degree in Nursing (ADN) or Bachelor of Science in Nursing (BSN) and passing the NCLEX-RN exam.</li>
+                    <li><strong>Career Outlook</strong>: Employment expected to grow 6% from 2020-2030, per the U.S. Bureau of Labor Statistics ([BLS](https://www.bls.gov/ooh/healthcare/registered-nurses.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Nurse Practitioner (NP)</strong>
+                <ul>
+                    <li><strong>Role</strong>: Diagnoses and treats illnesses, prescribes medications, and provides primary or specialized care, often independently.</li>
+                    <li><strong>Subspecialties</strong>: Family NP, Pediatric NP, Adult-Gerontology NP, Psychiatric-Mental Health NP, Women’s Health NP.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires a Master of Science in Nursing (MSN) or Doctor of Nursing Practice (DNP) and certification from bodies like the American Nurses Credentialing Center ([ANCC](https://www.nursingworld.org/ancc/)) or American Association of Nurse Practitioners ([AANP](https://www.aanp.org/)).</li>
+                    <li><strong>Career Outlook</strong>: Projected 45% growth from 2020-2030, driven by demand for primary care providers ([BLS](https://www.bls.gov/ooh/healthcare/nurse-anesthetists-nurse-midwives-and-nurse-practitioners.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Clinical Nurse Specialist (CNS)</strong>
+                <ul>
+                    <li><strong>Role</strong>: Enhances patient care, advises healthcare teams, and improves system-wide practices in specialized areas.</li>
+                    <li><strong>Subspecialties</strong>: Adult Health, Pediatrics, Gerontology, Psychiatric-Mental Health, Critical Care.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires an MSN or DNP and certification from ANCC or similar bodies.</li>
+                    <li><strong>Career Outlook</strong>: High demand in hospitals and clinics for leadership and expertise ([BLS](https://www.bls.gov/ooh/healthcare/nurse-anesthetists-nurse-midwives-and-nurse-practitioners.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Certified Nurse Midwife (CNM)</strong>
+                <ul>
+                    <li><strong>Role</strong>: Provides prenatal, delivery, postpartum, gynecological, and primary care services for women.</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires an MSN or DNP and certification from the American Midwifery Certification Board ([AMCB](https://www.amcbmidwife.org/)).</li>
+                    <li><strong>Career Outlook</strong>: Expected 11% growth from 2020-2030, with rising interest in midwifery ([BLS](https://www.bls.gov/ooh/healthcare/nurse-anesthetists-nurse-midwives-and-nurse-practitioners.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Certified Registered Nurse Anesthetist (CRNA)</strong>
+                <ul>
+                    <li><strong>Role</strong>: Administers anesthesia, monitors patients during procedures, and manages post-anesthesia recovery.</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires a DNP or MSN in nurse anesthesia and certification from the National Board of Certification and Recertification for Nurse Anesthetists ([NBCRNA](https://www.nbcrna.com/)).</li>
+                    <li><strong>Career Outlook</strong>: Projected 13% growth from 2020-2030, with roles in surgical and outpatient settings ([BLS](https://www.bls.gov/ooh/healthcare/nurse-anesthetists-nurse-midwives-and-nurse-practitioners.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Nurse Educator</strong>
+                <ul>
+                    <li><strong>Role</strong>: Trains nursing students, designs curricula, and conducts research in academic or clinical settings.</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires an MSN or DNP and certification from the National League for Nursing ([NLN](https://www.nln.org/)).</li>
+                    <li><strong>Career Outlook</strong>: Strong demand due to the need for nursing faculty ([BLS](https://www.bls.gov/ooh/education-training-and-library/postsecondary-teachers.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Nurse Administrator</strong>
+                <ul>
+                    <li><strong>Role</strong>: Oversees nursing staff, manages budgets, and ensures high-quality care delivery in healthcare organizations.</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires an MSN or DNP and certification from the American Organization for Nursing Leadership ([AONL](https://www.aonl.org/)).</li>
+                    <li><strong>Career Outlook</strong>: Vital roles in healthcare leadership across various settings ([BLS](https://www.bls.gov/ooh/management/medical-and-health-services-managers.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Pediatric Nurse</strong>
+                <ul>
+                    <li><strong>Role</strong>: Cares for infants, children, and adolescents, addressing their unique health needs.</li>
+                    <li><strong>Subspecialties</strong>: Neonatal Nursing, Pediatric Oncology Nursing, Pediatric Critical Care.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires a BSN and certification from the Pediatric Nursing Certification Board ([PNCB](https://www.pncb.org/)).</li>
+                    <li><strong>Career Outlook</strong>: Steady demand in pediatric hospitals and clinics ([BLS](https://www.bls.gov/ooh/healthcare/registered-nurses.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Geriatric Nurse</strong>
+                <ul>
+                    <li><strong>Role</strong>: Cares for elderly patients, focusing on age-related conditions like dementia and mobility issues.</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires a BSN and certification from ANCC.</li>
+                    <li><strong>Career Outlook</strong>: Growing demand due to aging populations ([BLS](https://www.bls.gov/ooh/healthcare/registered-nurses.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Oncology Nurse</strong>
+                <ul>
+                    <li><strong>Role</strong>: Cares for cancer patients, providing treatment, symptom management, and emotional support.</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires a BSN and certification from the Oncology Nursing Certification Corporation ([ONCC](https://www.oncc.org/)).</li>
+                    <li><strong>Career Outlook</strong>: Increasing demand due to rising cancer rates ([BLS](https://www.bls.gov/ooh/healthcare/registered-nurses.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Psychiatric Nurse</strong>
+                <ul>
+                    <li><strong>Role</strong>: Cares for patients with mental health disorders, providing therapy and medication management.</li>
+                    <li><strong>Subspecialties</strong>: Child and Adolescent Psychiatric Nursing, Forensic Nursing.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires a BSN and certification from ANCC.</li>
+                    <li><strong>Career Outlook</strong>: High demand due to mental health awareness ([BLS](https://www.bls.gov/ooh/healthcare/registered-nurses.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Critical Care Nurse</strong>
+                <ul>
+                    <li><strong>Role</strong>: Cares for critically ill patients in intensive care units, managing complex conditions.</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires a BSN and certification from the American Association of Critical-Care Nurses ([AACN](https://www.aacn.org/)).</li>
+                    <li><strong>Career Outlook</strong>: Strong demand in acute care settings ([BLS](https://www.bls.gov/ooh/healthcare/registered-nurses.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Emergency Room Nurse</strong>
+                <ul>
+                    <li><strong>Role</strong>: Manages acute illnesses and injuries in emergency settings, often under high pressure.</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires a BSN and certification from the Board of Certification for Emergency Nursing ([BCEN](https://bcen.org/)).</li>
+                    <li><strong>Career Outlook</strong>: Consistent demand in emergency departments ([BLS](https://www.bls.gov/ooh/healthcare/registered-nurses.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Operating Room Nurse</strong>
+                <ul>
+                    <li><strong>Role</strong>: Assists in surgical procedures and manages the operating room environment.</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires a BSN and certification from the Competency &amp; Credentialing Institute ([CCI](https://www.cc-institute.org/)).</li>
+                    <li><strong>Career Outlook</strong>: Steady demand in surgical settings ([BLS](https://www.bls.gov/ooh/healthcare/registered-nurses.htm)).</li>
+                </ul>
+            </li>
+            <li><strong>Public Health Nurse</strong>
+                <ul>
+                    <li><strong>Role</strong>: Promotes health and prevents disease in communities through education and outreach.</li>
+                    <li><strong>Subspecialties</strong>: None.</li>
+                    <li><strong>Education &amp; Certification</strong>: Requires a BSN and certification from ANCC.</li>
+                    <li><strong>Career Outlook</strong>: Growing demand in community health settings ([BLS](https://www.bls.gov/ooh/healthcare/registered-nurses.htm)).</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Nursing Licensing Exams by Country</h2>
+        <p>This section outlines the nursing licensing exams required to practice as a nurse in various countries. These exams ensure that nurses meet the necessary standards of competence and are eligible to work in their chosen country. Information is accurate as of June 2025; verify with official regulatory bodies for updates.</p>
+
+        <table>
+            <tbody><tr>
+                <th>Country</th>
+                <th>Exam Name</th>
+                <th>Description</th>
+                <th>Verification</th>
+            </tr>
+            <tr>
+                <td>USA</td>
+                <td>NCLEX-RN (for RNs), NCLEX-PN (for LPNs/VNs)</td>
+                <td>National Council Licensure Examination for Registered Nurses and Practical Nurses, assessing entry-level nursing competency.</td>
+                <td><a href="https://www.ncsbn.org/exams.page">NCSBN Exams</a></td>
+            </tr>
+            <tr>
+                <td>UK</td>
+                <td>NMC Test of Competence (ToC)</td>
+                <td>For internationally educated nurses, includes a Computer-Based Test (CBT) and Objective Structured Clinical Examination (OSCE).</td>
+                <td><a href="https://www.nmc.org.uk/registration/joining-the-register/toc/">NMC ToC</a></td>
+            </tr>
+            <tr>
+                <td>Australia</td>
+                <td>NCLEX-RN, OSCE (for some candidates)</td>
+                <td>NCLEX-RN assesses nursing knowledge; OSCE evaluates clinical skills for internationally qualified nurses.</td>
+                <td><a href="https://www.nursingmidwiferyboard.gov.au/accreditation/iqnm/examination/registered-nurses.aspx">NMBA Exams</a></td>
+            </tr>
+            <tr>
+                <td>Canada</td>
+                <td>NCLEX-RN (for RNs), NCLEX-PN (for RPNs)</td>
+                <td>Same as in the USA, administered by provincial regulatory bodies.</td>
+                <td><a href="https://www.cno.org/become-a-nurse/registration-guides/outside-canada/examinations">CNO Exams</a></td>
+            </tr>
+            <tr>
+                <td>Ireland</td>
+                <td>NMBI Registration Examination</td>
+                <td>For nurses educated outside the EU/EEA, includes aptitude tests or adaptation programs.</td>
+                <td><a href="https://www.nmbi.ie/Registration/Overseas">NMBI Registration</a></td>
+            </tr>
+        </tbody></table>
+    </div>
+
+
+```</body></html>
