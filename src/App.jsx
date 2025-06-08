@@ -13,6 +13,7 @@ import { Analytics } from "@vercel/analytics/react";
 import AboutPage from "./pages/AboutPage";
 import ServicePage from "./pages/ServicePage";
 import SchoolPage from "./pages/SchoolPage";
+import ResourcesPage from "./pages/ResourcesPage";
 // import About from "./pages/About";
 // import Service from "./pages/Service";
 // import PageNotFound from "./pages/PageNotFound";
@@ -72,9 +73,7 @@ function App() {
               path="/resources"
               element={
                 <PageTransition>
-                  <div className="min-h-screen flex items-center justify-center">
-                    <h1 className="text-4xl font-bold text-gray-800">Resources Page</h1>
-                  </div>
+                  <ResourcesPage />
                 </PageTransition>
               }
             />
