@@ -98,47 +98,28 @@ const Navbar = () => {
                 >
                   Medical Education Pathway Consultation
                 </NavLink>
-                <NavLink
-                  onClick={() => {
-                    setServiceMenu(!serviceMenu);
-                  }}
-                  to="/service/2"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "block px-4 py-2 text-primary font-semibold"
-                      : "block px-4 py-2 text-gray-600 hover:text-primary"
-                  }
-                >
-                  Application Excellence Package
-                </NavLink>
-                <NavLink
-                  onClick={() => {
-                    setServiceMenu(!serviceMenu);
-                  }}
-                  to="/service/3"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "block px-4 py-2 text-primary font-semibold"
-                      : "block px-4 py-2 text-gray-600 hover:text-primary"
-                  }
-                >
-                  Medical School Entrance Bootcamp
-                </NavLink>
-                <NavLink
-                  onClick={() => {
-                    setServiceMenu(!serviceMenu);
-                  }}
-                  to="/service/4"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "block px-4 py-2 text-primary font-semibold"
-                      : "block px-4 py-2 text-gray-600 hover:text-primary"
-                  }
-                >
-                  Accommodation and Boarding Services
-                </NavLink>
+                <div className="border-t border-gray-200 mt-2 pt-2">
+                  <h4 className="px-4 py-2 font-semibold text-gray-800 text-sm">Aescula</h4>
+                </div>
+                <div className="border-t border-gray-200 mt-2 pt-2">
+                  <h4 className="px-4 py-2 font-semibold text-gray-800 text-sm">High School for Healthcare Aspirants</h4>
+                </div>
               </div>
             </div>
+
+            <NavLink
+              onClick={() => {
+                setServiceMenu(false);
+              }}
+              to="/resources"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-primary"
+                  : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
+              }
+            >
+              Resources
+            </NavLink>
 
             <NavLink
               onClick={() => {
@@ -251,50 +232,26 @@ const Navbar = () => {
                 >
                   Medical Education Pathway Consultation
                 </NavLink>
-                <NavLink
-                  onClick={() => {
-                    setServiceMenu(!serviceMenu);
-                    toggleMenu();
-                  }}
-                  to="/service/2"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "block px-4 py-2 text-primary font-semibold"
-                      : "block px-4 py-2 text-gray-600 hover:text-primary"
-                  }
-                >
-                  Application Excellence Package
-                </NavLink>
-                <NavLink
-                  onClick={() => {
-                    setServiceMenu(!serviceMenu);
-                    toggleMenu();
-                  }}
-                  to="/service/3"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "block px-4 py-2 text-primary font-semibold"
-                      : "block px-4 py-2 text-gray-600 hover:text-primary"
-                  }
-                >
-                  Medical School Entrance Bootcamp
-                </NavLink>
-                <NavLink
-                  onClick={() => {
-                    toggleMenu();
-                    setServiceMenu(!serviceMenu);
-                  }}
-                  to="/service/4"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "block px-4 py-2 text-primary font-semibold"
-                      : "block px-4 py-2 text-gray-600 hover:text-primary"
-                  }
-                >
-                  Accommodation and Boarding Services
-                </NavLink>
+                <div className="border-t border-gray-200 mt-2 pt-2">
+                  <h4 className="px-4 py-2 font-semibold text-gray-800 text-sm">Aescula</h4>
+                </div>
+                <div className="border-t border-gray-200 mt-2 pt-2">
+                  <h4 className="px-4 py-2 font-semibold text-gray-800 text-sm">High School for Healthcare Aspirants</h4>
+                </div>
               </div>
             </div>
+
+            <NavLink
+              to="/resources"
+              onClick={toggleMenu}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary text-[14px] lg:text-[18px] font-semibold text-gray-800 hover:text-primary"
+                  : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
+              }
+            >
+              Resources
+            </NavLink>
 
             <NavLink
               to="/contact"
