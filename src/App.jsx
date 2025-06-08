@@ -14,6 +14,7 @@ import AboutPage from "./pages/AboutPage";
 import ServicePage from "./pages/ServicePage";
 import SchoolPage from "./pages/SchoolPage";
 import ResourcesPage from "./pages/ResourcesPage";
+import HighSchoolPage from './pages/HighSchoolPage';
 // import About from "./pages/About";
 // import Service from "./pages/Service";
 // import PageNotFound from "./pages/PageNotFound";
@@ -77,6 +78,7 @@ function App() {
                 </PageTransition>
               }
             />
+            <Route path="/high-school" element={<HighSchoolPage />} />
             {/* <Route path="*" element={<PageNotFound />} /> */}
           </Routes>
           <Footer classData="bg-footer" />

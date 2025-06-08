@@ -102,7 +102,19 @@ const Navbar = () => {
                   <h4 className="px-4 py-2 font-semibold text-gray-800 text-sm">Aescula</h4>
                 </div>
                 <div className="border-t border-gray-200 mt-2 pt-2">
-                  <h4 className="px-4 py-2 font-semibold text-gray-800 text-sm">High School for Healthcare Aspirants</h4>
+                  <NavLink
+                    to="/high-school"
+                    onClick={() => {
+                      setServiceMenu(!serviceMenu);
+                    }}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "block px-4 py-2 font-semibold text-primary text-sm"
+                        : "block px-4 py-2 font-semibold text-gray-800 text-sm hover:text-primary"
+                    }
+                  >
+                    High School for Healthcare Aspirants
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -236,7 +248,20 @@ const Navbar = () => {
                   <h4 className="px-4 py-2 font-semibold text-gray-800 text-sm">Aescula</h4>
                 </div>
                 <div className="border-t border-gray-200 mt-2 pt-2">
-                  <h4 className="px-4 py-2 font-semibold text-gray-800 text-sm">High School for Healthcare Aspirants</h4>
+                  <NavLink
+                    to="/high-school"
+                    onClick={() => {
+                      setServiceMenu(!serviceMenu);
+                      toggleMenu();
+                    }}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "block px-4 py-2 font-semibold text-primary text-sm"
+                        : "block px-4 py-2 font-semibold text-gray-800 text-sm hover:text-primary"
+                    }
+                  >
+                    High School for Healthcare Aspirants
+                  </NavLink>
                 </div>
               </div>
             </div>
