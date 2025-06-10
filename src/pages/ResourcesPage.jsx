@@ -52,22 +52,211 @@ const ResourcesPage = () => {
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow-sm">
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">Medical Specialties and Subspecialties</h3>
-        <div className="grid gap-4">
+        <h3 className="text-xl font-semibold text-gray-800 mb-4">Comprehensive List of Medical Specialties Worldwide (2025)</h3>
+        <p className="text-gray-600 mb-6">With Post-Nominal Qualifications - Primary Medical Specialties (Alphabetical)</p>
+        
+        <div className="grid gap-6">
+          <div>
+            <h4 className="font-medium text-gray-800">Addiction Medicine</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Focuses on prevention, evaluation, diagnosis, treatment, and recovery from substance use disorders and addiction-related medical complications.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FASAM (Fellow, American Society of Addiction Medicine), DipAddMed (Diploma in Addiction Medicine), MSc Addiction Studies, Certificate in Addiction Medicine</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: None recognized.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Aerospace Medicine</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Focuses on the health and safety of aircrew, astronauts, and passengers in aviation and space environments.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FASM (Fellow, Aerospace Medical Association), DipAvMed (Diploma in Aviation Medicine), MSc Aviation Medicine</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: None recognized.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Allergy and Immunology</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Diagnoses and treats immune system disorders (e.g., asthma, allergies, immunodeficiencies) and manages conditions like anaphylaxis and autoimmune diseases.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FAAAAI (Fellow, American Academy of Allergy, Asthma & Immunology), DipAllergy (Diploma in Allergy), MSc Clinical Immunology</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: None recognized.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Anesthesiology</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Administers anesthesia for surgeries, manages pain, and oversees critical care in ICU settings.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FRCA (Fellow, Royal College of Anaesthetists), DA (Diploma in Anaesthetics), MD Anesthesiology</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Adult Cardiac Anesthesiology, Critical Care Medicine, Pain Medicine, Pediatric Anesthesiology, Sleep Medicine, Neurocritical Care, Hospice and Palliative Medicine.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Cardiology</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Diagnoses and treats heart and blood vessel disorders (e.g., heart attacks, arrhythmias, heart failure).</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FACC (Fellow, American College of Cardiology), FESC (Fellow, European Society of Cardiology), DM Cardiology, MD Cardiology</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Interventional Cardiology, Electrophysiology, Heart Failure and Transplant Cardiology, Adult Congenital Heart Disease.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Colon and Rectal Surgery</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Treats diseases of the intestines, rectum, and anus (e.g., cancer, Crohn's disease, hemorrhoids).</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FASCRS (Fellow, American Society of Colon and Rectal Surgeons), MCh Colorectal Surgery, MS General Surgery with specialization</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: None recognized.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Dermatology</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Diagnoses and treats skin, hair, and nail disorders (e.g., acne, psoriasis, skin cancer).</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FAAD (Fellow, American Academy of Dermatology), MD Dermatology, DDV (Diploma in Dermatology and Venereology)</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Dermatopathology, Mohs Surgery, Pediatric Dermatology.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Emergency Medicine</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Provides immediate medical care for acute illnesses and injuries in emergency departments.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FACEM (Fellow, Australasian College for Emergency Medicine), FCEM (Fellow, College of Emergency Medicine), MD Emergency Medicine</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Emergency Medical Services, Pediatric Emergency Medicine, Sports Medicine, Undersea and Hyperbaric Medicine, Medical Toxicology.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Family Medicine</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Provides comprehensive primary care for individuals and families across all ages and genders.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FAAFP (Fellow, American Academy of Family Physicians), FRACGP (Fellow, Royal Australian College of General Practitioners), MD Family Medicine</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Adolescent Medicine, Geriatric Medicine, Hospice and Palliative Medicine, Sleep Medicine, Sports Medicine.</p>
+          </div>
+
           <div>
             <h4 className="font-medium text-gray-800">Internal Medicine</h4>
-            <p className="text-gray-600 text-sm">Manages complex adult diseases (e.g., diabetes, heart disease).</p>
-            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Cardiology, Oncology, Endocrinology, Gastroenterology, Nephrology, Pulmonology, Rheumatology.</p>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Manages complex adult diseases and provides comprehensive care for adults.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FACP (Fellow, American College of Physicians), MRCP (Member, Royal College of Physicians), MD Internal Medicine</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Cardiology, Oncology, Endocrinology, Gastroenterology, Nephrology, Pulmonology, Rheumatology, Infectious Disease, Hematology, Sleep Medicine.</p>
           </div>
+
           <div>
-            <h4 className="font-medium text-gray-800">Surgery</h4>
-            <p className="text-gray-600 text-sm">General Surgery (abdominal, breast, trauma surgeries), Vascular Surgery (blood vessel disorders).</p>
-            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Surgical Critical Care, Pediatric Surgery.</p>
+            <h4 className="font-medium text-gray-800">Medical Genetics and Genomics</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Diagnoses genetic disorders and provides counseling; analyzes genetic tests for inherited conditions.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FACMG (Fellow, American College of Medical Genetics), MSc Medical Genetics, PhD Genetics</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Molecular Genetic Pathology.</p>
           </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Neurological Surgery</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Performs brain, spine, and nerve surgeries (e.g., tumors, trauma).</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FAANS (Fellow, American Association of Neurological Surgeons), MCh Neurosurgery, MS Neurosurgery</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Neurocritical Care.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Neurology</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Diagnoses and treats disorders of the nervous system (e.g., epilepsy, stroke, Alzheimer's).</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FAAN (Fellow, American Academy of Neurology), DM Neurology, MD Neurology</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Child Neurology, Neurocritical Care, Neuromuscular Medicine, Vascular Neurology.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Nuclear Medicine</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Uses radioactive tracers for imaging and treating diseases (e.g., cancer, thyroid disorders).</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FACNM (Fellow, American College of Nuclear Medicine), DNB Nuclear Medicine, MD Nuclear Medicine</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: None recognized.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Obstetrics and Gynecology</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Manages women's reproductive health, pregnancy, and childbirth.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FACOG (Fellow, American College of Obstetricians and Gynecologists), FRCOG (Fellow, Royal College of Obstetricians and Gynaecologists), MS OBG</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Gynecologic Oncology, Maternal-Fetal Medicine, Reproductive Endocrinology and Infertility.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Ophthalmology</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Diagnoses and treats eye diseases and performs surgeries (e.g., cataracts, glaucoma).</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FRCOphth (Fellow, Royal College of Ophthalmologists), MS Ophthalmology, DO (Diploma in Ophthalmology)</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: None recognized.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Orthopedic Surgery</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Treats musculoskeletal injuries and disorders (e.g., fractures, arthritis).</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FAAOS (Fellow, American Academy of Orthopaedic Surgeons), MS Orthopedics, MCh Orthopedics</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Orthopedic Sports Medicine, Hand Surgery.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Otolaryngology – Head and Neck Surgery</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Treats ear, nose, throat, and head/neck disorders.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FACS (Fellow, American College of Surgeons), MS ENT, DLO (Diploma in Laryngology and Otology)</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Neurotology, Pediatric Otolaryngology.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Pathology</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Diagnoses diseases through laboratory tests and tissue analysis.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FRCPath (Fellow, Royal College of Pathologists), MD Pathology, DCP (Diploma in Clinical Pathology)</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Forensic Pathology, Hematopathology, Dermatopathology.</p>
+          </div>
+
           <div>
             <h4 className="font-medium text-gray-800">Pediatrics</h4>
-            <p className="text-gray-600 text-sm">Provides medical care for infants, children, and adolescents.</p>
-            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Neonatal-Perinatal Medicine, Pediatric Cardiology, Pediatric Oncology.</p>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Provides medical care for infants, children, and adolescents.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FAAP (Fellow, American Academy of Pediatrics), FRCPCH (Fellow, Royal College of Paediatrics and Child Health), MD Pediatrics</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Neonatal-Perinatal Medicine, Pediatric Cardiology, Pediatric Oncology, Pediatric Endocrinology, Infectious Diseases, Critical Care.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Physical Medicine and Rehabilitation</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Restores function for patients with disabilities (e.g., stroke, spinal cord injury).</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FAAPMR (Fellow, American Academy of Physical Medicine and Rehabilitation), MD PMR, DPM (Diploma in Physical Medicine)</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Sports Medicine, Pain Medicine.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Plastic Surgery</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Reconstructs defects (e.g., burns, birth defects) and performs cosmetic surgery.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FACS (Fellow, American College of Surgeons), MCh Plastic Surgery, MS Plastic Surgery</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Hand Surgery.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Preventive Medicine</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Focuses on disease prevention and population health; addresses work-related illnesses/injuries.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FACPM (Fellow, American College of Preventive Medicine), MPH (Master of Public Health), DrPH (Doctor of Public Health)</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Medical Toxicology.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Psychiatry</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Treats mental health disorders (e.g., depression, schizophrenia, bipolar disorder).</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FRCPsych (Fellow, Royal College of Psychiatrists), MD Psychiatry, DPM (Diploma in Psychological Medicine)</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Child and Adolescent Psychiatry, Forensic Psychiatry, Addiction Psychiatry.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Radiology</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Interprets imaging to diagnose diseases; treats cancer with radiation therapy.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FRCR (Fellow, Royal College of Radiologists), MD Radiology, DMRD (Diploma in Medical Radiodiagnosis)</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Interventional Radiology, Pediatric Radiology, Nuclear Medicine.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Surgery</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Performs abdominal, breast, and trauma surgeries; treats blood vessel disorders.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FRCS (Fellow, Royal College of Surgeons), MS General Surgery, FACS (Fellow, American College of Surgeons)</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Surgical Critical Care, Pediatric Surgery, Vascular Surgery.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Thoracic Surgery</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Operates on the heart, lungs, and chest (e.g., bypass surgery, lung cancer).</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FRCS(CTh) (Fellow, Royal College of Surgeons - Cardiothoracic), MCh CVTS, MS CVTS</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Congenital Cardiac Surgery.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Translational Medicine</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Bridges laboratory research and clinical application to develop new treatments and therapies.</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: PhD Translational Medicine, MSc Translational Medicine, Certificate in Translational Research</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Clinical Research, Biomarker Development, Drug Development.</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium text-gray-800">Urology</h4>
+            <p className="text-gray-600 text-sm"><strong>Specialty</strong>: Treats urinary tract and male reproductive system disorders (e.g., kidney stones, prostate cancer).</p>
+            <p className="text-gray-600 text-sm"><strong>Post-nominals</strong>: FRCS(Urol) (Fellow, Royal College of Surgeons - Urology), MCh Urology, MS Urology</p>
+            <p className="text-gray-600 text-sm"><strong>Subspecialties</strong>: Pediatric Urology.</p>
           </div>
         </div>
       </div>
