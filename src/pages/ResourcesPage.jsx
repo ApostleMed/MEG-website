@@ -54,7 +54,7 @@ const ResourcesPage = () => {
       <div className="bg-white p-6 rounded-lg shadow-sm">
         <h3 className="text-xl font-semibold text-gray-800 mb-4">Comprehensive List of Medical Specialties Worldwide (2025)</h3>
         <p className="text-gray-600 mb-6">With Post-Nominal Qualifications - Primary Medical Specialties (Alphabetical)</p>
-        
+
         <div className="grid gap-4">
           <div>
             <h4 className="font-medium text-gray-800">Addiction Medicine</h4>
@@ -893,8 +893,70 @@ const ResourcesPage = () => {
           </div>
         </div>
       </div>
+       <div className="bg-white p-6 rounded-lg shadow-sm">
+        <h3 className="text-xl font-semibold text-gray-800 mb-4">Additional Qualifications</h3>
+        <div className="grid gap-6">
+        <div>
+        <h4 className="text-lg font-medium text-gray-800 mb-2">France</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>DES</strong> - Diplôme d'Études Spécialisées (Diploma of Specialized Studies)</div>
+            </div>
+          </div>
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">Japan</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>Senmon-i</strong> - Board Certified Specialist</div>
+              <div><strong>JSA</strong> - Japan Society of Anesthesiologists Certification</div>
+            </div>
+          </div>
 
-      
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">Research and Academic Qualifications</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>PhD</strong> - Doctor of Philosophy (Research Doctorate)</div>
+              <div><strong>MD - PhD</strong> - Combined Medical Doctor and Research Doctorate</div>
+              <div><strong>ScD</strong> - Doctor of Science</div>
+              <div><strong>DSc</strong> - Doctor of Science</div>
+              <div><strong>DrPH</strong> - Doctor of Public Health</div>
+              <div><strong>EdD</strong> - Doctor of Education (Medical Education)</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">Management and Leadership</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>MBA</strong> - Master of Business Administration</div>
+              <div><strong>MHA</strong> - Master of Health Administration</div>
+              <div><strong>MPH</strong> - Master of Public Health</div>
+              <div><strong>MSc</strong> - Master of Science (various specializations)</div>
+              <div><strong>FACHE</strong> - Fellow, American College of Healthcare Executives</div>
+              <div><strong>LFACHE</strong> - Life Fellow, American College of Healthcare Executives</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">Quality and Safety Certifications</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>CPHQ</strong> - Certified Professional in Healthcare Quality</div>
+              <div><strong>CPPS</strong> - Certified Professional in Patient Safety</div>
+              <div><strong>CQA</strong> - Certified Quality Auditor</div>
+              <div><strong>Lean Six Sigma</strong> - Green Belt, Black Belt, Master Black Belt</div>
+              <div><strong>CCRN</strong> - Critical Care Registered Nurse (for physicians working in critical care)</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">Technology and Innovation</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>HIMSS Certifications</strong> - Healthcare Information and Management Systems Society</div>
+              <div><strong>CAHIMS</strong> - Certified Associate in Healthcare Information and Management Systems</div>
+              <div><strong>CHPS</strong> - Certified in Healthcare Privacy and Security</div>
+              <div><strong>CISSP</strong> - Certified Information Systems Security Professional (Healthcare)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </PageTransition>
   );
 };
