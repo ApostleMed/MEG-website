@@ -86,7 +86,7 @@ const HighSchoolPage = () => {
             <div className="text-center bg-yellow-100 rounded-lg p-6">
               <h3 className="text-2xl font-semibold text-gray-800 mb-3">Join the Healthcare Revolution</h3>
               <p className="text-gray-600 mb-4">
-                Empower your students to become ethical, inspiring healthcare professionals who transform communities.
+                Join the Healthcare Revolution as medical education curriculum designer, trainer, school owner, admission counsellor, or institutions to Empower every student in high school to become ethical, inspiring healthcare professionals who transform communities.
               </p>
               <a 
                 href="https://api.whatsapp.com/message/3HRH775DRT42A1?autoload=1&app_absent=0"
