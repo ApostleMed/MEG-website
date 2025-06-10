@@ -1,0 +1,196 @@
+Emerging and Interdisciplinary Specialties
+Artificial Intelligence in Medicine
+Specialty: Application of AI and machine learning technologies to healthcare delivery, diagnosis, andtreatment.
+Post-nominals: MSc AI in Healthcare, PhD Machine Learning, Certificate in Medical AI, FAMIA (Fellow,American Medical Informatics Association)
+Bioethics and Medical Ethics
+Specialty: Examination of ethical issues in medicine, healthcare policy, and biomedical research.
+Post-nominals: MA Bioethics, PhD Medical Ethics, Certificate in Clinical Ethics, ASBH (American Societyfor Bioethics and Humanities)
+Climate Medicine
+Specialty: Addresses health impacts of climate change and environmental degradation.
+Post-nominals: MSc Climate Change and Health, Certificate in Planetary Health, MPH EnvironmentalHealth
+Culinary Medicine
+Specialty: Integration of nutrition science and culinary arts in medical practice and patient education.
+Post-nominals: Certificate in Culinary Medicine, MSc Nutrition, RD (Registered Dietitian), CulinaryMedicine Specialist
+Digital Therapeutics
+Specialty: Evidence-based therapeutic interventions delivered through digital platforms andapplications.
+Post-nominals: MSc Digital Health, Certificate in Digital Therapeutics, PhD Health TechnologyAssessment
+Health Equity Medicine
+Specialty: Focuses on addressing healthcare disparities and promoting equitable access to healthcare.
+Post-nominals: MPH Health Equity, MSc Social Medicine, Certificate in Health Disparities, DrPH HealthEquity
+Integrative Medicine
+Specialty: Combines conventional medicine with evidence-based complementary and alternativetherapies.
+Post-nominals: Fellowship in Integrative Medicine, MSc Integrative Medicine, ABOIM (American Boardof Integrative Medicine), MD(H) - Doctor of Medicine (Homeopathy)
+Medical Education
+Specialty: Teaching, curriculum development, and educational research in medical training.
+Post-nominals: MMEd (Master of Medical Education), PhD Medical Education, FHEA (Fellow, HigherEducation Academy), Certificate in Medical Education
+Medical Simulation
+Specialty: Use of simulation technology for medical education, training, and assessment.
+Post-nominals: MSc Medical Simulation, CHSE (Certified Healthcare Simulation Educator), Fellowshipin Medical Simulation
+One Health Medicine
+Specialty: Collaborative approach connecting human, animal, and environmental health.
+Post-nominals: MSc One Health, Certificate in One Health, DVM/MD (Doctor of VeterinaryMedicine/Doctor of Medicine)
+Planetary Health
+Specialty: Focuses on the health of human civilization and natural systems on which it depends.
+Post-nominals: MSc Planetary Health, Certificate in Planetary Health, MPH Environmental Health, PhDPlanetary Health
+Quality Improvement and Patient Safety
+Specialty: Systematic approaches to improving healthcare delivery and reducing medical errors.
+Post-nominals: MSc Healthcare Quality, CPHQ (Certified Professional in Healthcare Quality), Lean SixSigma Black Belt, IHI Certificate
+Refugee and Immigrant Health
+Specialty: Specialized care for refugee, immigrant, and displaced populations.
+Post-nominals: Certificate in Refugee Health, MSc Migration and Health, Fellowship in Global Health
+Telehealth and Remote Medicine
+Specialty: Healthcare delivery using telecommunications and digital technologies.
+Post-nominals: Certificate in Telehealth, MSc Digital Health, CHWC (Certified Health and WellnessCoach), CTH (Certified Telehealth)
+Translational Medicine
+Specialty: Bridges basic science research and clinical practice to accelerate medical discoveries.
+Post-nominals: MSc Translational Medicine, PhD Translational Research, Certificate in ClinicalResearch, ACRP (Association of Clinical Research Professionals)
+Additional International Medical Qualifications by Region
+United Kingdom & Commonwealth
+MRCP
+- Member, Royal College of Physicians
+MRCGP
+- Member, Royal College of General Practitioners
+MRCS
+- Member, Royal College of Surgeons
+FRCR
+- Fellow, Royal College of Radiologists
+FRCPath
+- Fellow, Royal College of Pathologists
+FRCOG
+- Fellow, Royal College of Obstetricians and Gynaecologists
+FRCA
+- Fellow, Royal College of Anaesthetists
+FRCPCH
+- Fellow, Royal College of Paediatrics and Child Health
+FRCPsych
+- Fellow, Royal College of Psychiatrists
+FFPH
+- Fellow, Faculty of Public Health
+United States
+ABMS Board Certifications
+- American Board of Medical Specialties
+FACP
+- Fellow, American College of Physicians
+FACS
+- Fellow, American College of Surgeons
+FACOG
+- Fellow, American College of Obstetricians and Gynecologists
+FAAP
+- Fellow, American Academy of Pediatrics
+FAPA
+- Fellow, American Psychiatric Association
+FAAFP
+- Fellow, American Academy of Family Physicians
+European Union
+UEMS Diplomas
+- Union Européenne des Médecins Spécialistes
+EBMS Certifications
+- European Board of Medical Specialists
+CESMA
+- Certificat Européen de Spécialiste en Médecine d'Addictologie
+India
+MS
+- Master of Surgery
+MD
+- Doctor of Medicine
+MCh
+- Magister Chirurgiae (Master of Surgery - Superspecialty)
+DM
+- Doctorate of Medicine (Superspecialty)
+DNB
+- Diplomate of National Board
+FICP
+- Fellow, Indian College of Physicians
+FICS
+- Fellow, International College of Surgeons
+Australia & New Zealand
+FRACGP
+- Fellow, Royal Australian College of General Practitioners
+FRACP
+- Fellow, Royal Australasian College of Physicians
+FRACS
+- Fellow, Royal Australasian College of Surgeons
+FANZCA
+- Fellow, Australian and New Zealand College of Anaesthetists
+FRANZCOG
+- Fellow, Royal Australian and New Zealand College of Obstetricians and Gynaecologists
+Canada
+FRCPC
+- Fellow, Royal College of Physicians of Canada
+FRCSC
+- Fellow, Royal College of Surgeons of Canada
+CCFP
+- Certificate of the College of Family Physicians of Canada
+Germany
+Facharzt
+- Specialist Doctor (various specialties)
+Oberarzt
+- Senior Physician
+Chefarzt
+- Chief Physician
+France
+DES
+- Diplôme d'Études Spécialisées (Specialized Studies Diploma)
+DESC
+- Diplôme d'Études Spécialisées Complémentaires
+Japan
+Senmon-i
+- Board Certified Specialist
+JSA
+- Japan Society of Anesthesiologists Certification
+Research and Academic Qualifications
+PhD
+- Doctor of Philosophy (Research Doctorate)
+MD-PhD
+- Combined Medical Doctor and Research Doctorate
+ScD
+- Doctor of Science
+DSc
+- Doctor of Science
+DrPH
+- Doctor of Public Health
+EdD
+- Doctor of Education (Medical Education)
+Management and Leadership
+MBA
+- Master of Business Administration
+MHA
+- Master of Health Administration
+MPH
+- Master of Public Health
+MSc
+- Master of Science (various specializations)
+FACHE
+- Fellow, American College of Healthcare Executives
+LFACHE
+- Life Fellow, American College of Healthcare Executives
+Quality and Safety Certifications
+CPHQ
+- Certified Professional in Healthcare Quality
+CPPS
+- Certified Professional in Patient Safety
+CQA
+- Certified Quality Auditor
+Lean Six Sigma
+- Green Belt, Black Belt, Master Black Belt
+CCRN
+- Critical Care Registered Nurse (for physicians working in critical care)
+Technology and Innovation
+HIMSS Certifications
+- Healthcare Information and Management Systems Society
+CAHIMS
+- Certified Associate in Healthcare Information and Management Systems
+CHPS
+- Certified in Healthcare Privacy and Security
+CISSP
+- Certified Information Systems Security Professional (Healthcare)
+International Certifications
+ECFMG
+- Educational Commission for Foreign Medical Graduates Certification
+IELTS/TOEFL
+- English Language Proficiency (for international medical graduates)
+USMLE
+- United States Medical Licensing Examination
+PLAB
+- Professional and Linguistic Assessments Board (UK)
+Note: This comprehensive list includes specialties recognized by major medical boards worldwide includingABMS (USA), Royal Colleges (UK), UEMS (Europe), and other international certifying bodies. Post-nominalqualifications vary by country and institution. Requirements for specialty training, examinations, andcontinuing education differ across jurisdictions. Always verify current requirements with the relevant medicalboard or college in your region.
