@@ -73,6 +73,98 @@ const ResourcesPage = () => {
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow-sm">
+        <h3 className="text-xl font-semibold text-gray-800 mb-4">Additional International Medical Qualifications by Region</h3>
+        <div className="grid gap-6">
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">United Kingdom & Commonwealth</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>MRCP</strong> - Member, Royal College of Physicians</div>
+              <div><strong>MRCGP</strong> - Member, Royal College of General Practitioners</div>
+              <div><strong>MRCS</strong> - Member, Royal College of Surgeons</div>
+              <div><strong>FRCR</strong> - Fellow, Royal College of Radiologists</div>
+              <div><strong>FRCPath</strong> - Fellow, Royal College of Pathologists</div>
+              <div><strong>FRCOG</strong> - Fellow, Royal College of Obstetricians and Gynaecologists</div>
+              <div><strong>FRCA</strong> - Fellow, Royal College of Anaesthetists</div>
+              <div><strong>FRCPCH</strong> - Fellow, Royal College of Paediatrics and Child Health</div>
+              <div><strong>FRCPsych</strong> - Fellow, Royal College of Psychiatrists</div>
+              <div><strong>FFPH</strong> - Fellow, Faculty of Public Health</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">United States</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>ABMS Board Certifications</strong> - American Board of Medical Specialties</div>
+              <div><strong>FACP</strong> - Fellow, American College of Physicians</div>
+              <div><strong>FACS</strong> - Fellow, American College of Surgeons</div>
+              <div><strong>FACOG</strong> - Fellow, American College of Obstetricians and Gynecologists</div>
+              <div><strong>FAAP</strong> - Fellow, American Academy of Pediatrics</div>
+              <div><strong>FAPA</strong> - Fellow, American Psychiatric Association</div>
+              <div><strong>FAAFP</strong> - Fellow, American Academy of Family Physicians</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">European Union</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>UEMS Diplomas</strong> - Union Européenne des Médecins Spécialistes</div>
+              <div><strong>EBMS Certifications</strong> - European Board of Medical Specialists</div>
+              <div><strong>CESMA</strong> - Certificat Européen de Spécialiste en Médecine d'Addictologie</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">India</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>MS</strong> - Master of Surgery</div>
+              <div><strong>MD</strong> - Doctor of Medicine</div>
+              <div><strong>MCh</strong> - Magister Chirurgiae (Master of Surgery - Superspecialty)</div>
+              <div><strong>DM</strong> - Doctorate of Medicine (Superspecialty)</div>
+              <div><strong>DNB</strong> - Diplomate of National Board</div>
+              <div><strong>FICP</strong> - Fellow, Indian College of Physicians</div>
+              <div><strong>FICS</strong> - Fellow, International College of Surgeons</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">Australia & New Zealand</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>FRACGP</strong> - Fellow, Royal Australian College of General Practitioners</div>
+              <div><strong>FRACP</strong> - Fellow, Royal Australasian College of Physicians</div>
+              <div><strong>FRACS</strong> - Fellow, Royal Australasian College of Surgeons</div>
+              <div><strong>FANZCA</strong> - Fellow, Australian and New Zealand College of Anaesthetists</div>
+              <div><strong>FRANZCOG</strong> - Fellow, Royal Australian and New Zealand College of Obstetricians and Gynaecologists</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">Canada</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>FRCPC</strong> - Fellow, Royal College of Physicians of Canada</div>
+              <div><strong>FRCSC</strong> - Fellow, Royal College of Surgeons of Canada</div>
+              <div><strong>CCFP</strong> - Certificate of the College of Family Physicians of Canada</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">Germany</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>Facharzt</strong> - Specialist Doctor (various specialties)</div>
+              <div><strong>Oberarzt</strong> - Senior Physician</div>
+              <div><strong>Chefarzt</strong> - Chief Physician</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">France</h4>
+            <div className="grid gap-2 text-sm">
+              <div><strong>DES</strong> - Diplôme d'Études Spécialisées (Diploma of Specialized Studies)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white p-6 rounded-lg shadow-sm">
         <h3 className="text-xl font-semibold text-gray-800 mb-4">Exam Eligibility Summary</h3>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse border border-gray-300">
