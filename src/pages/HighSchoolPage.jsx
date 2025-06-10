@@ -36,7 +36,8 @@ const HighSchoolPage = () => {
               </div>
 
               <div className="bg-yellow-50 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">Three Years to Success</h3>
+                <h3 className="text-xl font-semibold text-gray-800 mb-3">How High Schools should prepare their students</h3>
+                <h4 className="text-lg font-medium text-gray-700 mb-3">Three Years to Success</h4>
                 <div className="space-y-3">
                   <div className="border-l-4 border-yellow-500 pl-4">
                     <strong className="text-gray-800">Year 1: Foundation</strong>
@@ -55,7 +56,7 @@ const HighSchoolPage = () => {
             </div>
 
             <div className="bg-yellow-50 rounded-lg p-6 mb-6">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Why Choose Our Program?</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">You Lead, We Help</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="flex items-center space-x-3">
                   <div className="text-yellow-600 text-xl">💡</div>
