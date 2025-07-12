@@ -25,14 +25,14 @@ function Services() {
           professional seeking further education, we provide expert advice to
           help you succeed.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20 mx-auto">
-          <div className="bg-white p-10 rounded-2xl shadow-md flex flex-col gap-4">
+        <div className="flex justify-center mt-20 mx-auto">
+          <div className="bg-white p-10 rounded-2xl shadow-md flex flex-col gap-4 max-w-md">
             <TbMessages size={40} />
             <h3 className="header-text mb-4">
               Medical Education Pathway Consultation
             </h3>
             <p className="body-text mb-6">
-              For Secondary/High School Students/Graduates  exploring medical
+              For Secondary/High School Students/Graduates  exploring medical
               education
             </p>
             <button
@@ -41,60 +41,6 @@ function Services() {
             >
               Learn More
             </button>
-          </div>
-          <div>
-            <div className="bg-white p-10 rounded-2xl shadow-md flex flex-col gap-4">
-              <BiMessageDetail size={40} />
-              <h3 className="header-text mb-4">
-                Application Excellence Package
-              </h3>
-              <p className="body-text mb-6">
-                For students actively preparing applications
-              </p>
-              <button
-                onClick={() => navigate("/service/2")}
-                className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105"
-              >
-                Learn More
-              </button>
-            </div>
-          </div>
-          <div className="bg-white p-10 rounded-2xl shadow-md flex flex-col gap-4">
-            <MdOutlineSchool size={40} />
-            <h3 className="header-text mb-4">
-              Medical School Entrance BootCamp (MSEB)
-            </h3>
-            <p className="body-text mb-6">
-              Designed for ambitious students aiming for top medical schools,
-              MSEB is a fully immersive training program that builds the
-              academic, strategic, and professional skills needed to excel in
-              medical school entrance exams and interviews
-            </p>
-            <button
-              onClick={() => navigate("/service/3")}
-              className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105"
-            >
-              Learn More
-            </button>
-          </div>
-          <div>
-            <div className="bg-white p-10 rounded-2xl shadow-md flex flex-col gap-4">
-              <FaHouseUser size={40} />
-              <h3 className="header-text mb-4">
-                Accommodation & Boarding Services
-              </h3>
-              <p className="body-text mb-6">
-                For students traveling from other regions or countries, fully
-                equipped accommodation and boarding school services are
-                available. Options include:
-              </p>
-              <button
-                onClick={() => navigate("/service/4")}
-                className="bg-accent w-full p-3 text-[16px] rounded-full text-white transition-all duration-300 hover:scale-105"
-              >
-                Learn More
-              </button>
-            </div>
           </div>
         </div>
       </div>

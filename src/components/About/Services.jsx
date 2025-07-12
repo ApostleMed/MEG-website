@@ -1,8 +1,5 @@
 import {
   FaGraduationCap,
-  FaClipboardCheck,
-  FaSchool,
-  FaHome,
 } from "react-icons/fa";
 
 const services = [
@@ -11,26 +8,6 @@ const services = [
     title: "Medical Education Pathway Consultation",
     description:
       "For International Medical Students: Guidance, mentoring, medical education",
-    buttonText: "Learn More",
-  },
-  {
-    icon: <FaClipboardCheck className="text-2xl text-blue-900" />,
-    title: "Application Excellence Package",
-    description: "For students seeking university application success",
-    buttonText: "Learn More",
-  },
-  {
-    icon: <FaSchool className="text-2xl text-blue-900" />,
-    title: "Medical School Entrance Boot camp (MSEB)",
-    description:
-      "Designed for ambitious students aiming for medical school success. Our boot camp offers comprehensive preparation for entrance exams, academic strategy, and professional skills development.",
-    buttonText: "Learn More",
-  },
-  {
-    icon: <FaHome className="text-2xl text-blue-900" />,
-    title: "Accommodation & Boarding Services",
-    description:
-      "For students seeking fully-supported accommodation & boarding services during their education journey",
     buttonText: "Learn More",
   },
 ];
