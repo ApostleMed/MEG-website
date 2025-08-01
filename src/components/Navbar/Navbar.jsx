@@ -98,7 +98,7 @@ const Navbar = () => {
                 >
                   Medical Education Pathway Consultation
                 </NavLink>
-                <div className="border-t border-gray-200 mt-2 pt-2">
+                {/* <div className="border-t border-gray-200 mt-2 pt-2">
                   <NavLink
                     to="/aescula"
                     onClick={() => {
@@ -112,7 +112,7 @@ const Navbar = () => {
                   >
                     Aescula
                   </NavLink>
-                </div>
+                </div> */}
                 <div className="border-t border-gray-200 mt-2 pt-2">
                   <NavLink
                     to="/high-school"
@@ -256,7 +256,7 @@ const Navbar = () => {
                 >
                   Medical Education Pathway Consultation
                 </NavLink>
-                <div className="border-t border-gray-200 mt-2 pt-2">
+                {/* <div className="border-t border-gray-200 mt-2 pt-2">
                   <NavLink
                     to="/aescula"
                     onClick={() => {
@@ -271,7 +271,7 @@ const Navbar = () => {
                   >
                     Aescula
                   </NavLink>
-                </div>
+                </div> */}
                 <div className="border-t border-gray-200 mt-2 pt-2">
                   <NavLink
                     to="/high-school"
