@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PageTransition from '../components/PageTransition';
+import CTAsecton from '../components/Home/CTAsecton';
 
 const ResourcesPage = () => {
   const [activeTab, setActiveTab] = useState('medical');
@@ -956,7 +957,7 @@ const ResourcesPage = () => {
           </div>
         </div>
       </div>
-
+      <CTAsecton />
     </PageTransition>
   );
 };
