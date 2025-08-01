@@ -13,7 +13,7 @@ function CTAsecton() {
           <button
             onClick={() => {
               window.location.href =
-                "https://calendly.com/mededuguild/pathway?month=2025-04";
+                "https://calendly.com/mededuguild/pathway?month=2025-08";
             }}
             className="bg-white text-accent font-medium px-6 py-4 rounded-full hover:scale-105 transition duration-300 ease-in-out"
           >
