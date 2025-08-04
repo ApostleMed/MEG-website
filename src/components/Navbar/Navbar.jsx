@@ -98,6 +98,21 @@ const Navbar = () => {
                 >
                   Medical Education Pathway Consultation
                 </NavLink>
+                <div className="border-t border-gray-200 mt-2 pt-2">
+                  <NavLink
+                    to="/scholarship"
+                    onClick={() => {
+                      setServiceMenu(!serviceMenu);
+                    }}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "block px-4 py-2 font-semibold text-primary text-sm"
+                        : "block px-4 py-2 font-semibold text-gray-800 text-sm hover:text-primary"
+                    }
+                  >
+                    Scholarship
+                  </NavLink>
+                </div>
                 {/* <div className="border-t border-gray-200 mt-2 pt-2">
                   <NavLink
                     to="/aescula"
@@ -256,6 +271,22 @@ const Navbar = () => {
                 >
                   Medical Education Pathway Consultation
                 </NavLink>
+                <div className="border-t border-gray-200 mt-2 pt-2">
+                  <NavLink
+                    to="/scholarship"
+                    onClick={() => {
+                      setServiceMenu(!serviceMenu);
+                      toggleMenu();
+                    }}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "block px-4 py-2 font-semibold text-primary text-sm"
+                        : "block px-4 py-2 font-semibold text-gray-800 text-sm hover:text-primary"
+                    }
+                  >
+                    Scholarship
+                  </NavLink>
+                </div>
                 {/* <div className="border-t border-gray-200 mt-2 pt-2">
                   <NavLink
                     to="/aescula"
