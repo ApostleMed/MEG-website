@@ -788,6 +788,94 @@ const ResourcesPage = () => {
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow-sm">
+        <h3 className="text-xl font-semibold text-gray-800 mb-4">Pharmacy Degree Pathways Comparison</h3>
+        <p className="text-gray-600 mb-6">
+          This comprehensive comparison outlines the key differences between major pharmacy degree programs worldwide, helping students choose the pathway that best aligns with their career goals.
+        </p>
+        
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-gray-300 text-sm">
+            <thead>
+              <tr className="bg-blue-600 text-white">
+                <th className="border border-gray-300 p-3 text-left font-semibold">Feature</th>
+                <th className="border border-gray-300 p-3 text-left font-semibold">BPharm – Bachelor of Pharmacy</th>
+                <th className="border border-gray-300 p-3 text-left font-semibold">MPharm – Master of Pharmacy (Integrated)</th>
+                <th className="border border-gray-300 p-3 text-left font-semibold">PharmD – Doctor of Pharmacy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-gray-300 p-3 font-medium bg-gray-50">Typical Duration</td>
+                <td className="border border-gray-300 p-3">4 years</td>
+                <td className="border border-gray-300 p-3">UK/Ireland: 4 years (UK) or 5 years (Ireland); EU: 5 years in some countries</td>
+                <td className="border border-gray-300 p-3">EU (Hungary, etc.): 5 years; US/Canada: 6 years (2 pre‑pharmacy + 4 professional)</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-300 p-3 font-medium bg-gray-50">Entry Point</td>
+                <td className="border border-gray-300 p-3">Direct from high school</td>
+                <td className="border border-gray-300 p-3">Direct from high school</td>
+                <td className="border border-gray-300 p-3">EU: Direct from high school; US/Canada: after pre‑pharmacy coursework</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-300 p-3 font-medium bg-gray-50">Academic Level</td>
+                <td className="border border-gray-300 p-3">Undergraduate bachelor's degree</td>
+                <td className="border border-gray-300 p-3">Undergraduate integrated master's (UK/EU); sometimes postgraduate in Asia</td>
+                <td className="border border-gray-300 p-3">Professional doctorate (entry‑level)</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-300 p-3 font-medium bg-gray-50">Primary Focus</td>
+                <td className="border border-gray-300 p-3">Pharmaceutical sciences, formulation, basic pharmacy practice</td>
+                <td className="border border-gray-300 p-3">Balanced: science + clinical pharmacy + placements</td>
+                <td className="border border-gray-300 p-3">Clinical pharmacy, patient care, therapeutics, interprofessional healthcare</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-300 p-3 font-medium bg-gray-50">Clinical Exposure</td>
+                <td className="border border-gray-300 p-3">Limited; usually final‑year internship</td>
+                <td className="border border-gray-300 p-3">Significant placements throughout program (UK: ~1,000 hours)</td>
+                <td className="border border-gray-300 p-3">Extensive clinical rotations (US: ~1,740 hours; EU: substantial placements in final years)</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-300 p-3 font-medium bg-gray-50">Research Component</td>
+                <td className="border border-gray-300 p-3">Minimal to moderate</td>
+                <td className="border border-gray-300 p-3">Final‑year research project/dissertation</td>
+                <td className="border border-gray-300 p-3">Optional; focus on clinical practice (research possible in electives)</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-300 p-3 font-medium bg-gray-50">Licensing Outcome</td>
+                <td className="border border-gray-300 p-3">Eligible for pharmacist registration in countries recognising BPharm</td>
+                <td className="border border-gray-300 p-3">Meets EU Directive requirements for pharmacist registration</td>
+                <td className="border border-gray-300 p-3">Meets national pharmacist registration requirements (GPhC in UK if accredited; ACPE/CCAPP in US/Canada)</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-300 p-3 font-medium bg-gray-50">Common Regions</td>
+                <td className="border border-gray-300 p-3">India, Pakistan, Nigeria, Malaysia, parts of Middle East</td>
+                <td className="border border-gray-300 p-3">UK, Ireland, Australia, NZ, parts of EU</td>
+                <td className="border border-gray-300 p-3">EU (Hungary, Poland, Baltics), US, Canada, Japan, Saudi Arabia, Philippines</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-300 p-3 font-medium bg-gray-50">Career Orientation</td>
+                <td className="border border-gray-300 p-3">Industry, manufacturing, regulatory affairs, community pharmacy</td>
+                <td className="border border-gray-300 p-3">Community/hospital pharmacy, industry, academia, regulatory</td>
+                <td className="border border-gray-300 p-3">Clinical pharmacy, hospital practice, ambulatory care, specialist prescribing</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-300 p-3 font-medium bg-gray-50">Further Study Pathways</td>
+                <td className="border border-gray-300 p-3">MPharm, MSc, PharmD, PhD</td>
+                <td className="border border-gray-300 p-3">PhD, clinical specialisation, prescribing qualifications</td>
+                <td className="border border-gray-300 p-3">Post‑graduate residencies (PGY1/PGY2), fellowships, PhD</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-300 p-3 font-medium bg-gray-50">Example Institutions</td>
+                <td className="border border-gray-300 p-3">University of Mumbai (India), University of Malaya (Malaysia)</td>
+                <td className="border border-gray-300 p-3">UCL, King's, Nottingham, Trinity College Dublin</td>
+                <td className="border border-gray-300 p-3">University of Szeged (Hungary), Semmelweis University (Hungary), University of Toronto (Canada), University of California San Francisco (USA)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div className="bg-white p-6 rounded-lg shadow-sm">
         <h3 className="text-xl font-semibold text-gray-800 mb-4">Pharmacy Specializations and Advanced Training</h3>
         <div className="grid gap-4">
           <div>
