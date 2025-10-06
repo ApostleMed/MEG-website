@@ -8,8 +8,9 @@ import logo3 from "./../../assets/image/logo/genesis.png";
 import logo4 from "./../../assets/image/logo/imec.jpg";
 import logo5 from "./../../assets/image/logo/interhecs.jpg";
 import logo6 from "./../../assets/image/logo/medilink.png";
+import logo7 from "./../../assets/image/logo/youthedumyanmar.png";
 
-const logo = [logo1, logo2, logo3, logo4, logo5, logo6];
+const logo = [logo1, logo2, logo3, logo4, logo5, logo6, logo7];
 
 function Number({ n }) {
   const [ref, inView] = useInView();
