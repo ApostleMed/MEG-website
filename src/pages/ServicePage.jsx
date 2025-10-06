@@ -16,7 +16,7 @@ const services = [
       foc: "(FOC for LDCs)",
       image:
         "https://images.pexels.com/photos/7699502/pexels-photo-7699502.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      description: `For Secondary/High School Students/Graduates exploring medical education and Institutions that want to establish exceptional aspiring healthcare and medical student recruitment activities`,
+      description: `For Secondary/High School Students/Graduates exploring medical education and Organizations/Institutions that want to establish exceptional aspiring healthcare and medical student recruitment activities`,
     },
     forWho: `Designed for ambitious students aiming for top medical schools, MSEB is a fully
       immersive training program that builds the academic, strategic, and professional
