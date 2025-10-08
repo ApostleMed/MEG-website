@@ -124,7 +124,9 @@ const ServiceBanner = ({ service }) => {
                     <p className="">{service?.price}</p>
                   ) : (
                     <div>
-                      <p>100 USD</p>
+                      <p className="text-white text-lg md:text-xl lg:text-2xl font-bold">
+                        {service?.foc || "Free Consultation"}
+                      </p>
                       <p className="text-xs">(FOC for LDCs)</p>
                     </div>
                   )}
