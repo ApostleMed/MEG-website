@@ -9,8 +9,9 @@ import logo4 from "./../../assets/image/logo/imec.jpg";
 import logo5 from "./../../assets/image/logo/interhecs.jpg";
 import logo6 from "./../../assets/image/logo/medilink.png";
 import logo7 from "./../../assets/image/logo/youthedumyanmar.png";
+import logo8 from "./../../assets/image/logo/msm.jpg";
 
-const logo = [logo1, logo2, logo3, logo4, logo5, logo6, logo7];
+const logo = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8];
 
 function Number({ n }) {
   const [ref, inView] = useInView();
@@ -47,7 +48,7 @@ const Collaborate = () => {
         </div>
         <div className="text-center">
           <p className="text-accent text-[48px] font-bold">
-            <Number n={5} />+
+            <Number n={6} />+
           </p>
           <h3 className="playfair mt-2">
             Collaborated partner <br /> organizations
