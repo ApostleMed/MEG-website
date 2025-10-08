@@ -124,10 +124,7 @@ const ServiceBanner = ({ service }) => {
                     <p className="">{service?.price}</p>
                   ) : (
                     <div>
-                      <p className="text-white text-lg md:text-xl lg:text-2xl font-bold">
-                        {service?.foc || "Free Consultation"}
-                      </p>
-                      <p className="text-xs">(FOC for LDCs)</p>
+                      <p className="text-accent text-sm font-semibold">(FOC for LDCs)</p>
                     </div>
                   )}
                 </div>
