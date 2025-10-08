@@ -9,7 +9,7 @@ import logo4 from "./../../assets/image/logo/imec.jpg";
 import logo5 from "./../../assets/image/logo/interhecs.jpg";
 import logo6 from "./../../assets/image/logo/medilink.png";
 import logo7 from "./../../assets/image/logo/youthedumyanmar.png";
-import logo8 from "./../../assets/image/logo/msm.jpg";
+import logo8 from "./../../assets/image/logo/msm.jpeg";
 
 const logo = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8];
 
@@ -63,7 +63,7 @@ const Collaborate = () => {
               key={index}
               src={logo}
               alt={`logo-${index}`}
-              className="w-32 h-32"
+              className="w-32 h-32 object-contain"
             />
           ))}
         </div>
