@@ -57,13 +57,13 @@ const Collaborate = () => {
       </div>
 
       <div className="mt-40">
-        <div className="flex flex-wrap justify-center gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center">
           {logo.map((logo, index) => (
             <img
               key={index}
               src={logo}
               alt={`logo-${index}`}
-              className="w-32 h-32 object-contain"
+              className="w-28 h-28 md:w-32 md:h-32 object-contain hover:scale-110 transition-transform duration-300"
             />
           ))}
         </div>
