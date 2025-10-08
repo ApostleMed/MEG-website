@@ -45,10 +45,11 @@ const ServiceBanner = ({ service }) => {
                 <div className="flex items-center gap-1">
                   <MdOutlineAttachMoney size={20} />
 
-                  <div>
+                  {service?.price === "Free Consultation" ? (
                     <p>{service?.price}</p>
-                    {service?.foc && <p className="text-xs">{service?.foc}</p>}
-                  </div>
+                  ) : (
+                    <p className="text-sm">{service?.foc}</p>
+                  )}
                 </div>
                 <div className="flex items-center gap-2">
                   <IoMdAlarm size={20} />
