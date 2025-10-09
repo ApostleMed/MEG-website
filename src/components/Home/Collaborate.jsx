@@ -12,8 +12,9 @@ import logo7 from "./../../assets/image/logo/youthedumyanmar.png";
 import logo8 from "./../../assets/image/logo/msm.jpeg";
 import veritasLogo from "./../../assets/image/logo/veritas-aescula.png";
 import prosperityLogo from "./../../assets/image/logo/prosperity-pathway.png";
+import canNewtonLogo from "./../../assets/image/logo/can-newton.png";
 
-const logo = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, veritasLogo, prosperityLogo];
+const logo = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, veritasLogo, prosperityLogo, canNewtonLogo];
 
 function Number({ n }) {
   const [ref, inView] = useInView();
@@ -50,7 +51,7 @@ const Collaborate = () => {
         </div>
         <div className="text-center">
           <p className="text-accent text-[48px] font-bold">
-            <Number n={8} />+
+            <Number n={9} />+
           </p>
           <h3 className="playfair mt-2">
             Collaborated partner <br /> organizations
