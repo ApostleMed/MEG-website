@@ -51,7 +51,7 @@ const Collaborate = () => {
         </div>
         <div className="text-center">
           <p className="text-accent text-[48px] font-bold">
-            <Number n={9} />+
+            <Number n={11} />+
           </p>
           <h3 className="playfair mt-2">
             Collaborated partner <br /> organizations
@@ -60,11 +60,11 @@ const Collaborate = () => {
       </div>
 
       <div className="mt-40">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 md:gap-12 items-center justify-items-center">
-          {logo.map((logo, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center">
+          {logo.map((logoImg, index) => (
             <div key={index} className="w-32 h-32 flex items-center justify-center">
               <img
-                src={logo}
+                src={logoImg}
                 alt={`partner-logo-${index}`}
                 className="max-w-full max-h-full object-contain hover:scale-110 transition-transform duration-300"
               />
