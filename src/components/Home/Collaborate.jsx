@@ -10,11 +10,11 @@ import logo5 from "./../../assets/image/logo/interhecs.jpg";
 import logo6 from "./../../assets/image/logo/medilink.png";
 import logo7 from "./../../assets/image/logo/youthedumyanmar.png";
 import logo8 from "./../../assets/image/logo/msm.jpeg";
-import veritasLogo from "./../../assets/image/logo/veritas-aescula.png";
-import prosperityLogo from "./../../assets/image/logo/prosperity-pathway.png";
-import canNewtonLogo from "./../../assets/image/logo/can-newton.png";
+import logo9 from "./../../assets/image/logo/veritas-aescula.png";
+import logo10 from "./../../assets/image/logo/prosperity-pathway.png";
+import logo11 from "./../../assets/image/logo/can-newton.png";
 
-const logo = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, veritasLogo, prosperityLogo, canNewtonLogo];
+const logo = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, logo10, logo11];
 
 function Number({ n }) {
   const [ref, inView] = useInView();
