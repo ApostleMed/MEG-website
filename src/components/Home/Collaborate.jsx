@@ -35,7 +35,7 @@ const Collaborate = () => {
       <div className="mb-10 flex flex-col md:flex-row items-center justify-between">
         <div className="text-center">
           <p className="text-accent text-[48px] font-bold">
-            <Number n={90} />+
+            <Number n={670} />+
           </p>
           <h3 className="playfair mt-2">
             students have been <br /> guided globally
