@@ -99,6 +99,16 @@ const Footer = () => {
                       Partner Organization
                     </NavLink>
                   </li>
+                  <li>
+                    <a 
+                      href="https://drive.google.com/file/d/1nvf7kG4ftwPVBkofLAaHP1TWf4R0ULrP/view?usp=sharing" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-primary"
+                    >
+                      Download Brochure
+                    </a>
+                  </li>
                 </ul>
               </div>
 
