@@ -171,21 +171,21 @@ const InterestForm = () => {
     try {
       // POST to Google Apps Script — no-cors so the request fires even if
       // the browser can't read the response (opaque). Data still lands in the sheet.
+      const params = new URLSearchParams({
+        name:      form.name,
+        email:     form.email,
+        phone:     form.phone,
+        country:   form.country,
+        school:    form.school,
+        grade:     form.grade,
+        career:    form.career,
+        hear:      form.hear,
+        statement: form.statement,
+      });
       await fetch(SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name:      form.name,
-          email:     form.email,
-          phone:     form.phone,
-          country:   form.country,
-          school:    form.school,
-          grade:     form.grade,
-          career:    form.career,
-          hear:      form.hear,
-          statement: form.statement,
-        }),
+        body: params,
       });
       setSubmitted(true);
     } catch {
