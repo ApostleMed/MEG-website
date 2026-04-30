@@ -1,346 +1,542 @@
-
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import CTAsecton from '../components/Home/CTAsecton';
 
+/* ─────────────────────────────────────────────
+   SVG Icons (no emoji slop)
+───────────────────────────────────────────── */
+const IconBook = () => (
+  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+  </svg>
+);
+const IconHeart = () => (
+  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+  </svg>
+);
+const IconPen = () => (
+  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+  </svg>
+);
+const IconStar = () => (
+  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+  </svg>
+);
+const IconCheck = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+  </svg>
+);
+const IconUser = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+  </svg>
+);
+const IconMail = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+  </svg>
+);
+const IconPhone = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+  </svg>
+);
+const IconGlobe = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+);
+const IconSchool = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+  </svg>
+);
+const IconChevronDown = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+  </svg>
+);
+const IconSend = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+  </svg>
+);
+const IconWhatsApp = () => (
+  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+  </svg>
+);
+
+/* ─────────────────────────────────────────────
+   Animation variants
+───────────────────────────────────────────── */
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } }
+};
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } }
+};
+
+/* ─────────────────────────────────────────────
+   Interest / Application Form
+───────────────────────────────────────────── */
+const InterestForm = () => {
+  const [form, setForm] = useState({
+    name: '', email: '', phone: '', country: '',
+    school: '', grade: '', career: '', hear: '', statement: ''
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const e = {};
+    if (!form.name.trim()) e.name = 'Required';
+    if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) e.email = 'Valid email required';
+    if (!form.school.trim()) e.school = 'Required';
+    if (!form.grade) e.grade = 'Required';
+    if (!form.statement.trim() || form.statement.trim().length < 30) e.statement = 'Please write at least 30 characters';
+    return e;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length) { setErrors(errs); return; }
+
+    const msg = [
+      `*Oathkeeper Scholarship – Expression of Interest*`,
+      ``,
+      `*Full Name:* ${form.name}`,
+      `*Email:* ${form.email}`,
+      `*Phone:* ${form.phone || 'N/A'}`,
+      `*Country:* ${form.country || 'N/A'}`,
+      `*School / Institution:* ${form.school}`,
+      `*Grade / Year:* ${form.grade}`,
+      `*Intended Healthcare Career:* ${form.career || 'N/A'}`,
+      `*How did you hear about us:* ${form.hear || 'N/A'}`,
+      ``,
+      `*Personal Statement:*`,
+      form.statement,
+    ].join('\n');
+
+    window.open(
+      `https://wa.me/message/3HRH775DRT42A1?text=${encodeURIComponent(msg)}`,
+      '_blank'
+    );
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="text-center py-16 px-8"
+      >
+        <div className="w-20 h-20 rounded-full bg-[#003366] flex items-center justify-center mx-auto mb-6">
+          <svg className="w-10 h-10 text-[#DAA520]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 className="text-2xl font-bold text-[#003366] mb-3">Application Sent</h3>
+        <p className="text-gray-600 max-w-sm mx-auto">
+          Thank you for your interest. A member of our team will be in touch shortly via WhatsApp.
+        </p>
+      </motion.div>
+    );
+  }
+
+  const field = (name, label, icon, type = 'text', placeholder = '') => (
+    <div>
+      <label className="block text-sm font-semibold text-[#003366] mb-1.5">{label}</label>
+      <div className="relative">
+        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400">{icon}</span>
+        <input
+          type={type}
+          name={name}
+          value={form[name]}
+          onChange={handleChange}
+          placeholder={placeholder}
+          className={`w-full pl-11 pr-4 py-3 rounded-xl border text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition ${errors[name] ? 'border-red-400' : 'border-gray-200'}`}
+        />
+      </div>
+      {errors[name] && <p className="text-red-500 text-xs mt-1">{errors[name]}</p>}
+    </div>
+  );
+
+  const selectField = (name, label, icon, options) => (
+    <div>
+      <label className="block text-sm font-semibold text-[#003366] mb-1.5">{label}</label>
+      <div className="relative">
+        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400">{icon}</span>
+        <select
+          name={name}
+          value={form[name]}
+          onChange={handleChange}
+          className={`w-full pl-11 pr-8 py-3 rounded-xl border text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#DAA520] appearance-none transition ${errors[name] ? 'border-red-400' : 'border-gray-200'}`}
+        >
+          <option value="">Select…</option>
+          {options.map(o => <option key={o} value={o}>{o}</option>)}
+        </select>
+        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"><IconChevronDown /></span>
+      </div>
+      {errors[name] && <p className="text-red-500 text-xs mt-1">{errors[name]}</p>}
+    </div>
+  );
+
+  return (
+    <form onSubmit={handleSubmit} noValidate>
+      <div className="grid md:grid-cols-2 gap-5">
+        {field('name', 'Full Name *', <IconUser />, 'text', 'Your full name')}
+        {field('email', 'Email Address *', <IconMail />, 'email', 'you@example.com')}
+        {field('phone', 'Phone / WhatsApp', <IconPhone />, 'tel', '+1 234 567 8900')}
+        {field('country', 'Country', <IconGlobe />, 'text', 'e.g. Myanmar, Thailand…')}
+        {field('school', 'School / Institution *', <IconSchool />, 'text', 'Your current school')}
+        {selectField('grade', 'Grade / Year *', <IconBook />, [
+          'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12',
+          'Recent Graduate (< 1 year)', 'Other'
+        ])}
+        {selectField('career', 'Intended Healthcare Career', <IconStar />, [
+          'Medicine (MBBS / MD)', 'Dentistry', 'Pharmacy', 'Nursing',
+          'Biomedical Science', 'Physiotherapy', 'Public Health', 'Other'
+        ])}
+        {selectField('hear', 'How did you hear about us?', <IconHeart />, [
+          'Social Media', 'School / Teacher', 'Friend / Family',
+          'MEG Partner Organisation', 'Online Search', 'Other'
+        ])}
+      </div>
+
+      <div className="mt-5">
+        <label className="block text-sm font-semibold text-[#003366] mb-1.5">
+          Personal Statement * <span className="font-normal text-gray-400">(Why do you want to be an Oathkeeper?)</span>
+        </label>
+        <textarea
+          name="statement"
+          value={form.statement}
+          onChange={handleChange}
+          rows={5}
+          placeholder="Tell us about your motivation, any relevant experience, and what ethical healthcare means to you…"
+          className={`w-full px-4 py-3 rounded-xl border text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition resize-none ${errors.statement ? 'border-red-400' : 'border-gray-200'}`}
+        />
+        <div className="flex justify-between items-center mt-1">
+          {errors.statement
+            ? <p className="text-red-500 text-xs">{errors.statement}</p>
+            : <span />
+          }
+          <span className="text-xs text-gray-400">{form.statement.length} chars</span>
+        </div>
+      </div>
+
+      <div className="mt-8 flex flex-col sm:flex-row gap-4 items-center">
+        <motion.button
+          type="submit"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="flex items-center gap-2.5 bg-[#003366] text-white font-semibold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition"
+        >
+          <IconSend />
+          Submit via WhatsApp
+        </motion.button>
+        <p className="text-xs text-gray-400 leading-relaxed max-w-xs">
+          Your application will open WhatsApp with your details pre-filled for our team.
+        </p>
+      </div>
+    </form>
+  );
+};
+
+/* ─────────────────────────────────────────────
+   Main Page
+───────────────────────────────────────────── */
 const ScholarshipPage = () => {
-  const handleWhatsAppApplication = () => {
-    const message = "Hi! I would like to apply for the Oathkeeper Scholarship. Please provide me with more information about the application process.";
-    const phoneNumber = "+1234567890"; // Replace with actual WhatsApp number
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-  };
+  const eligibility = [
+    {
+      icon: <IconBook />,
+      title: 'Academic Status',
+      desc: 'Current high school students or recent graduates intending to pursue a career in medicine or another healthcare profession.',
+    },
+    {
+      icon: <IconHeart />,
+      title: 'Character & Dedication',
+      desc: 'Clear, demonstrable evidence of long-term motivation, integrity, and commitment to the healthcare field.',
+    },
+  ];
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 }
-  };
+  const process = [
+    {
+      step: '01',
+      title: 'Written Submission',
+      desc: 'A motivation essay demonstrating your commitment to ethical healthcare and why you embody the Oathkeeper spirit.',
+    },
+    {
+      step: '02',
+      title: 'Personal Interview',
+      desc: 'A one-on-one conversation to assess your values, purpose, and readiness for a career in healthcare.',
+    },
+    {
+      step: '03',
+      title: 'Reflective Activity',
+      desc: 'A structured exercise evaluating your ethical reasoning, empathy, and sense of responsibility.',
+    },
+  ];
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
+  const conditions = [
+    'Maintain active involvement in MEG programmes',
+    'Embody the core values promoted by the Guild',
+    'Mentor and support younger peers when possible',
+    'Participate in community healthcare education initiatives',
+    'Uphold academic integrity and ethical conduct',
+    'Remain committed to healthcare professionalism throughout your studies',
+  ];
 
-  const scaleIn = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: { scale: 1, opacity: 1 }
-  };
+  const spirit = [
+    { title: 'Ethical', desc: 'Guided by principle in every decision' },
+    { title: 'Reflective', desc: 'Continuously learning and growing' },
+    { title: 'Compassionate', desc: 'Putting patients and people first' },
+    { title: 'Committed', desc: 'Unwavering in purpose and practice' },
+  ];
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-amber-50">
-        {/* Hero Section */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="relative overflow-hidden bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white py-20 px-4"
-        >
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-              backgroundSize: '40px 40px'
-            }}></div>
-          </div>
-          
-          <div className="max-w-6xl mx-auto relative z-10">
-            <motion.div
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-center"
+      <div className="min-h-screen bg-white">
+
+        {/* ── Hero ── */}
+        <div className="bg-[#003366] text-white">
+          <div className="max-w-5xl mx-auto px-5 md:px-10 py-24 md:py-32 text-center">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-[#DAA520] uppercase tracking-widest text-sm font-semibold mb-5"
             >
-              <div className="inline-block mb-4">
-                <span className="text-7xl md:text-8xl">⚕️</span>
-              </div>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-amber-200 to-yellow-300 bg-clip-text text-transparent">
-                Oathkeeper Scholarship
-              </h1>
-              <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-                Honoring the Next Generation of Ethical Healthcare Professionals
-              </p>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-                className="h-1 w-40 bg-gradient-to-r from-amber-400 to-yellow-400 mx-auto mt-8 rounded-full"
-              ></motion.div>
-            </motion.div>
+              Medical Education Guild
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="playfair text-4xl md:text-6xl font-bold leading-tight mb-6"
+            >
+              The Oathkeeper Scholarship
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-blue-200 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10"
+            >
+              Honouring the next generation of ethical, compassionate, and committed healthcare professionals.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.7, delay: 0.35 }}
+              className="h-px w-24 bg-[#DAA520] mx-auto"
+            />
           </div>
-        </motion.div>
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          {/* Featured Quote Section */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={scaleIn}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <div className="relative bg-gradient-to-br from-amber-50 to-yellow-100 rounded-3xl p-8 md:p-12 shadow-2xl border-4 border-amber-200">
-              <div className="absolute -top-6 -left-6 text-8xl text-amber-300 opacity-50">"</div>
-              <div className="text-center relative z-10">
-                <p className="text-2xl md:text-3xl font-serif italic text-amber-900 mb-6">
-                  First, do no harm
-                </p>
-                <p className="text-lg text-amber-800">
-                  The timeless commitment to ethical healthcare - Hippocratic Oath
-                </p>
-              </div>
-              <div className="absolute -bottom-6 -right-6 text-8xl text-amber-300 opacity-50 rotate-180">"</div>
-            </div>
-          </motion.div>
+        {/* ── Quote ── */}
+        <div className="bg-[#f9f7f3] border-y border-gray-100">
+          <div className="max-w-3xl mx-auto px-5 py-14 text-center">
+            <p className="playfair text-2xl md:text-3xl text-[#003366] italic leading-relaxed">
+              "First, do no harm."
+            </p>
+            <p className="mt-4 text-sm text-gray-500 tracking-wide uppercase">
+              Hippocratic Oath — the timeless foundation of ethical medicine
+            </p>
+          </div>
+        </div>
 
-          {/* Introduction */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-t-4 border-blue-500">
-              <div className="flex items-center justify-center mb-6">
-                <div className="h-1 w-20 bg-blue-500 rounded-full"></div>
-                <span className="mx-4 text-4xl">🎓</span>
-                <div className="h-1 w-20 bg-blue-500 rounded-full"></div>
-              </div>
-              <p className="text-xl md:text-2xl text-gray-700 leading-relaxed text-center max-w-4xl mx-auto">
-                The <span className="font-bold text-blue-600">Oathkeeper Scholarship</span>, established by the Medical Education Guild (MEG), is a merit-based award designed to honor and support high school students who demonstrate unwavering commitment to becoming ethical and impactful healthcare professionals.
-              </p>
-            </div>
-          </motion.div>
+        <div className="max-w-5xl mx-auto px-5 md:px-10 lg:px-0">
 
-          {/* Eligibility Section */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="mb-16"
+          {/* ── About the Scholarship ── */}
+          <motion.section
+            initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={fadeUp}
+            className="py-20 border-b border-gray-100"
           >
-            <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800">
-              <span className="inline-block mr-3 text-5xl">✅</span>
-              Eligibility Requirements
+            <p className="text-[#DAA520] uppercase tracking-widest text-xs font-semibold mb-4">About</p>
+            <h2 className="playfair text-3xl md:text-4xl font-bold text-[#003366] mb-6">
+              What Is the Oathkeeper Scholarship?
+            </h2>
+            <p className="text-gray-600 text-lg leading-relaxed max-w-3xl">
+              Established by the Medical Education Guild (MEG), the Oathkeeper Scholarship is a merit-based award
+              designed to support high school students who demonstrate an unwavering commitment to becoming ethical
+              and impactful healthcare professionals. It is more than financial assistance — it is a recognition of
+              character, purpose, and the courage to choose a life of service.
+            </p>
+          </motion.section>
+
+          {/* ── Eligibility ── */}
+          <motion.section
+            initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={stagger}
+            className="py-20 border-b border-gray-100"
+          >
+            <motion.p variants={fadeUp} className="text-[#DAA520] uppercase tracking-widest text-xs font-semibold mb-4">Eligibility</motion.p>
+            <motion.h2 variants={fadeUp} className="playfair text-3xl md:text-4xl font-bold text-[#003366] mb-10">
+              Who Can Apply?
             </motion.h2>
             <div className="grid md:grid-cols-2 gap-6">
-              <motion.div variants={fadeInUp} className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 border-green-500">
-                <div className="flex items-start">
-                  <div className="bg-green-500 rounded-full p-3 mr-4 flex-shrink-0">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
+              {eligibility.map((item, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  className="border border-gray-200 rounded-2xl p-7 hover:border-[#DAA520] hover:shadow-md transition-all duration-300"
+                >
+                  <div className="w-11 h-11 rounded-xl bg-[#003366] flex items-center justify-center text-[#DAA520] mb-5">
+                    {item.icon}
                   </div>
-                  <div>
-                    <h3 className="font-bold text-xl text-green-900 mb-2">Academic Status</h3>
-                    <p className="text-green-800">Current high school students or recent graduates intending to pursue a career in medicine or other healthcare professions</p>
-                  </div>
-                </div>
-              </motion.div>
-              
-              <motion.div variants={fadeInUp} className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 border-green-500">
-                <div className="flex items-start">
-                  <div className="bg-green-500 rounded-full p-3 mr-4 flex-shrink-0">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl text-green-900 mb-2">Character & Dedication</h3>
-                    <p className="text-green-800">Clear evidence of long-term motivation, character, and dedication to the healthcare field</p>
-                  </div>
-                </div>
-              </motion.div>
+                  <h3 className="font-bold text-[#003366] text-lg mb-2">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
             </div>
-          </motion.div>
+          </motion.section>
 
-          {/* Selection Process */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="mb-16"
+          {/* ── Selection Process ── */}
+          <motion.section
+            initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={stagger}
+            className="py-20 border-b border-gray-100"
           >
-            <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800">
-              <span className="inline-block mr-3 text-5xl">📋</span>
+            <motion.p variants={fadeUp} className="text-[#DAA520] uppercase tracking-widest text-xs font-semibold mb-4">Process</motion.p>
+            <motion.h2 variants={fadeUp} className="playfair text-3xl md:text-4xl font-bold text-[#003366] mb-4">
               Selection Process
             </motion.h2>
-            <motion.div variants={fadeInUp} className="bg-white rounded-2xl shadow-xl p-8 mb-8">
-              <p className="text-xl text-gray-700 mb-8 text-center">
-                All candidates must complete a comprehensive multi-stage selection process organized by the Medical Education Guild:
-              </p>
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  { icon: '✍️', title: 'Written Submission', desc: 'Motivation essay demonstrating your commitment to healthcare', color: 'purple' },
-                  { icon: '🗣️', title: 'Personal Interviews', desc: 'Assessment of values, commitment, and clarity of purpose', color: 'blue' },
-                  { icon: '🤔', title: 'Reflective Activities', desc: 'Evaluation of ethical readiness and responsibility', color: 'pink' }
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    variants={fadeInUp}
-                    whileHover={{ y: -10, scale: 1.05 }}
-                    className={`bg-gradient-to-br from-${item.color}-50 to-${item.color}-100 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-${item.color}-200`}
-                  >
-                    <div className={`text-5xl mb-4 bg-${item.color}-200 w-16 h-16 rounded-full flex items-center justify-center mx-auto`}>
-                      {item.icon}
-                    </div>
-                    <h3 className="font-bold text-xl mb-3 text-center text-gray-800">{item.title}</h3>
-                    <p className="text-gray-700 text-center">{item.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Scholarship Conditions */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="mb-16"
-          >
-            <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800">
-              <span className="inline-block mr-3 text-5xl">📝</span>
-              Scholarship Conditions
-            </motion.h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <motion.div variants={fadeInUp} className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 shadow-lg border-t-4 border-orange-400">
-                <h3 className="font-bold text-2xl mb-6 text-orange-900 flex items-center">
-                  <span className="bg-orange-200 rounded-full w-10 h-10 flex items-center justify-center mr-3 text-xl">📚</span>
-                  Expectations
-                </h3>
-                <ul className="space-y-4">
-                  {[
-                    'Maintain active involvement in MEG programs',
-                    'Embody core values promoted by the Guild',
-                    'Mentor younger peers when possible'
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="bg-orange-400 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-1">✓</span>
-                      <span className="text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-              
-              <motion.div variants={fadeInUp} className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 shadow-lg border-t-4 border-orange-400">
-                <h3 className="font-bold text-2xl mb-6 text-orange-900 flex items-center">
-                  <span className="bg-orange-200 rounded-full w-10 h-10 flex items-center justify-center mr-3 text-xl">🎯</span>
-                  Responsibilities
-                </h3>
-                <ul className="space-y-4">
-                  {[
-                    'Participate in community healthcare education',
-                    'Maintain academic integrity and ethical conduct',
-                    'Stay committed to healthcare professionalism'
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="bg-orange-400 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-1">✓</span>
-                      <span className="text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* Oathkeeper Spirit */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800">
-              <span className="inline-block mr-3 text-5xl">💫</span>
-              The Oathkeeper Spirit
-            </h2>
-            <div className="bg-gradient-to-r from-yellow-400 via-amber-400 to-orange-400 rounded-3xl p-1 shadow-2xl">
-              <div className="bg-white rounded-3xl p-8 md:p-12">
-                <p className="text-2xl md:text-3xl text-gray-800 font-semibold mb-8 text-center">
-                  Awardees are expected to carry the spirit of the <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500">Oathkeeper</span>
-                </p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                  {[
-                    { icon: '🎯', text: 'Ethical', color: 'from-blue-400 to-blue-600' },
-                    { icon: '🧠', text: 'Reflective', color: 'from-purple-400 to-purple-600' },
-                    { icon: '❤️', text: 'Compassionate', color: 'from-pink-400 to-pink-600' },
-                    { icon: '🔥', text: 'Committed', color: 'from-orange-400 to-orange-600' }
-                  ].map((item, index) => (
-                    <motion.div
-                      key={index}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      className={`bg-gradient-to-br ${item.color} text-white rounded-2xl p-6 text-center shadow-lg`}
-                    >
-                      <div className="text-4xl mb-2">{item.icon}</div>
-                      <div className="font-bold text-lg">{item.text}</div>
-                    </motion.div>
-                  ))}
-                </div>
-                <p className="text-lg text-gray-600 text-center italic">
-                  Contributing to the MEG community and spreading the vision of healthcare as a lifelong civic and moral duty
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* CTA Section */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={scaleIn}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="relative overflow-hidden bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 rounded-3xl p-12 shadow-2xl">
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-                  backgroundSize: '30px 30px'
-                }}></div>
-              </div>
-              
-              <div className="relative z-10 text-center text-white">
+            <motion.p variants={fadeUp} className="text-gray-600 mb-12 max-w-2xl">
+              All candidates complete a comprehensive multi-stage process organised by MEG.
+            </motion.p>
+            <div className="flex flex-col md:flex-row gap-6">
+              {process.map((item, i) => (
                 <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
-                  className="text-6xl mb-6"
+                  key={i}
+                  variants={fadeUp}
+                  className="flex-1 relative pl-6 border-l-2 border-[#DAA520] md:border-l-0 md:border-t-2 md:pt-6 md:pl-0"
                 >
-                  🚀
+                  <span className="text-[#DAA520] font-bold text-3xl leading-none block mb-3">{item.step}</span>
+                  <h3 className="font-bold text-[#003366] text-lg mb-2">{item.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
                 </motion.div>
-                <h3 className="text-4xl md:text-5xl font-bold mb-4">Ready to Begin Your Journey?</h3>
-                <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
-                  Take the first step towards becoming an ethical healthcare professional and apply for the Oathkeeper Scholarship today.
-                </p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleWhatsAppApplication}
-                  className="bg-white text-green-600 font-bold py-6 px-12 rounded-full text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center mx-auto"
-                >
-                  <span className="text-3xl mr-3">💬</span>
-                  Apply via WhatsApp
-                </motion.button>
-                <p className="text-white text-sm mt-6 opacity-75">
-                  Join a community dedicated to transforming healthcare through education and ethical practice
-                </p>
-              </div>
+              ))}
             </div>
-          </motion.div>
+          </motion.section>
+
+          {/* ── Scholarship Conditions ── */}
+          <motion.section
+            initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={stagger}
+            className="py-20 border-b border-gray-100"
+          >
+            <motion.p variants={fadeUp} className="text-[#DAA520] uppercase tracking-widest text-xs font-semibold mb-4">Conditions</motion.p>
+            <motion.h2 variants={fadeUp} className="playfair text-3xl md:text-4xl font-bold text-[#003366] mb-10">
+              Scholarship Expectations
+            </motion.h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {conditions.map((item, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  className="flex items-start gap-3 p-4 rounded-xl bg-[#f9f7f3]"
+                >
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#DAA520] text-white flex items-center justify-center mt-0.5">
+                    <IconCheck />
+                  </span>
+                  <p className="text-gray-700 text-sm leading-relaxed">{item}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* ── Oathkeeper Spirit ── */}
+          <motion.section
+            initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={stagger}
+            className="py-20 border-b border-gray-100"
+          >
+            <motion.p variants={fadeUp} className="text-[#DAA520] uppercase tracking-widest text-xs font-semibold mb-4">Values</motion.p>
+            <motion.h2 variants={fadeUp} className="playfair text-3xl md:text-4xl font-bold text-[#003366] mb-4">
+              The Oathkeeper Spirit
+            </motion.h2>
+            <motion.p variants={fadeUp} className="text-gray-600 mb-12 max-w-2xl">
+              Awardees carry the spirit of the Oathkeeper — contributing to the MEG community and spreading
+              the vision of healthcare as a lifelong civic and moral duty.
+            </motion.p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {spirit.map((item, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  whileHover={{ y: -4 }}
+                  className="group p-6 rounded-2xl border border-gray-200 hover:border-[#003366] hover:bg-[#003366] transition-all duration-300 cursor-default"
+                >
+                  <h3 className="font-bold text-[#003366] group-hover:text-[#DAA520] text-lg mb-2 transition-colors">{item.title}</h3>
+                  <p className="text-gray-500 group-hover:text-blue-200 text-sm transition-colors">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* ── Interest Form ── */}
+          <motion.section
+            id="apply"
+            initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={stagger}
+            className="py-20"
+          >
+            <motion.p variants={fadeUp} className="text-[#DAA520] uppercase tracking-widest text-xs font-semibold mb-4">Apply</motion.p>
+            <motion.h2 variants={fadeUp} className="playfair text-3xl md:text-4xl font-bold text-[#003366] mb-3">
+              Express Your Interest
+            </motion.h2>
+            <motion.p variants={fadeUp} className="text-gray-600 mb-10 max-w-2xl">
+              Fill in the form below and your application will be sent directly to our team via WhatsApp.
+              We review all applications and respond within 5 business days.
+            </motion.p>
+
+            <motion.div
+              variants={fadeUp}
+              className="bg-white border border-gray-200 rounded-2xl shadow-sm p-8 md:p-10"
+            >
+              <InterestForm />
+            </motion.div>
+          </motion.section>
+
         </div>
+
+        {/* ── Bottom CTA strip ── */}
+        <div className="bg-[#003366]">
+          <div className="max-w-5xl mx-auto px-5 md:px-10 lg:px-0 py-14 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-white">
+              <p className="playfair text-2xl font-bold mb-1">Have questions?</p>
+              <p className="text-blue-200 text-sm">Our team is available to guide you through the process.</p>
+            </div>
+            <a
+              href="https://wa.me/message/3HRH775DRT42A1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2.5 bg-[#DAA520] text-white font-semibold px-7 py-3.5 rounded-full hover:brightness-110 transition whitespace-nowrap"
+            >
+              <IconWhatsApp />
+              Chat with Us
+            </a>
+          </div>
+        </div>
+
       </div>
       <CTAsecton />
     </PageTransition>
