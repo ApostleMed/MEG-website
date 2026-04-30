@@ -124,6 +124,12 @@ const TermsAccordion = ({ item }) => {
 };
 
 /* ─────────────────────────────────────────────
+   Google Apps Script web-app endpoint
+   Replace with your deployed URL after setup
+───────────────────────────────────────────── */
+const SCRIPT_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
+
+/* ─────────────────────────────────────────────
    Interest / Application Form
 ───────────────────────────────────────────── */
 const InterestForm = () => {
@@ -133,6 +139,8 @@ const InterestForm = () => {
     agreed: false,
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [errors, setErrors] = useState({});
 
   const validate = () => {
@@ -152,32 +160,39 @@ const InterestForm = () => {
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
 
-    const msg = [
-      `*Oathkeeper Scholarship – Expression of Interest*`,
-      ``,
-      `*Full Name:* ${form.name}`,
-      `*Email:* ${form.email}`,
-      `*Phone:* ${form.phone || 'N/A'}`,
-      `*Country:* ${form.country || 'N/A'}`,
-      `*School / Institution:* ${form.school}`,
-      `*Grade / Year:* ${form.grade}`,
-      `*Intended Healthcare Career:* ${form.career || 'N/A'}`,
-      `*How did you hear about us:* ${form.hear || 'N/A'}`,
-      ``,
-      `*Personal Statement:*`,
-      form.statement,
-    ].join('\n');
+    setLoading(true);
+    setSubmitError('');
 
-    window.open(
-      `https://wa.me/message/3HRH775DRT42A1?text=${encodeURIComponent(msg)}`,
-      '_blank'
-    );
-    setSubmitted(true);
+    try {
+      // POST to Google Apps Script — no-cors so the request fires even if
+      // the browser can't read the response (opaque). Data still lands in the sheet.
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name:      form.name,
+          email:     form.email,
+          phone:     form.phone,
+          country:   form.country,
+          school:    form.school,
+          grade:     form.grade,
+          career:    form.career,
+          hear:      form.hear,
+          statement: form.statement,
+        }),
+      });
+      setSubmitted(true);
+    } catch {
+      setSubmitError('Something went wrong. Please try again or contact us via WhatsApp.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -311,18 +326,39 @@ const InterestForm = () => {
         {errors.agreed && <p className="text-red-500 text-xs mt-2 ml-8">{errors.agreed}</p>}
       </div>
 
+      {submitError && (
+        <p className="mt-4 text-sm text-red-500 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{submitError}</p>
+      )}
+
       <div className="mt-7 flex flex-col sm:flex-row gap-4 items-center">
         <motion.button
           type="submit"
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-2.5 bg-[#003366] text-white font-semibold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition"
+          disabled={loading}
+          whileHover={loading ? {} : { scale: 1.03 }}
+          whileTap={loading ? {} : { scale: 0.97 }}
+          className={`flex items-center gap-2.5 font-semibold px-8 py-3.5 rounded-full shadow-lg transition ${
+            loading
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'bg-[#003366] text-white hover:shadow-xl'
+          }`}
         >
-          <IconSend />
-          Submit via WhatsApp
+          {loading ? (
+            <>
+              <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+              </svg>
+              Submitting…
+            </>
+          ) : (
+            <>
+              <IconSend />
+              Submit Application
+            </>
+          )}
         </motion.button>
         <p className="text-xs text-gray-400 leading-relaxed max-w-xs">
-          Your application will open WhatsApp with your details pre-filled for our team.
+          Your application will be saved securely and our team will respond within 5 business days.
         </p>
       </div>
     </form>
