@@ -127,7 +127,7 @@ const TermsAccordion = ({ item }) => {
    Google Apps Script web-app endpoint
    Replace with your deployed URL after setup
 ───────────────────────────────────────────── */
-const SCRIPT_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby4i71neV3VE21Tx65xiEn7B1hp03ln-fj2NblXJaEDPf6WSjwdnkc6fHs9ls-pBykf/exec';
 
 /* ─────────────────────────────────────────────
    Interest / Application Form
