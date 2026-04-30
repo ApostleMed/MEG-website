@@ -86,12 +86,51 @@ const stagger = {
 };
 
 /* ─────────────────────────────────────────────
+   Terms Accordion
+───────────────────────────────────────────── */
+const TermsAccordion = ({ item }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="bg-white">
+      <button
+        onClick={() => setOpen(o => !o)}
+        className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-[#f9f7f3] transition"
+      >
+        <span className="font-semibold text-[#003366] text-sm">{item.title}</span>
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.22 }}
+          className="flex-shrink-0 ml-4 text-gray-400"
+        >
+          <IconChevronDown />
+        </motion.span>
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="body"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <p className="px-6 pb-6 text-gray-600 text-sm leading-relaxed">{item.body}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+/* ─────────────────────────────────────────────
    Interest / Application Form
 ───────────────────────────────────────────── */
 const InterestForm = () => {
   const [form, setForm] = useState({
     name: '', email: '', phone: '', country: '',
-    school: '', grade: '', career: '', hear: '', statement: ''
+    school: '', grade: '', career: '', hear: '', statement: '',
+    agreed: false,
   });
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
@@ -103,12 +142,13 @@ const InterestForm = () => {
     if (!form.school.trim()) e.school = 'Required';
     if (!form.grade) e.grade = 'Required';
     if (!form.statement.trim() || form.statement.trim().length < 30) e.statement = 'Please write at least 30 characters';
+    if (!form.agreed) e.agreed = 'You must agree to the Terms & Conditions to apply';
     return e;
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setForm(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
@@ -241,7 +281,37 @@ const InterestForm = () => {
         </div>
       </div>
 
-      <div className="mt-8 flex flex-col sm:flex-row gap-4 items-center">
+      {/* T&C agreement */}
+      <div className="mt-6">
+        <label className={`flex items-start gap-3 cursor-pointer group ${errors.agreed ? 'text-red-500' : 'text-gray-600'}`}>
+          <div className="relative flex-shrink-0 mt-0.5">
+            <input
+              type="checkbox"
+              name="agreed"
+              checked={form.agreed}
+              onChange={handleChange}
+              className="sr-only peer"
+            />
+            <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition peer-focus:ring-2 peer-focus:ring-[#DAA520] ${form.agreed ? 'bg-[#003366] border-[#003366]' : errors.agreed ? 'border-red-400' : 'border-gray-300 group-hover:border-[#003366]'}`}>
+              {form.agreed && <IconCheck />}
+            </div>
+          </div>
+          <span className="text-sm leading-relaxed">
+            I have read and agree to the{' '}
+            <a
+              href="#terms"
+              onClick={e => { e.preventDefault(); document.getElementById('terms-section')?.scrollIntoView({ behavior: 'smooth' }); }}
+              className="underline text-[#003366] hover:text-[#DAA520] transition"
+            >
+              Terms &amp; Conditions
+            </a>{' '}
+            of the Oathkeeper Scholarship, including the 85% academic performance requirement. *
+          </span>
+        </label>
+        {errors.agreed && <p className="text-red-500 text-xs mt-2 ml-8">{errors.agreed}</p>}
+      </div>
+
+      <div className="mt-7 flex flex-col sm:flex-row gap-4 items-center">
         <motion.button
           type="submit"
           whileHover={{ scale: 1.03 }}
@@ -301,6 +371,50 @@ const ScholarshipPage = () => {
     'Participate in community healthcare education initiatives',
     'Uphold academic integrity and ethical conduct',
     'Remain committed to healthcare professionalism throughout your studies',
+    'Maintain a minimum academic score of 85% in MEG-granted institutions at all times',
+  ];
+
+  const terms = [
+    {
+      title: '1. Award & Nature of the Scholarship',
+      body: 'The Oathkeeper Scholarship is a merit-based, non-monetary award granted by the Medical Education Guild (MEG). The scholarship does not constitute a financial grant or bursary unless explicitly stated in a separate award letter. MEG reserves the right to determine the form and value of any associated benefits at its sole discretion.',
+    },
+    {
+      title: '2. Eligibility & Verification',
+      body: 'Applicants must be current high school students or recent graduates with a clear intention to pursue a career in medicine or another healthcare profession. MEG reserves the right to request supporting documentation — including but not limited to academic transcripts, school enrolment letters, and identification — to verify eligibility at any stage of the application process.',
+    },
+    {
+      title: '3. Academic Performance Requirement',
+      body: 'Recipients are required to maintain a minimum academic score of 85% (or equivalent grade) in their enrolled institution throughout the duration of the award. Failure to meet this threshold may result in suspension or permanent revocation of the scholarship, at MEG\'s discretion. Recipients must provide updated academic records upon request.',
+    },
+    {
+      title: '4. Selection Process',
+      body: 'Selection is conducted by a panel appointed by MEG and is based on the written submission, personal interview, and reflective activity. MEG\'s decision is final and binding. No correspondence regarding the outcome of unsuccessful applications will be entered into.',
+    },
+    {
+      title: '5. Conduct & Representation',
+      body: 'Recipients are considered ambassadors of the Oathkeeper standard and are expected to conduct themselves with integrity, professionalism, and compassion at all times — both in academic settings and in public, including on social media. Any conduct deemed by MEG to be contrary to these values may result in immediate revocation of the award.',
+    },
+    {
+      title: '6. Obligations of the Recipient',
+      body: 'Recipients agree to: (a) remain actively engaged in MEG programmes and events; (b) mentor younger peers where feasible; (c) participate in community healthcare education initiatives as directed by MEG; and (d) provide honest and timely updates on their academic progress when requested.',
+    },
+    {
+      title: '7. Revocation',
+      body: 'MEG reserves the right to revoke the scholarship at any time if a recipient: (a) fails to maintain the required academic standard; (b) provides false or misleading information during the application process; (c) engages in conduct unbecoming of an Oathkeeper; or (d) withdraws from their intended healthcare programme without prior notification to MEG.',
+    },
+    {
+      title: '8. Privacy & Data',
+      body: 'Personal information submitted as part of the application will be used solely for the purposes of administering the Oathkeeper Scholarship programme. MEG will not share applicant data with third parties without explicit consent, except where required by law. By submitting this form, applicants consent to MEG contacting them via the channels provided.',
+    },
+    {
+      title: '9. Amendments',
+      body: 'MEG reserves the right to amend these terms and conditions at any time. Recipients and applicants will be notified of material changes. Continued participation in the programme following notification constitutes acceptance of the revised terms.',
+    },
+    {
+      title: '10. Governing Law',
+      body: 'These terms and conditions are governed by and construed in accordance with applicable law. Any disputes arising in connection with the Oathkeeper Scholarship shall be subject to the exclusive jurisdiction of MEG\'s governing body.',
+    },
   ];
 
   const spirit = [
@@ -488,6 +602,29 @@ const ScholarshipPage = () => {
                   <h3 className="font-bold text-[#003366] group-hover:text-[#DAA520] text-lg mb-2 transition-colors">{item.title}</h3>
                   <p className="text-gray-500 group-hover:text-blue-200 text-sm transition-colors">{item.desc}</p>
                 </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* ── Terms & Conditions ── */}
+          <motion.section
+            id="terms-section"
+            initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={stagger}
+            className="py-20 border-b border-gray-100"
+          >
+            <motion.p variants={fadeUp} className="text-[#DAA520] uppercase tracking-widest text-xs font-semibold mb-4">Legal</motion.p>
+            <motion.h2 variants={fadeUp} className="playfair text-3xl md:text-4xl font-bold text-[#003366] mb-3">
+              Terms &amp; Conditions
+            </motion.h2>
+            <motion.p variants={fadeUp} className="text-gray-500 text-sm mb-10 max-w-2xl">
+              Last updated: {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}.
+              By applying for the Oathkeeper Scholarship you confirm that you have read, understood, and agreed to the following terms.
+            </motion.p>
+
+            <div className="space-y-0 border border-gray-200 rounded-2xl overflow-hidden divide-y divide-gray-100">
+              {terms.map((item, i) => (
+                <TermsAccordion key={i} item={item} />
               ))}
             </div>
           </motion.section>
