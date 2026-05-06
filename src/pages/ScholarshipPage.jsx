@@ -135,7 +135,7 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4mitN0NL39gRnpaChS
 const InterestForm = () => {
   const [form, setForm] = useState({
     name: '', email: '', phone: '', country: '',
-    school: '', grade: '', career: '', hear: '', statement: '',
+    school: '', grade: '', career: '', hear: '', statement: '', essay: '',
     agreed: false,
   });
   const [submitted, setSubmitted] = useState(false);
@@ -150,6 +150,7 @@ const InterestForm = () => {
     if (!form.school.trim()) e.school = 'Required';
     if (!form.grade) e.grade = 'Required';
     if (!form.statement.trim() || form.statement.trim().length < 30) e.statement = 'Please write at least 30 characters';
+    if (!form.essay.trim() || form.essay.trim().length < 150) e.essay = 'Your essay must be at least 150 characters';
     if (!form.agreed) e.agreed = 'You must agree to the Terms & Conditions to apply';
     return e;
   };
@@ -181,6 +182,7 @@ const InterestForm = () => {
         career:    form.career,
         hear:      form.hear,
         statement: form.statement,
+        essay:     form.essay,
       });
       await fetch(SCRIPT_URL, {
         method: 'POST',
@@ -293,6 +295,57 @@ const InterestForm = () => {
             : <span />
           }
           <span className="text-xs text-gray-400">{form.statement.length} chars</span>
+        </div>
+      </div>
+
+      {/* ── Essay Prompt ── */}
+      <div className="mt-8 rounded-2xl border-2 border-[#003366] overflow-hidden">
+        {/* Header */}
+        <div className="bg-[#003366] px-6 py-5">
+          <p className="text-[#DAA520] uppercase tracking-widest text-xs font-semibold mb-2">Required Essay</p>
+          <h3 className="text-white font-bold text-base md:text-lg leading-snug">
+            Why Everyone Must Become Healthcare Competent: A Path for Humanity to Transcend
+          </h3>
+        </div>
+
+        {/* Instructions */}
+        <div className="bg-[#f9f7f3] px-6 py-4 border-b border-gray-200">
+          <p className="text-xs font-semibold text-[#003366] uppercase tracking-wide mb-2">Purpose &amp; Instructions</p>
+          <p className="text-sm text-gray-700 leading-relaxed">
+            Write an essay that explains why learning healthcare knowledge is important for <strong>all people</strong> — not just medical professionals.
+            Your argument must support — not oppose — the idea that healthcare competence helps humanity grow, improve, and transcend its current limitations.
+            Draw on personal insight, real-world examples, or ethical reasoning. There is no single correct answer; we are looking for clarity of thought,
+            genuine conviction, and the ability to connect individual wellbeing to collective human progress.
+          </p>
+          <ul className="mt-3 space-y-1 text-xs text-gray-500 list-disc list-inside">
+            <li>Minimum 150 characters (aim for 300–800 words for a strong submission)</li>
+            <li>Write in your own words — do not copy from external sources</li>
+            <li>Your essay will be reviewed by the MEG selection panel</li>
+          </ul>
+        </div>
+
+        {/* Textarea */}
+        <div className="bg-white px-6 py-5">
+          <label className="block text-sm font-semibold text-[#003366] mb-2">
+            Your Essay *
+          </label>
+          <textarea
+            name="essay"
+            value={form.essay}
+            onChange={handleChange}
+            rows={10}
+            placeholder="Begin your essay here…"
+            className={`w-full px-4 py-3 rounded-xl border text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition resize-y ${errors.essay ? 'border-red-400' : 'border-gray-200'}`}
+          />
+          <div className="flex justify-between items-center mt-1">
+            {errors.essay
+              ? <p className="text-red-500 text-xs">{errors.essay}</p>
+              : <span />
+            }
+            <span className={`text-xs ${form.essay.length >= 150 ? 'text-green-500' : 'text-gray-400'}`}>
+              {form.essay.length} chars {form.essay.length >= 150 ? '✓' : `(${150 - form.essay.length} more needed)`}
+            </span>
+          </div>
         </div>
       </div>
 
@@ -421,7 +474,7 @@ const ScholarshipPage = () => {
     },
     {
       title: '3. Academic Performance Requirement',
-      body: 'Recipients are required to maintain a minimum academic score of 85% (or equivalent grade) in their enrolled institution throughout the duration of the award. Failure to meet this threshold may result in suspension or permanent revocation of the scholarship, at MEG\'s discretion. Recipients must provide updated academic records upon request.',
+      body: 'Recipients are required to maintain a minimum academic score of 85% (or equivalent grade) in their enrolled institution throughout the duration of the award. In addition, recipients must fulfil a minimum attendance rate of 85% and demonstrate consistent completion of all assigned coursework, assessments, and programme activities. Failure to meet any of these thresholds — academic score, attendance, or assignment completion — may result in suspension or permanent revocation of the scholarship, at MEG\'s discretion. Recipients must provide updated academic records and attendance reports upon request.',
     },
     {
       title: '4. Selection Process',
