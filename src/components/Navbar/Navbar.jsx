@@ -157,7 +157,7 @@ const Navbar = () => {
                   : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
               }
             >
-              Resources
+              Career Guide
             </NavLink>
 
             <NavLink
@@ -331,7 +331,7 @@ const Navbar = () => {
                   : "text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
               }
             >
-              Resources
+              Career Guide
             </NavLink>
 
             <NavLink
