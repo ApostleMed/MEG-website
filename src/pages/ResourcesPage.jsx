@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import CTAsecton from '../components/Home/CTAsecton';
 import { careers } from '../data/careers';
+import { questions, initialWeights, computeResults, sectorDisplayName } from '../data/careerQuiz';
 
 
 // ─── Sector Config ────────────────────────────────────────────────────────────
@@ -23,95 +24,6 @@ const filterToSector = { 'Art & Design': 'Art' };
 
 // ─── Quiz Data ────────────────────────────────────────────────────────────────
 
-const questions = [
-  {
-    question: 'What energizes you most in a typical day?',
-    options: [
-      { label: 'Working directly with people to solve their problems', weights: { Clinical: 3, Business: 1 } },
-      { label: 'Building and fixing technical systems', weights: { Technology: 3, Engineering: 2 } },
-      { label: 'Analyzing data and finding patterns', weights: { Finance: 2, Technology: 2 } },
-      { label: 'Creating something visual or spatial', weights: { Art: 3, Construction: 2 } },
-      { label: 'Researching, writing, and arguing a case', weights: { Law: 3, Finance: 1 } },
-    ],
-  },
-  {
-    question: 'Which school subjects do you enjoy most?',
-    options: [
-      { label: 'Biology and Chemistry', weights: { Clinical: 3 } },
-      { label: 'Computer Science and Mathematics', weights: { Technology: 3, Finance: 1 } },
-      { label: 'Business Studies and Economics', weights: { Business: 3, Finance: 2 } },
-      { label: 'Art, Design, or Technical Drawing', weights: { Art: 3, Construction: 2 } },
-      { label: 'Social Studies, Law, or Politics', weights: { Law: 3, Business: 1 } },
-      { label: 'Physics and Engineering', weights: { Engineering: 3, Technology: 1 } },
-    ],
-  },
-  {
-    question: 'In a team project, you naturally take the role of...',
-    options: [
-      { label: 'The one who keeps everyone organized and on track', weights: { Business: 2, Finance: 1 } },
-      { label: 'The one who comes up with creative ideas', weights: { Art: 3, Technology: 1 } },
-      { label: 'The one who researches and presents the facts', weights: { Law: 2, Clinical: 1 } },
-      { label: 'The one who builds or codes the solution', weights: { Engineering: 3, Technology: 2 } },
-      { label: 'The one who connects with teammates and resolves conflict', weights: { Clinical: 2, Business: 1 } },
-    ],
-  },
-  {
-    question: 'What kind of environment suits you best?',
-    options: [
-      { label: 'Hospital, clinic, or community health setting', weights: { Clinical: 3 } },
-      { label: 'Office or corporate environment', weights: { Business: 2, Finance: 2, Law: 1 } },
-      { label: 'Lab, workshop, or technical facility', weights: { Engineering: 3, Technology: 2 } },
-      { label: 'Studio, creative agency, or flexible workspace', weights: { Art: 3 } },
-      { label: 'Construction site, hospital building project', weights: { Construction: 3 } },
-    ],
-  },
-  {
-    question: 'What motivates you most?',
-    options: [
-      { label: 'Directly saving or improving a patient\'s life', weights: { Clinical: 3 } },
-      { label: 'Making complex systems run more efficiently', weights: { Business: 2, Engineering: 2 } },
-      { label: 'Creating something beautiful that communicates clearly', weights: { Art: 3 } },
-      { label: 'Ensuring fairness, rights, and accountability', weights: { Law: 3 } },
-      { label: 'Solving financial puzzles and managing resources', weights: { Finance: 3 } },
-      { label: 'Building things that will last for generations', weights: { Construction: 3 } },
-    ],
-  },
-  {
-    question: 'How do you handle pressure and stress?',
-    options: [
-      { label: 'I stay calm and make quick decisions', weights: { Clinical: 3, Law: 2 } },
-      { label: 'I break the problem into logical steps', weights: { Engineering: 3, Technology: 2 } },
-      { label: 'I focus on the numbers and find a solution', weights: { Finance: 3 } },
-      { label: 'I lead the team and keep morale up', weights: { Business: 3 } },
-      { label: 'I use creativity to find an unexpected solution', weights: { Art: 3 } },
-    ],
-  },
-  {
-    question: 'Which of these excites you most?',
-    options: [
-      { label: 'Performing a successful medical procedure', weights: { Clinical: 3 } },
-      { label: 'Launching a health app used by thousands', weights: { Technology: 3 } },
-      { label: 'Running a hospital that serves a city', weights: { Business: 3 } },
-      { label: 'Winning a landmark healthcare court case', weights: { Law: 3 } },
-      { label: 'Designing a medical device used in surgeries', weights: { Engineering: 3 } },
-      { label: 'Drawing the illustrations for a medical textbook', weights: { Art: 3 } },
-      { label: 'Building a children\'s hospital from the ground up', weights: { Construction: 3 } },
-    ],
-  },
-  {
-    question: 'Where do you see yourself in 15 years?',
-    options: [
-      { label: 'Leading a team of clinicians in a hospital', weights: { Clinical: 3 } },
-      { label: 'CTO of a health-tech company', weights: { Technology: 3 } },
-      { label: 'CEO of a healthcare organisation', weights: { Business: 3 } },
-      { label: 'Partner at a healthcare law firm', weights: { Law: 3 } },
-      { label: 'CFO of a pharmaceutical company', weights: { Finance: 3 } },
-      { label: 'Chief Engineer at a medical device firm', weights: { Engineering: 3 } },
-      { label: 'Creative director for global health campaigns', weights: { Art: 3 } },
-      { label: 'Principal architect specialising in hospitals', weights: { Construction: 3 } },
-    ],
-  },
-];
 
 // ─── Animations ───────────────────────────────────────────────────────────────
 
@@ -264,38 +176,42 @@ const CareerExplorer = () => {
 // Career Quiz Tab
 // ═══════════════════════════════════════════════════════════════════════════════
 
-const initialWeights = {
-  Clinical: 0, Technology: 0, Business: 0, Finance: 0,
-  Law: 0, Engineering: 0, Art: 0, Construction: 0,
-};
 
 const QuizRecommendationCard = ({ career }) => {
   const cfg = sectorConfig[career.sector] || sectorConfig.Clinical;
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-md transition-shadow">
-      <span className={`inline-block text-xs font-semibold px-2.5 py-1 rounded-full mb-3 ${cfg.color}`}>
-        {career.sector}
-      </span>
-      <h3 className="playfair text-base font-bold text-[#003366] mb-1">{career.title}</h3>
-      <p className="text-sm text-gray-500 italic">{career.tagline}</p>
+    <div className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-[#003366]/40 transition-all">
+      <h4 className="playfair text-sm font-bold text-[#003366] mb-1 leading-snug">{career.title}</h4>
+      <p className="text-xs text-gray-500 italic line-clamp-2">{career.tagline}</p>
     </div>
   );
+};
+
+// Deterministic shuffle so the same answers yield the same recommendations
+const seededShuffle = (arr, seed) => {
+  const a = [...arr];
+  let s = seed;
+  for (let i = a.length - 1; i > 0; i--) {
+    s = (s * 9301 + 49297) % 233280;
+    const j = Math.floor((s / 233280) * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 };
 
 const CareerQuiz = () => {
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState(null);
   const [weights, setWeights] = useState({ ...initialWeights });
+  const [answers, setAnswers] = useState([]); // history for back navigation
   const [direction, setDirection] = useState(1);
   const [done, setDone] = useState(false);
-  const [topSectors, setTopSectors] = useState([]);
-  const [recommended, setRecommended] = useState([]);
+  const [results, setResults] = useState([]);
+  const [recommendedBySector, setRecommendedBySector] = useState({});
 
   const progress = ((current) / questions.length) * 100;
 
-  const handleSelect = (option) => {
-    setSelected(option);
-  };
+  const handleSelect = (option) => setSelected(option);
 
   const handleNext = () => {
     if (!selected) return;
@@ -305,31 +221,41 @@ const CareerQuiz = () => {
       newWeights[sector] = (newWeights[sector] || 0) + pts;
     });
     setWeights(newWeights);
+    setAnswers((prev) => [...prev, selected]);
 
     if (current < questions.length - 1) {
       setDirection(1);
       setCurrent((c) => c + 1);
       setSelected(null);
     } else {
-      // Compute results
-      const sorted = Object.entries(newWeights)
-        .sort(([, a], [, b]) => b - a)
-        .slice(0, 3)
-        .map(([sector]) => sector);
+      // Compute results — percentage match per sector
+      const ranked = computeResults(newWeights);
+      setResults(ranked);
 
-      setTopSectors(sorted);
-
-      const picks = sorted.flatMap((sector) => {
-        const sectorCareers = careers.filter((c) => c.sector === sector);
-        return sectorCareers.slice(0, 2);
+      // Pick 3 careers per top sector, deterministic but seeded by answers
+      const seed = Object.values(newWeights).reduce((acc, v, i) => acc + v * (i + 1) * 7, 1);
+      const picks = {};
+      ranked.slice(0, 3).forEach(({ sector }) => {
+        const pool = careers.filter((c) => c.sector === sector);
+        picks[sector] = seededShuffle(pool, seed + sector.length).slice(0, 3);
       });
-      setRecommended(picks);
+      setRecommendedBySector(picks);
       setDone(true);
     }
   };
 
   const handleBack = () => {
     if (current > 0) {
+      // Roll back the last answer's weight contribution
+      const last = answers[answers.length - 1];
+      const rolled = { ...weights };
+      if (last) {
+        Object.entries(last.weights).forEach(([sector, pts]) => {
+          rolled[sector] = (rolled[sector] || 0) - pts;
+        });
+      }
+      setWeights(rolled);
+      setAnswers((prev) => prev.slice(0, -1));
       setDirection(-1);
       setCurrent((c) => c - 1);
       setSelected(null);
@@ -340,43 +266,84 @@ const CareerQuiz = () => {
     setCurrent(0);
     setSelected(null);
     setWeights({ ...initialWeights });
+    setAnswers([]);
     setDone(false);
-    setTopSectors([]);
-    setRecommended([]);
+    setResults([]);
+    setRecommendedBySector({});
   };
 
-  const sectorDisplayName = (s) => (s === 'Art' ? 'Art & Design' : s);
-
   if (done) {
+    const top3 = results.slice(0, 3);
     return (
-      <motion.div variants={fadeUp} initial="hidden" animate="visible" className="max-w-2xl mx-auto">
-        <div className="text-center mb-8">
-          <div className="inline-block w-14 h-14 rounded-full bg-[#DAA520]/20 flex items-center justify-center mb-4">
-            <div className="w-7 h-7 rounded-full bg-[#DAA520]" />
+      <motion.div variants={fadeUp} initial="hidden" animate="visible" className="max-w-3xl mx-auto">
+        <div className="text-center mb-10">
+          <div className="inline-flex w-14 h-14 rounded-full bg-[#DAA520]/20 items-center justify-center mb-4">
+            <svg className="w-7 h-7 text-[#DAA520]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
           </div>
-          <h2 className="playfair text-3xl font-bold text-[#003366] mb-3">Your Path is Taking Shape</h2>
-          <p className="text-gray-600 max-w-lg mx-auto">Based on your answers, your strengths and interests align most closely with these sectors of healthcare.</p>
+          <h2 className="playfair text-3xl md:text-4xl font-bold text-[#003366] mb-3">Your Path is Taking Shape</h2>
+          <p className="text-gray-600 max-w-xl mx-auto">
+            Based on your fourteen answers, here are the three healthcare sectors where your interests and strengths line up most closely — and three careers in each to explore.
+          </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {topSectors.map((s, i) => {
-            const cfg = sectorConfig[s] || sectorConfig.Clinical;
+        {/* Sector match bars */}
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-10">
+          <h3 className="text-xs uppercase tracking-widest text-[#DAA520] font-semibold mb-4">Your Sector Match</h3>
+          <div className="space-y-4">
+            {top3.map(({ sector, percent }, i) => {
+              const cfg = sectorConfig[sector] || sectorConfig.Clinical;
+              return (
+                <div key={sector}>
+                  <div className="flex items-baseline justify-between mb-1.5">
+                    <span className="text-sm font-semibold text-[#003366]">
+                      <span className="inline-block w-6 text-gray-400">{i + 1}.</span>
+                      Healthcare + {sectorDisplayName(sector)}
+                    </span>
+                    <span className="text-sm font-bold text-[#003366]">{percent}% match</span>
+                  </div>
+                  <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${percent}%` }}
+                      transition={{ duration: 0.9, delay: 0.15 * i, ease: 'easeOut' }}
+                      className={`h-full rounded-full ${cfg.color.split(' ')[0]}`}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Career recommendations grouped by top sector */}
+        <div className="space-y-8 mb-10">
+          {top3.map(({ sector }) => {
+            const cfg = sectorConfig[sector] || sectorConfig.Clinical;
+            const picks = recommendedBySector[sector] || [];
             return (
-              <span key={s} className={`px-4 py-1.5 rounded-full font-semibold text-sm ${cfg.color}`}>
-                {i + 1}. Healthcare + {sectorDisplayName(s)}
-              </span>
+              <div key={sector}>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full ${cfg.color}`}>
+                    Healthcare + {sectorDisplayName(sector)}
+                  </span>
+                  <span className="text-xs text-gray-400">3 careers to explore</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {picks.map((c) => (
+                    <QuizRecommendationCard key={c.id} career={c} />
+                  ))}
+                </div>
+              </div>
             );
           })}
         </div>
 
-        <h3 className="playfair text-xl font-bold text-[#003366] mb-4 text-center">This could be your path</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-          {recommended.map((c) => (
-            <QuizRecommendationCard key={c.id} career={c} />
-          ))}
-        </div>
-
-        <div className="text-center">
+        <div className="text-center space-y-3">
+          <p className="text-sm text-gray-500">
+            Want to see every career in these sectors? Switch to the <span className="font-semibold text-[#003366]">Career Explorer</span> tab and filter by sector.
+          </p>
           <button
             onClick={handleRestart}
             className="bg-[#003366] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#002244] transition-colors"
@@ -417,7 +384,10 @@ const CareerQuiz = () => {
           exit={{ opacity: 0, x: direction * -40 }}
           transition={{ duration: 0.25 }}
         >
-          <h2 className="playfair text-2xl font-bold text-[#003366] mb-6 leading-snug">{q.question}</h2>
+          <h2 className="playfair text-2xl font-bold text-[#003366] mb-2 leading-snug">{q.question}</h2>
+          {q.helper && (
+            <p className="text-sm text-gray-500 mb-6 italic">{q.helper}</p>
+          )}
 
           <div className="space-y-3 mb-8">
             {q.options.map((opt, i) => {
