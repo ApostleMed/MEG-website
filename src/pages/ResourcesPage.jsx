@@ -188,7 +188,7 @@ const QuizRecommendationCard = ({ career }) => {
 };
 
 // Google Apps Script endpoint that emails quiz submissions to MEG
-const QUIZ_RESULTS_URL = 'https://script.google.com/macros/s/REPLACE_WITH_APPS_SCRIPT_URL/exec';
+const QUIZ_RESULTS_URL = 'https://script.google.com/macros/s/AKfycbx3kfiQAw2GHP6MrYCeY3datMq1ALjXjP4BvYiTmkn1Dd3PtIM6YvVDNx6GEdVqyu9z/exec';
 
 // Deterministic shuffle so the same answers yield the same recommendations
 const seededShuffle = (arr, seed) => {
