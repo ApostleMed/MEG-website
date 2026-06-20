@@ -187,6 +187,9 @@ const QuizRecommendationCard = ({ career }) => {
   );
 };
 
+// Google Apps Script endpoint that emails quiz submissions to MEG
+const QUIZ_RESULTS_URL = 'https://script.google.com/macros/s/REPLACE_WITH_APPS_SCRIPT_URL/exec';
+
 // Deterministic shuffle so the same answers yield the same recommendations
 const seededShuffle = (arr, seed) => {
   const a = [...arr];
@@ -208,6 +211,14 @@ const CareerQuiz = () => {
   const [done, setDone] = useState(false);
   const [results, setResults] = useState([]);
   const [recommendedBySector, setRecommendedBySector] = useState({});
+
+  // Save-results form state
+  const [saveName, setSaveName] = useState('');
+  const [saveAge, setSaveAge] = useState('');
+  const [saveEmail, setSaveEmail] = useState('');
+  const [saveErrors, setSaveErrors] = useState({});
+  const [saveSubmitting, setSaveSubmitting] = useState(false);
+  const [saveSubmitted, setSaveSubmitted] = useState(false);
 
   const progress = ((current) / questions.length) * 100;
 
@@ -270,6 +281,63 @@ const CareerQuiz = () => {
     setDone(false);
     setResults([]);
     setRecommendedBySector({});
+    setSaveName('');
+    setSaveAge('');
+    setSaveEmail('');
+    setSaveErrors({});
+    setSaveSubmitted(false);
+  };
+
+  const handleSaveResults = async (e) => {
+    e.preventDefault();
+    const errs = {};
+    if (!saveName.trim()) errs.name = 'Required';
+    const ageNum = parseInt(saveAge, 10);
+    if (!saveAge || Number.isNaN(ageNum) || ageNum < 5 || ageNum > 100) {
+      errs.age = 'Please enter a valid age';
+    }
+    if (saveEmail.trim() && !/\S+@\S+\.\S+/.test(saveEmail)) {
+      errs.email = 'Please enter a valid email';
+    }
+    if (Object.keys(errs).length) {
+      setSaveErrors(errs);
+      return;
+    }
+    setSaveErrors({});
+    setSaveSubmitting(true);
+
+    // Build a clean summary of the results
+    const top3 = results.slice(0, 3);
+    const sectorSummary = top3
+      .map(({ sector, percent }, i) => `${i + 1}. Healthcare + ${sectorDisplayName(sector)} — ${percent}% match`)
+      .join('\n');
+    const careersSummary = top3
+      .map(({ sector }) => {
+        const picks = (recommendedBySector[sector] || []).map((c) => `   • ${c.title}`).join('\n');
+        return `Healthcare + ${sectorDisplayName(sector)}:\n${picks}`;
+      })
+      .join('\n\n');
+
+    try {
+      const params = new URLSearchParams({
+        name: saveName.trim(),
+        age: String(ageNum),
+        email: saveEmail.trim(),
+        topSectors: sectorSummary,
+        recommendedCareers: careersSummary,
+        submittedAt: new Date().toISOString(),
+      });
+      await fetch(QUIZ_RESULTS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: params,
+      });
+      setSaveSubmitted(true);
+    } catch {
+      setSaveErrors({ submit: 'Something went wrong. Please try again.' });
+    } finally {
+      setSaveSubmitting(false);
+    }
   };
 
   if (done) {
@@ -338,6 +406,77 @@ const CareerQuiz = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* Save my results — captures name/age/email and emails MEG */}
+        <div className="bg-gradient-to-br from-[#003366] to-[#002244] text-white rounded-2xl p-6 md:p-8 mb-10">
+          {saveSubmitted ? (
+            <div className="text-center py-4">
+              <div className="inline-flex w-12 h-12 rounded-full bg-[#DAA520] items-center justify-center mb-3">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="playfair text-xl font-bold mb-2">Results Saved</h3>
+              <p className="text-blue-100 text-sm">
+                Thank you, {saveName}. Our MEG team will follow up with personalised guidance soon.
+              </p>
+            </div>
+          ) : (
+            <>
+              <h3 className="playfair text-xl md:text-2xl font-bold mb-2">Save My Results</h3>
+              <p className="text-blue-200 text-sm mb-5">
+                Share your name and age so the MEG team can follow up with personalised career guidance.
+              </p>
+              <form onSubmit={handleSaveResults} noValidate className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-blue-200 mb-1.5 uppercase tracking-wide">Full Name *</label>
+                    <input
+                      type="text"
+                      value={saveName}
+                      onChange={(e) => { setSaveName(e.target.value); if (saveErrors.name) setSaveErrors({ ...saveErrors, name: '' }); }}
+                      placeholder="Your full name"
+                      className={`w-full px-4 py-2.5 rounded-lg bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition ${saveErrors.name ? 'ring-2 ring-red-400' : ''}`}
+                    />
+                    {saveErrors.name && <p className="text-red-300 text-xs mt-1">{saveErrors.name}</p>}
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-blue-200 mb-1.5 uppercase tracking-wide">Age *</label>
+                    <input
+                      type="number"
+                      value={saveAge}
+                      onChange={(e) => { setSaveAge(e.target.value); if (saveErrors.age) setSaveErrors({ ...saveErrors, age: '' }); }}
+                      placeholder="e.g. 17"
+                      min={5}
+                      max={100}
+                      className={`w-full px-4 py-2.5 rounded-lg bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition ${saveErrors.age ? 'ring-2 ring-red-400' : ''}`}
+                    />
+                    {saveErrors.age && <p className="text-red-300 text-xs mt-1">{saveErrors.age}</p>}
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-blue-200 mb-1.5 uppercase tracking-wide">Email <span className="font-normal text-blue-300 normal-case">(optional — for us to reply to you)</span></label>
+                  <input
+                    type="email"
+                    value={saveEmail}
+                    onChange={(e) => { setSaveEmail(e.target.value); if (saveErrors.email) setSaveErrors({ ...saveErrors, email: '' }); }}
+                    placeholder="you@example.com"
+                    className={`w-full px-4 py-2.5 rounded-lg bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition ${saveErrors.email ? 'ring-2 ring-red-400' : ''}`}
+                  />
+                  {saveErrors.email && <p className="text-red-300 text-xs mt-1">{saveErrors.email}</p>}
+                </div>
+                {saveErrors.submit && <p className="text-red-300 text-sm">{saveErrors.submit}</p>}
+                <button
+                  type="submit"
+                  disabled={saveSubmitting}
+                  className="w-full sm:w-auto bg-[#DAA520] text-white font-semibold px-7 py-3 rounded-lg hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed transition"
+                >
+                  {saveSubmitting ? 'Sending…' : 'Send My Results to MEG'}
+                </button>
+              </form>
+            </>
+          )}
         </div>
 
         <div className="text-center space-y-3">
