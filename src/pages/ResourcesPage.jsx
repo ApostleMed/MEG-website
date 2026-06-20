@@ -340,7 +340,86 @@ const CareerQuiz = () => {
     }
   };
 
-  if (done) {
+  // ── Capture form: shown after Q14 is answered, before results are revealed ──
+  if (done && !saveSubmitted) {
+    return (
+      <motion.div variants={fadeUp} initial="hidden" animate="visible" className="max-w-xl mx-auto">
+        <div className="text-center mb-8">
+          <div className="inline-flex w-14 h-14 rounded-full bg-[#DAA520]/20 items-center justify-center mb-4">
+            <svg className="w-7 h-7 text-[#DAA520]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h2 className="playfair text-3xl md:text-4xl font-bold text-[#003366] mb-3">Almost There</h2>
+          <p className="text-gray-600">
+            Enter your details below to see your personalised career match. Your results will be sent to the MEG team so we can follow up with tailored guidance.
+          </p>
+        </div>
+
+        <div className="bg-gradient-to-br from-[#003366] to-[#002244] text-white rounded-2xl p-6 md:p-8">
+          <form onSubmit={handleSaveResults} noValidate className="space-y-4">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-blue-200 mb-1.5 uppercase tracking-wide">Full Name *</label>
+                <input
+                  type="text"
+                  value={saveName}
+                  onChange={(e) => { setSaveName(e.target.value); if (saveErrors.name) setSaveErrors({ ...saveErrors, name: '' }); }}
+                  placeholder="Your full name"
+                  className={`w-full px-4 py-2.5 rounded-lg bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition ${saveErrors.name ? 'ring-2 ring-red-400' : ''}`}
+                />
+                {saveErrors.name && <p className="text-red-300 text-xs mt-1">{saveErrors.name}</p>}
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-blue-200 mb-1.5 uppercase tracking-wide">Age *</label>
+                <input
+                  type="number"
+                  value={saveAge}
+                  onChange={(e) => { setSaveAge(e.target.value); if (saveErrors.age) setSaveErrors({ ...saveErrors, age: '' }); }}
+                  placeholder="e.g. 17"
+                  min={5}
+                  max={100}
+                  className={`w-full px-4 py-2.5 rounded-lg bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition ${saveErrors.age ? 'ring-2 ring-red-400' : ''}`}
+                />
+                {saveErrors.age && <p className="text-red-300 text-xs mt-1">{saveErrors.age}</p>}
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-blue-200 mb-1.5 uppercase tracking-wide">Email <span className="font-normal text-blue-300 normal-case">(optional — for us to reply to you)</span></label>
+              <input
+                type="email"
+                value={saveEmail}
+                onChange={(e) => { setSaveEmail(e.target.value); if (saveErrors.email) setSaveErrors({ ...saveErrors, email: '' }); }}
+                placeholder="you@example.com"
+                className={`w-full px-4 py-2.5 rounded-lg bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition ${saveErrors.email ? 'ring-2 ring-red-400' : ''}`}
+              />
+              {saveErrors.email && <p className="text-red-300 text-xs mt-1">{saveErrors.email}</p>}
+            </div>
+            {saveErrors.submit && <p className="text-red-300 text-sm">{saveErrors.submit}</p>}
+            <button
+              type="submit"
+              disabled={saveSubmitting}
+              className="w-full bg-[#DAA520] text-white font-semibold px-7 py-3.5 rounded-lg hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed transition flex items-center justify-center gap-2"
+            >
+              {saveSubmitting ? 'Revealing your results…' : 'See My Results'}
+              {!saveSubmitting && (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              )}
+            </button>
+          </form>
+        </div>
+
+        <p className="text-xs text-gray-400 text-center mt-4">
+          Your details are private and used only by the MEG team to follow up.
+        </p>
+      </motion.div>
+    );
+  }
+
+  // ── Results screen: shown only after form has been submitted ──
+  if (done && saveSubmitted) {
     const top3 = results.slice(0, 3);
     return (
       <motion.div variants={fadeUp} initial="hidden" animate="visible" className="max-w-3xl mx-auto">
@@ -352,7 +431,7 @@ const CareerQuiz = () => {
           </div>
           <h2 className="playfair text-3xl md:text-4xl font-bold text-[#003366] mb-3">Your Path is Taking Shape</h2>
           <p className="text-gray-600 max-w-xl mx-auto">
-            Based on your fourteen answers, here are the three healthcare sectors where your interests and strengths line up most closely — and three careers in each to explore.
+            Thank you, {saveName}. Based on your fourteen answers, here are the three healthcare sectors where your interests and strengths line up most closely — and three careers in each to explore. Our team has received your results and will be in touch.
           </p>
         </div>
 
@@ -406,77 +485,6 @@ const CareerQuiz = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* Save my results — captures name/age/email and emails MEG */}
-        <div className="bg-gradient-to-br from-[#003366] to-[#002244] text-white rounded-2xl p-6 md:p-8 mb-10">
-          {saveSubmitted ? (
-            <div className="text-center py-4">
-              <div className="inline-flex w-12 h-12 rounded-full bg-[#DAA520] items-center justify-center mb-3">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="playfair text-xl font-bold mb-2">Results Saved</h3>
-              <p className="text-blue-100 text-sm">
-                Thank you, {saveName}. Our MEG team will follow up with personalised guidance soon.
-              </p>
-            </div>
-          ) : (
-            <>
-              <h3 className="playfair text-xl md:text-2xl font-bold mb-2">Save My Results</h3>
-              <p className="text-blue-200 text-sm mb-5">
-                Share your name and age so the MEG team can follow up with personalised career guidance.
-              </p>
-              <form onSubmit={handleSaveResults} noValidate className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-blue-200 mb-1.5 uppercase tracking-wide">Full Name *</label>
-                    <input
-                      type="text"
-                      value={saveName}
-                      onChange={(e) => { setSaveName(e.target.value); if (saveErrors.name) setSaveErrors({ ...saveErrors, name: '' }); }}
-                      placeholder="Your full name"
-                      className={`w-full px-4 py-2.5 rounded-lg bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition ${saveErrors.name ? 'ring-2 ring-red-400' : ''}`}
-                    />
-                    {saveErrors.name && <p className="text-red-300 text-xs mt-1">{saveErrors.name}</p>}
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-blue-200 mb-1.5 uppercase tracking-wide">Age *</label>
-                    <input
-                      type="number"
-                      value={saveAge}
-                      onChange={(e) => { setSaveAge(e.target.value); if (saveErrors.age) setSaveErrors({ ...saveErrors, age: '' }); }}
-                      placeholder="e.g. 17"
-                      min={5}
-                      max={100}
-                      className={`w-full px-4 py-2.5 rounded-lg bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition ${saveErrors.age ? 'ring-2 ring-red-400' : ''}`}
-                    />
-                    {saveErrors.age && <p className="text-red-300 text-xs mt-1">{saveErrors.age}</p>}
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-blue-200 mb-1.5 uppercase tracking-wide">Email <span className="font-normal text-blue-300 normal-case">(optional — for us to reply to you)</span></label>
-                  <input
-                    type="email"
-                    value={saveEmail}
-                    onChange={(e) => { setSaveEmail(e.target.value); if (saveErrors.email) setSaveErrors({ ...saveErrors, email: '' }); }}
-                    placeholder="you@example.com"
-                    className={`w-full px-4 py-2.5 rounded-lg bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition ${saveErrors.email ? 'ring-2 ring-red-400' : ''}`}
-                  />
-                  {saveErrors.email && <p className="text-red-300 text-xs mt-1">{saveErrors.email}</p>}
-                </div>
-                {saveErrors.submit && <p className="text-red-300 text-sm">{saveErrors.submit}</p>}
-                <button
-                  type="submit"
-                  disabled={saveSubmitting}
-                  className="w-full sm:w-auto bg-[#DAA520] text-white font-semibold px-7 py-3 rounded-lg hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed transition"
-                >
-                  {saveSubmitting ? 'Sending…' : 'Send My Results to MEG'}
-                </button>
-              </form>
-            </>
-          )}
         </div>
 
         <div className="text-center space-y-3">
@@ -571,7 +579,7 @@ const CareerQuiz = () => {
               : 'bg-gray-200 text-gray-400 cursor-not-allowed'
           }`}
         >
-          {current === questions.length - 1 ? 'See My Results' : 'Next'}
+          {current === questions.length - 1 ? 'Continue' : 'Next'}
         </button>
       </div>
     </motion.div>
