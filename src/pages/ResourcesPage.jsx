@@ -215,6 +215,7 @@ const CareerQuiz = () => {
   // Save-results form state
   const [saveName, setSaveName] = useState('');
   const [saveAge, setSaveAge] = useState('');
+  const [saveContact, setSaveContact] = useState('');
   const [saveEmail, setSaveEmail] = useState('');
   const [saveErrors, setSaveErrors] = useState({});
   const [saveSubmitting, setSaveSubmitting] = useState(false);
@@ -283,6 +284,7 @@ const CareerQuiz = () => {
     setRecommendedBySector({});
     setSaveName('');
     setSaveAge('');
+    setSaveContact('');
     setSaveEmail('');
     setSaveErrors({});
     setSaveSubmitted(false);
@@ -295,6 +297,10 @@ const CareerQuiz = () => {
     const ageNum = parseInt(saveAge, 10);
     if (!saveAge || Number.isNaN(ageNum) || ageNum < 5 || ageNum > 100) {
       errs.age = 'Please enter a valid age';
+    }
+    const contactDigits = saveContact.replace(/\D/g, '');
+    if (!saveContact.trim() || contactDigits.length < 7) {
+      errs.contact = 'Please enter a valid WhatsApp or Viber number';
     }
     if (saveEmail.trim() && !/\S+@\S+\.\S+/.test(saveEmail)) {
       errs.email = 'Please enter a valid email';
@@ -322,6 +328,7 @@ const CareerQuiz = () => {
       const params = new URLSearchParams({
         name: saveName.trim(),
         age: String(ageNum),
+        contact: saveContact.trim(),
         email: saveEmail.trim(),
         topSectors: sectorSummary,
         recommendedCareers: careersSummary,
@@ -383,6 +390,20 @@ const CareerQuiz = () => {
                 />
                 {saveErrors.age && <p className="text-red-300 text-xs mt-1">{saveErrors.age}</p>}
               </div>
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-blue-200 mb-1.5 uppercase tracking-wide">WhatsApp or Viber Number *</label>
+              <input
+                type="tel"
+                value={saveContact}
+                onChange={(e) => { setSaveContact(e.target.value); if (saveErrors.contact) setSaveErrors({ ...saveErrors, contact: '' }); }}
+                placeholder="+95 9 XXX XXX XXX"
+                className={`w-full px-4 py-2.5 rounded-lg bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#DAA520] transition ${saveErrors.contact ? 'ring-2 ring-red-400' : ''}`}
+              />
+              {saveErrors.contact
+                ? <p className="text-red-300 text-xs mt-1">{saveErrors.contact}</p>
+                : <p className="text-blue-300 text-xs mt-1">Include country code so we can reach you on WhatsApp or Viber</p>
+              }
             </div>
             <div>
               <label className="block text-xs font-semibold text-blue-200 mb-1.5 uppercase tracking-wide">Email <span className="font-normal text-blue-300 normal-case">(optional — for us to reply to you)</span></label>
