@@ -146,6 +146,13 @@ const Navbar = () => {
               </div>
             </div>
 
+            <a
+              href="/guides"
+              className="text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
+            >
+              University Guidance
+            </a>
+
             <NavLink
               onClick={() => {
                 setServiceMenu(false);
@@ -321,6 +328,13 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
+
+            <a
+              href="/guides"
+              className="text-[14px] lg:text-[18px] font-semibold text-gray-400 hover:text-primary"
+            >
+              University Guidance
+            </a>
 
             <NavLink
               to="/resources"

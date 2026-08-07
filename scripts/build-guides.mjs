@@ -258,69 +258,126 @@ const buildGraph = (fm, body) => {
 
 // ─── HTML template ───────────────────────────────────────────────────────────
 
+// Site tokens match the main MEG SPA (Tailwind config + index.css)
 const CSS = `
   :root {
-    --navy: #003366;
-    --gold: #DAA520;
+    --navy: #003366;      /* accent */
+    --gold: #DAA520;      /* primary */
     --ink: #1C1C1C;
     --muted: #63666A;
     --rule: #E5E1DA;
-    --paper: #FBFAF7;
-    --paper-tint: #F5F1E8;
+    --bglight: #F6F6F6;
+    --footer: #1C1C1C;
     --verify: #1E6F5C;
+    --paper-tint: #FFF9EA;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    background: var(--paper);
+    background: #fff;
     color: var(--ink);
     font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     font-size: 17px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
+  .playfair { font-family: 'Playfair Display', 'Georgia', serif; }
   a { color: var(--navy); text-decoration: underline; text-underline-offset: 2px; }
   a:hover { color: var(--gold); }
   a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
 
-  /* Header */
+  /* ── Site header — matches Navbar.jsx ── */
   .site-header {
-    background: white;
-    border-bottom: 1px solid var(--rule);
-    padding: 16px 24px;
+    background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    position: sticky;
+    top: 0;
+    z-index: 50;
   }
   .site-header-inner {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 8px 20px;
     gap: 24px;
   }
-  .site-header .brand {
-    font-family: 'Playfair Display', 'Georgia', serif;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--navy);
+  .brand-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .brand-logo img { width: 56px; height: auto; display: block; }
+  .main-nav { display: none; align-items: center; gap: 32px; margin-left: 40px; flex: 1; }
+  .main-nav a {
+    color: #9CA3AF;
     text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: color 0.2s;
   }
-  .site-header nav { display: flex; gap: 20px; flex-wrap: wrap; }
-  .site-header nav a {
+  .main-nav a:hover, .main-nav a.active { color: var(--gold); }
+  .cta-btn {
+    background: var(--gold);
+    color: #fff !important;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(218,165,32,0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+  .cta-btn:hover { transform: scale(1.03); box-shadow: 0 4px 12px rgba(218,165,32,0.35); color: #fff !important; }
+
+  @media (min-width: 1024px) {
+    .main-nav { display: flex; }
+  }
+  @media (max-width: 1023px) {
+    .site-header-inner { padding: 8px 16px; }
+    .cta-btn { padding: 10px 18px; font-size: 13px; }
+  }
+
+  /* ── Guide tab bar (matches Career Guide tab bar) ── */
+  .guide-tabs {
+    background: #fff;
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 72px;
+    z-index: 40;
+  }
+  .guide-tabs-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    padding: 0 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .guide-tabs a {
+    padding: 18px 20px 16px;
     color: var(--muted);
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
   }
-  .site-header nav a:hover { color: var(--navy); }
+  .guide-tabs a:hover { color: var(--navy); }
+  .guide-tabs a.active {
+    color: var(--navy);
+    border-bottom-color: var(--gold);
+  }
 
-  /* Article layout */
+  /* ── Article layout ── */
   main.guide {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
-    padding: 48px 24px 96px;
+    padding: 56px 24px 96px;
   }
-  main.guide.index { max-width: 900px; }
+  main.guide.index { max-width: 1000px; }
 
   .breadcrumb {
     font-size: 13px;
@@ -328,29 +385,30 @@ const CSS = `
     margin-bottom: 24px;
   }
   .breadcrumb a { color: var(--muted); }
+  .breadcrumb a:hover { color: var(--gold); }
 
   h1 {
     font-family: 'Playfair Display', 'Georgia', serif;
     font-weight: 700;
-    font-size: clamp(28px, 4.5vw, 40px);
+    font-size: clamp(30px, 5vw, 44px);
     line-height: 1.2;
     color: var(--navy);
-    margin: 0 0 8px;
+    margin: 0 0 16px;
   }
   h2 {
     font-family: 'Playfair Display', 'Georgia', serif;
     font-weight: 700;
-    font-size: clamp(22px, 3vw, 28px);
+    font-size: clamp(24px, 3.5vw, 32px);
     color: var(--navy);
-    margin: 56px 0 20px;
+    margin: 64px 0 20px;
     line-height: 1.3;
   }
   h3 {
     font-family: 'Playfair Display', 'Georgia', serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 22px;
     color: var(--navy);
-    margin: 36px 0 12px;
+    margin: 40px 0 14px;
   }
   h2 a.anchor-link, h3 a.anchor-link {
     color: inherit;
@@ -367,17 +425,17 @@ const CSS = `
     border-bottom: 1px solid var(--rule);
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 16px 20px;
   }
   .article-meta strong { color: var(--ink); font-weight: 600; }
 
-  /* Short answer */
+  /* Short answer callout */
   .short-answer {
-    background: var(--paper-tint);
+    background: #FFF9EA;
     border-left: 4px solid var(--gold);
-    padding: 20px 24px;
+    padding: 24px 28px;
     margin: 24px 0 40px;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 17px;
   }
   .short-answer .label {
@@ -386,70 +444,74 @@ const CSS = `
     color: var(--gold);
     font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 8px;
+    letter-spacing: 0.14em;
+    margin-bottom: 10px;
     font-weight: 700;
   }
+  .short-answer p { margin: 0; }
 
   /* Table of contents */
   .toc {
-    background: white;
+    background: var(--bglight);
     border: 1px solid var(--rule);
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin: 0 0 48px;
+    border-radius: 10px;
+    padding: 22px 28px;
+    margin: 0 0 56px;
   }
   .toc h2 {
     font-family: 'Playfair Display', serif;
     font-size: 13px;
     color: var(--gold);
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin: 0 0 12px;
+    letter-spacing: 0.14em;
+    margin: 0 0 14px;
     font-weight: 700;
   }
   .toc ol {
     list-style: decimal-leading-zero;
-    padding-left: 28px;
+    padding-left: 32px;
     margin: 0;
     columns: 1;
+    color: var(--muted);
   }
-  @media (min-width: 720px) { .toc ol { columns: 2; column-gap: 32px; } }
+  @media (min-width: 720px) { .toc ol { columns: 2; column-gap: 40px; } }
   .toc li { margin-bottom: 8px; break-inside: avoid; }
-  .toc a { color: var(--navy); text-decoration: none; font-size: 14px; }
+  .toc a { color: var(--navy); text-decoration: none; font-size: 15px; }
   .toc a:hover { color: var(--gold); text-decoration: underline; }
 
   /* Body */
   p, ul, ol { margin: 0 0 20px; }
-  ul, ol { padding-left: 24px; }
+  ul, ol { padding-left: 26px; }
   li { margin-bottom: 8px; }
-  strong { color: var(--ink); font-weight: 600; }
+  li > p { margin-bottom: 8px; }
+  strong { color: var(--ink); font-weight: 700; }
   hr {
     border: 0;
     border-top: 1px solid var(--rule);
-    margin: 48px 0;
+    margin: 56px 0;
   }
 
   /* Correction callouts */
   .correction-callout {
     background: #FFF9EA;
     border-left: 4px solid var(--gold);
-    padding: 20px 24px;
+    padding: 22px 26px;
     margin: 32px 0;
-    border-radius: 6px;
+    border-radius: 8px;
     color: var(--ink);
   }
-  .correction-callout p { margin: 0 0 12px; }
+  .correction-callout p { margin: 0 0 14px; }
   .correction-callout p:last-child { margin-bottom: 0; }
   .correction-callout strong:first-child { color: var(--navy); }
 
   /* Tables */
   .table-wrap {
-    margin: 24px 0;
+    margin: 28px 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     border: 1px solid var(--rule);
-    border-radius: 6px;
+    border-radius: 8px;
+    background: #fff;
   }
   table {
     width: 100%;
@@ -459,20 +521,21 @@ const CSS = `
   }
   thead th {
     background: var(--navy);
-    color: white;
+    color: #fff;
     text-align: left;
-    padding: 12px 14px;
-    font-weight: 600;
+    padding: 14px 16px;
+    font-weight: 700;
     border-bottom: 2px solid var(--navy);
     font-size: 13px;
+    letter-spacing: 0.02em;
   }
   tbody td {
-    padding: 12px 14px;
+    padding: 14px 16px;
     border-bottom: 1px solid var(--rule);
     vertical-align: top;
   }
   tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover { background: var(--paper-tint); }
+  tbody tr:hover { background: var(--bglight); }
 
   /* Verification marker */
   .verify-marker {
@@ -482,22 +545,22 @@ const CSS = `
     width: 18px;
     height: 18px;
     background: var(--verify);
-    color: white;
+    color: #fff;
     border-radius: 50%;
     font-size: 11px;
     font-weight: 700;
     vertical-align: middle;
-    margin-left: 4px;
+    margin-left: 6px;
     cursor: help;
     line-height: 1;
   }
 
   /* FAQ */
-  section.faq { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--rule); }
+  section.faq { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--rule); }
   section.faq h2 { margin-top: 0; }
   section.faq details {
     border-bottom: 1px solid var(--rule);
-    padding: 16px 0;
+    padding: 18px 0;
   }
   section.faq details:last-of-type { border-bottom: none; }
   section.faq summary {
@@ -507,83 +570,177 @@ const CSS = `
     padding: 6px 0;
     list-style: none;
     position: relative;
-    padding-right: 28px;
+    padding-right: 32px;
+    font-size: 17px;
   }
   section.faq summary::-webkit-details-marker { display: none; }
   section.faq summary::after {
     content: '+';
     position: absolute;
-    right: 4px;
-    top: 4px;
+    right: 6px;
+    top: 2px;
     color: var(--gold);
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 400;
     transition: transform 0.2s;
   }
   section.faq details[open] summary::after { content: '−'; }
   section.faq summary:hover { color: var(--gold); }
   section.faq details p {
-    margin: 12px 0 0;
+    margin: 14px 0 0;
     color: var(--muted);
-    font-size: 15px;
+    font-size: 16px;
+    line-height: 1.7;
   }
 
   /* Related links */
   .related {
-    margin-top: 48px;
-    padding: 24px;
-    background: var(--paper-tint);
-    border-radius: 8px;
+    margin-top: 56px;
+    padding: 28px;
+    background: var(--bglight);
+    border-radius: 10px;
+    border-left: 4px solid var(--navy);
   }
   .related h2 {
     font-size: 13px;
     color: var(--gold);
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin: 0 0 12px;
+    letter-spacing: 0.14em;
+    margin: 0 0 14px;
     font-family: 'Playfair Display', serif;
   }
   .related ul { list-style: none; padding: 0; margin: 0; }
-  .related li { margin: 8px 0; }
-  .related a { color: var(--navy); font-weight: 500; }
+  .related li { margin: 10px 0; }
+  .related a { color: var(--navy); font-weight: 600; text-decoration: none; }
+  .related a:hover { color: var(--gold); text-decoration: underline; }
 
-  /* Footer */
+  /* Site footer — matches Footer.jsx look */
   .site-footer {
-    background: var(--navy);
+    background: var(--footer);
     color: rgba(255,255,255,0.75);
-    padding: 32px 24px;
-    text-align: center;
+    padding: 48px 24px 32px;
+    margin-top: 80px;
+  }
+  .site-footer-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) {
+    .site-footer-inner { grid-template-columns: 2fr 1fr 1fr; gap: 48px; }
+  }
+  .site-footer h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: #fff;
+    margin: 0 0 14px;
+    font-weight: 700;
+  }
+  .site-footer ul { list-style: none; padding: 0; margin: 0; }
+  .site-footer li { margin: 8px 0; }
+  .site-footer a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .site-footer a:hover { color: var(--gold); }
+  .site-footer .brand-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .site-footer .brand-line img { width: 40px; height: auto; }
+  .site-footer .brand-line strong {
+    font-family: 'Playfair Display', serif;
+    color: #DAA520;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .site-footer .tagline { font-size: 14px; line-height: 1.7; }
+  .site-footer-bottom {
+    max-width: 1000px;
+    margin: 40px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
     font-size: 13px;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
   }
-  .site-footer a { color: white; }
 
-  /* Index page */
-  .guides-list { list-style: none; padding: 0; margin: 40px 0 0; }
-  .guides-list li {
-    background: white;
-    border: 1px solid var(--rule);
-    border-radius: 8px;
-    padding: 24px 28px;
-    margin-bottom: 20px;
-    transition: border-color 0.2s;
+  /* Guides index page */
+  .guides-hero {
+    text-align: center;
+    margin: 32px 0 56px;
   }
-  .guides-list li:hover { border-color: var(--gold); }
-  .guides-list a { text-decoration: none; }
+  .guides-hero .kicker {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .guides-hero h1 { margin-bottom: 14px; }
+  .guides-hero p {
+    color: var(--muted);
+    max-width: 620px;
+    margin: 0 auto;
+    font-size: 17px;
+  }
+  .guides-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 20px; }
+  @media (min-width: 720px) { .guides-list { grid-template-columns: 1fr 1fr; gap: 24px; } }
+  .guides-list li {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .guides-list li:hover {
+    border-color: var(--gold);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+  .guides-list a { text-decoration: none; display: block; }
+  .guides-list .card-kicker {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
   .guides-list h2 {
-    margin: 0 0 8px;
+    margin: 0 0 12px;
     font-size: 22px;
     color: var(--navy);
+    line-height: 1.3;
   }
-  .guides-list .desc { color: var(--muted); font-size: 15px; margin: 0 0 12px; }
-  .guides-list .meta { color: var(--muted); font-size: 13px; }
+  .guides-list .desc { color: var(--muted); font-size: 15px; margin: 0 0 16px; }
+  .guides-list .meta {
+    color: var(--muted);
+    font-size: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+  }
+  .guides-list .cta-inline {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 14px;
+  }
 
   /* Responsive */
   @media (max-width: 480px) {
     main.guide { padding: 32px 20px 64px; }
     h1 { font-size: 26px; }
-    .site-header { padding: 12px 16px; }
-    .site-header nav { gap: 12px; }
-    .site-header nav a { font-size: 13px; }
+    .guide-tabs { top: 64px; }
+    .guide-tabs a { padding: 14px 14px 12px; font-size: 14px; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
@@ -591,24 +748,82 @@ const CSS = `
   }
 `;
 
-const HEADER = `
+// Header matches Navbar.jsx visually — logo, main nav, gold CTA button
+const buildHeader = (activePath = '') => {
+  const isActive = (p) => (activePath.startsWith(p) ? ' active' : '');
+  return `
   <header class="site-header">
     <div class="site-header-inner">
-      <a href="/" class="brand">Medical Education Guild</a>
-      <nav>
-        <a href="/about">Who we are</a>
-        <a href="/guides">Guides</a>
-        <a href="/resources">Career Guide</a>
-        <a href="/scholarship">Scholarship</a>
-        <a href="/contact">Contact</a>
+      <a href="/" class="brand-logo" aria-label="Medical Education Guild home">
+        <img src="/logo.png" alt="Medical Education Guild" />
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="/"${isActive('/') && activePath === '/' ? ' class="active"' : ''}>Medical Education guild</a>
+        <a href="/about"${isActive('/about')}>Who are we</a>
+        <a href="/guides"${isActive('/guides') ? ' class="active"' : ''}>University Guidance</a>
+        <a href="/resources"${isActive('/resources')}>Career Guide</a>
+        <a href="/contact"${isActive('/contact')}>Contact Us</a>
       </nav>
+      <a href="https://calendly.com/mededuguild/pathway?month=2025-08" class="cta-btn">Book a Consultation</a>
     </div>
   </header>
 `;
+};
 
+// Guide tab bar — switches between the two guides
+const buildGuideTabs = (activeSlug, allGuides) => {
+  const tabs = allGuides
+    .map((g) => {
+      const active = g.fm.slug === activeSlug ? ' class="active"' : '';
+      // Short tab label — strip the subtitle after ":"
+      const label = g.fm.title.split(':')[0].trim();
+      return `      <a href="/guides/${g.fm.slug}"${active}>${esc(label)}</a>`;
+    })
+    .join('\n');
+  return `
+  <nav class="guide-tabs" aria-label="Guide selection">
+    <div class="guide-tabs-inner">
+${tabs}
+    </div>
+  </nav>
+`;
+};
+
+// Footer matches Footer.jsx look — dark bg, brand + contact + links
 const FOOTER = `
   <footer class="site-footer">
-    <p>© ${new Date().getFullYear()} Medical Education Guild · <a href="/">mededuguild.com</a> · <a href="/contact">Contact</a></p>
+    <div class="site-footer-inner">
+      <div>
+        <div class="brand-line">
+          <img src="/logo.png" alt="MEG" />
+          <strong>Medical Education Guild</strong>
+        </div>
+        <p class="tagline">Shaping a world where healthcare knowledge is universal, and being a healer is a noble duty.</p>
+        <p class="tagline" style="margin-top:16px;">
+          <a href="mailto:info@mededuguild.com">info@mededuguild.com</a>
+        </p>
+      </div>
+      <div>
+        <h3>How can we help</h3>
+        <ul>
+          <li><a href="/service/1">Pathway Consultation</a></li>
+          <li><a href="/scholarship">Scholarship</a></li>
+          <li><a href="/high-school">High School for Healthcare Aspirants</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="/about">Who we are</a></li>
+          <li><a href="/guides">University Guidance</a></li>
+          <li><a href="/resources">Career Guide</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      © ${new Date().getFullYear()} Medical Education Guild · mededuguild.com
+    </div>
   </footer>
 `;
 
@@ -684,11 +899,12 @@ const buildGuideHtml = (fm, body, allGuides) => {
   <style>${CSS}</style>
 </head>
 <body>
-  ${HEADER}
+  ${buildHeader('/guides')}
+  ${buildGuideTabs(fm.slug, allGuides)}
 
   <main class="guide">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Home</a> · <a href="/guides">Guides</a> · <span>${esc(fm.title)}</span>
+      <a href="/">Home</a> · <a href="/guides">University Guidance</a> · <span>${esc(fm.title)}</span>
     </nav>
 
     <article>
@@ -747,8 +963,10 @@ const buildIndexHtml = (guides) => {
     .map(
       ({ fm }) => `        <li>
           <a href="/guides/${fm.slug}">
+            <div class="card-kicker">Guide</div>
             <h2>${esc(fm.title)}</h2>
             <p class="desc">${esc(fm.description)}</p>
+            <p class="cta-inline">Read the guide →</p>
             <p class="meta">Updated ${formatDate(fm.dateModified)} · Last verified ${formatDate(fm.lastVerified)}</p>
           </a>
         </li>`,
@@ -802,17 +1020,17 @@ const buildIndexHtml = (guides) => {
   <style>${CSS}</style>
 </head>
 <body>
-  ${HEADER}
+  ${buildHeader('/guides')}
 
   <main class="guide index">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Home</a> · <span>Guides</span>
+      <a href="/">Home</a> · <span>University Guidance</span>
     </nav>
 
-    <h1>Guides</h1>
-    <div class="short-answer">
-      <span class="label">Reference library</span>
-      <p>Plain-language reference material for students choosing an international medical education pathway. Each page is verified against primary regulator sources on a stated date and re-checked routinely.</p>
+    <div class="guides-hero">
+      <span class="kicker">Medical Education Guild</span>
+      <h1>University Guidance</h1>
+      <p>Plain-language reference material for students choosing an international medical education pathway. Every page is verified against primary regulator sources on a stated date and re-checked routinely.</p>
     </div>
 
     <ol class="guides-list">
@@ -933,6 +1151,13 @@ const main = () => {
   const indexHtml = buildIndexHtml(guides);
   fs.writeFileSync(path.join(OUT_GUIDES, 'index.html'), indexHtml);
   console.log(`  ✓ dist/guides/index.html (${indexHtml.length.toLocaleString()} bytes)`);
+
+  // Ensure /logo.png is at dist root (referenced by header/footer)
+  const distLogo = path.join(DIST_DIR, 'logo.png');
+  if (!fs.existsSync(distLogo)) {
+    const src = path.join(ROOT, 'public/logo.png');
+    if (fs.existsSync(src)) fs.copyFileSync(src, distLogo);
+  }
 
   // Write sitemap + robots
   fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), buildSitemap(guides));
