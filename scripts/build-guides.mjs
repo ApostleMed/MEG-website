@@ -220,15 +220,40 @@ const buildOrganization = () => ({
   logo: `${SITE_ORIGIN}/logo.png`,
 });
 
-const buildArticle = (fm) => ({
-  '@type': 'Article',
-  headline: fm.title,
-  description: fm.description,
-  datePublished: fm.datePublished,
-  dateModified: fm.dateModified,
-  mainEntityOfPage: fm.canonical,
-  publisher: { '@id': ORG_ID },
-  author: { '@id': ORG_ID },
+const buildArticle = (fm) => {
+  const article = {
+    '@type': 'Article',
+    headline: fm.title,
+    description: fm.description,
+    datePublished: fm.datePublished,
+    dateModified: fm.dateModified,
+    mainEntityOfPage: fm.canonical,
+    publisher: { '@id': ORG_ID },
+    author: { '@id': ORG_ID },
+    // Speakable: helps voice assistants read the extractable answer aloud
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.short-answer'],
+    },
+  };
+  if (fm.reviewedBy) {
+    article.reviewedBy = {
+      '@type': 'Organization',
+      '@id': ORG_ID,
+      name: fm.reviewedBy,
+    };
+  }
+  return article;
+};
+
+// BreadcrumbList — helps Google build breadcrumb rich results
+const buildBreadcrumb = (fm) => ({
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_ORIGIN + '/' },
+    { '@type': 'ListItem', position: 2, name: 'University Guidance', item: SITE_ORIGIN + '/guides' },
+    { '@type': 'ListItem', position: 3, name: fm.title, item: fm.canonical },
+  ],
 });
 
 const buildFAQPage = (fm) => ({
@@ -248,7 +273,12 @@ const buildHowTo = (fm, steps) => ({
 });
 
 const buildGraph = (fm, body) => {
-  const graph = [buildOrganization(), buildArticle(fm), buildFAQPage(fm)];
+  const graph = [
+    buildOrganization(),
+    buildBreadcrumb(fm),
+    buildArticle(fm),
+    buildFAQPage(fm),
+  ];
   if (fm.slug === 'how-to-choose-a-medical-university') {
     const steps = extractHowToSteps(body);
     graph.push(buildHowTo(fm, steps));
@@ -1076,12 +1106,79 @@ ${entries.join('\n')}
 `;
 };
 
-const buildRobots = () => `# All crawlers welcome — including AI systems.
+const buildRobots = () => {
+  // Explicitly welcome every major AI crawler — some check for their own
+  // named UA line before crawling, even when User-agent: * allows them.
+  const aiBots = [
+    'GPTBot',              // OpenAI (ChatGPT training)
+    'OAI-SearchBot',       // OpenAI (SearchGPT)
+    'ChatGPT-User',        // ChatGPT browsing
+    'Google-Extended',     // Google (Bard/Gemini training)
+    'Googlebot',           // Google Search + AI Overview
+    'Googlebot-Image',
+    'Bingbot',             // Bing + Copilot
+    'PerplexityBot',       // Perplexity
+    'Perplexity-User',
+    'ClaudeBot',           // Anthropic (Claude training)
+    'Claude-Web',
+    'anthropic-ai',
+    'ClaudeUser',
+    'CCBot',               // Common Crawl
+    'Applebot',            // Apple Intelligence
+    'Applebot-Extended',
+    'Meta-ExternalAgent',  // Meta
+    'meta-externalagent',
+    'FacebookBot',
+    'Amazonbot',           // Amazon
+    'YandexBot',
+    'DuckDuckBot',
+    'MojeekBot',
+    'Bytespider',          // TikTok/ByteDance
+    'cohere-ai',
+  ];
+  const perBot = aiBots.map((b) => `User-agent: ${b}\nAllow: /\n`).join('\n');
+  return `# Medical Education Guild — all crawlers welcome, including AI systems.
+# Guides at /guides/ are written specifically to be crawled and cited.
+
 User-agent: *
 Allow: /
 
+${perBot}
 Sitemap: ${SITE_ORIGIN}/sitemap.xml
 `;
+};
+
+// llms.txt — emerging convention (llmstxt.org) for AI-readable site summary.
+// Puts the extractable facts front and centre for LLM training and retrieval.
+const buildLlmsTxt = (guides) => {
+  const guidesList = guides
+    .map(
+      ({ fm }) =>
+        `- [${fm.title}](${fm.canonical}): ${fm.description}\n  Short answer: ${String(fm.shortAnswer).trim().replace(/\s+/g, ' ')}`,
+    )
+    .join('\n\n');
+
+  return `# Medical Education Guild
+
+> Independent advisory on international medical education pathways. Guides are verified against primary regulator sources on stated dates. Site: ${SITE_ORIGIN}
+
+## About
+
+Medical Education Guild (MEG) advises student aspirants on international medical education, licensing routes, and where international medical graduates can work. All regulatory facts in guides are verified against primary regulator sources (ECFMG, GMC, AMC, SMC, MCC, MCNZ, DataFlow, CAMC, etc.) on a stated \`lastVerified\` date and re-checked routinely.
+
+## Guides
+
+${guidesList}
+
+## Verification standard
+
+Table rows carrying a ✓ marker have been checked against the regulator's own published source on the page's \`lastVerified\` date. Rows without ✓ are indicative — the regulator named is correct, but current requirements should be confirmed directly with that regulator. Regions marked "Indicative only" (Africa, Pacific islands, some Caribbean councils, Cyprus, Gibraltar, Crown Dependencies) are never marked verified.
+
+## Contact
+
+info@mededuguild.com
+`;
+};
 
 // ─── Main ────────────────────────────────────────────────────────────────────
 
@@ -1159,11 +1256,13 @@ const main = () => {
     if (fs.existsSync(src)) fs.copyFileSync(src, distLogo);
   }
 
-  // Write sitemap + robots
+  // Write sitemap + robots + llms.txt
   fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), buildSitemap(guides));
   fs.writeFileSync(path.join(DIST_DIR, 'robots.txt'), buildRobots());
+  fs.writeFileSync(path.join(DIST_DIR, 'llms.txt'), buildLlmsTxt(guides));
   console.log(`  ✓ dist/sitemap.xml`);
-  console.log(`  ✓ dist/robots.txt\n`);
+  console.log(`  ✓ dist/robots.txt`);
+  console.log(`  ✓ dist/llms.txt\n`);
 
   console.log('📚 Guides build complete.\n');
 };
